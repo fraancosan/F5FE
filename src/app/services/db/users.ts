@@ -20,7 +20,7 @@ export class Users {
   signOut(sendLogin: boolean = false) {
     this.localStorageSv.removeItem('token');
     if (sendLogin) {
-      this.navSv.toPageTop('/sign-in');
+      this.navSv.toPageTop('/iniciar-sesion');
     }
   }
 

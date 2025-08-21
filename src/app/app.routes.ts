@@ -7,13 +7,23 @@ export const routes: Routes = [
   },
 
   {
-    path: 'sign-in',
+    path: 'iniciar-sesion',
     loadComponent: () => import('./pages/sign-in/sign-in'),
   },
 
   {
-    path: 'sign-up',
+    path: 'registrarse',
     loadComponent: () => import('./pages/sign-up/sign-up'),
+  },
+
+  {
+    path: 'sign-in',
+    redirectTo: 'iniciar-sesion',
+  },
+
+  {
+    path: 'sign-up',
+    redirectTo: 'registrarse',
   },
 
   { path: '**', redirectTo: 'inicio' },
