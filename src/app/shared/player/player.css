@@ -1,0 +1,11 @@
+.player {
+    width: 446px;
+    height: 446px;
+    opacity: 1;
+    border-width: 5px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid var(--green-primary);
+    box-shadow: 0 6px 20px rgba(3,23,11,0.6);
+    border: 5px solid var(--Verde-light-S, #70F5A3CF)
+}
