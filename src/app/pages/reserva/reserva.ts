@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-reserva',
   imports: [],
   templateUrl: './reserva.html',
-  styleUrl: './reserva.css'
+  styleUrl: './reserva.css',
 })
-export class Reserva {
-
-}
+export default class Reserva {}
