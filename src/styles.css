@@ -1,4 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* greens */
+  --green-primary: #05df72;    /* Green-500 - Primary */
+  --green-secondary: #bbfbd3;  /* Green-300 - Secondary (claro) */
+  --green-300-alt: #8bf7b4;    /* otro mint claro (opcional) */
+  --green-600: #086930;        /* Green-600 (medio-oscuro) */
+  --green-700: #324339;        /* Green-Gradient-Back */
+  --green-900: #03170b;        /* Green-900 - Dark */
+  /* neutrals */
+  --bg-dark: #0b0b0b;
+  --text-dark: #062018;
+  --white: #ffffff;
+  --glass: rgba(255,255,255,0.06);
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body, app-root, .app-bg {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.app-bg {
+  background: url('../public/landing-bg.jpg') center/cover no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+
+

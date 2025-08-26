@@ -1,0 +1,31 @@
+.btn-primary {
+  background: var(--Green-500-Primary, #05DF72);
+  width: 287px;
+  height: 62px;
+  border-radius: 20px;
+  border-color:#05DF72;
+  opacity: 1;
+  box-shadow: 0px 0px 8.7px 10px #06FF230F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 20px rgba(5,223,114,0.25);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.btn-text {
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-weight: 580;
+  font-size: 25px;
+  line-height: 100%;
+  width: 190px;
+  height: 23px;
+  opacity: 1;
+}
+ 

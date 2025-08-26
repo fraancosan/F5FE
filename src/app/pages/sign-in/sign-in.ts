@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-sign-in',
   imports: [],
   templateUrl: './sign-in.html',
-  styleUrl: './sign-in.css',
+  styleUrl: './sign-in.css'
 })
-export default class SignIn {}
+export class SignIn {
+
+}
