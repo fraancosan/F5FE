@@ -1,9 +1,15 @@
 .player {
   width: 446px;
   height: 446px;
-  border-width: 5px;
   object-fit: cover;
   border-radius: 50%;
   border: 5px solid var(--green-300);
   box-shadow: 0 6px 20px rgba(3, 23, 11, 0.6);
+}
+
+@media (max-width: 1300px) {
+  .player {
+    width: 350px;
+    height: 350px;
+  }
 }
