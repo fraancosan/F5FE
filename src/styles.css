@@ -1,32 +1,38 @@
 :root {
   /* greens */
-  --green-primary: #05df72;    /* Green-500 - Primary */
-  --green-secondary: #bbfbd3;  /* Green-300 - Secondary (claro) */
-  --green-300-alt: #8bf7b4;    /* otro mint claro (opcional) */
-  --green-600: #086930;        /* Green-600 (medio-oscuro) */
-  --green-700: #324339;        /* Green-Gradient-Back */
-  --green-900: #03170b;        /* Green-900 - Dark */
+  --green-500-primary: #05df72; /* Green-500 - Primary */
+  --green-300: rgba(112, 245, 163, 0.8); /* Secondary (claro) */
+  --green-300-alt: rgba(139, 247, 181, 0.48); /* Secondary | 48% */
+  --green-600: #086930;
+  --green-600-alt: rgba(8, 105, 48, 0.5);
+  --green-700-gradient: linear-gradient(
+    90deg,
+    #055629 0%,
+    #0e4e28 100%
+  ); /* Green-Gradient-Back */
+  --green-900: #03170b; /* Dark */
+  --green-900-alt: rgba(3, 23, 11, 0.81);
+  --green-gradient-section: linear-gradient(90deg, #0d502a 0%, #03210e 100%);
   /* neutrals */
   --bg-dark: #0b0b0b;
   --text-dark: #062018;
   --white: #ffffff;
-  --glass: rgba(255,255,255,0.06);
+  --glass: rgba(255, 255, 255, 0.06);
 }
 
-body, app-root, .app-bg {
+body,
+app-root,
+.app-bg {
   height: 100%;
   margin: 0;
   font-family: "Inter", sans-serif;
 }
 
 .app-bg {
-  background: url('../public/landing-bg.jpg') center/cover no-repeat;
+  background: url("../public/landing-bg.jpg") center/cover no-repeat;
   background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 }
-
-
-
