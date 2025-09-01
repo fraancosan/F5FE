@@ -92,7 +92,7 @@
   color: #ffffff;
   max-width: 529px;
   padding-bottom: 50px;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 24px;
   line-height: 28px;
@@ -101,10 +101,6 @@
 
 .subtitle-verde {
   color: var(--green-500-primary);
-}
-
-.btn-primary {
-  position: relative;
 }
 
 @media (max-width: 1300px) {

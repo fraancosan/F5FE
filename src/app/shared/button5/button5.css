@@ -1,7 +1,7 @@
 .btn-primary {
   background: var(--green-500-primary);
   width: 287px;
-  height: 62px;
+  height: 58px;
   border-radius: 20px;
   box-shadow: 0px 0px 8.7px 10px #06ff230f;
   display: flex;
@@ -18,9 +18,9 @@
 
 .btn-text {
   color: #ffffff;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 22px;
 }
 
 @media (min-width: 1300px) {
