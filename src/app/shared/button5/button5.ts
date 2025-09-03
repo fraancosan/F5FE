@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
   selector: 'app-button5',
   imports: [],
   templateUrl: './button5.html',
-  styleUrl: './button5.css'
+  styleUrl: './button5.css',
 })
 export class Button5 {
   constructor(private router: Router) {}
 
   public goToMenu(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/inicio']);
   }
 }

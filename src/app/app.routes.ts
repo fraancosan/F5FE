@@ -1,40 +1,38 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  // Landing directo
   {
-    path: 'landing',
+    path: '',
     loadComponent: () => import('./pages/landing/landing'),
   },
 
+  // Grupo con layout principal (header + footer)
   {
-    path: 'inicio',
-    loadComponent: () => import('./pages/home/home'),
+    path: '',
+    loadComponent: () => import('./pages/home-layout/home-layout'),
+    children: [
+      {
+        path: 'inicio',
+        loadComponent: () => import('./pages/home/home'),
+      },
+      {
+        path: 'iniciar-sesion',
+        loadComponent: () => import('./pages/sign-in/sign-in'),
+      },
+      {
+        path: 'registrarse',
+        loadComponent: () => import('./pages/sign-up/sign-up'),
+      },
+      {
+        path: 'reserva',
+        loadComponent: () => import('./pages/reserva/reserva'),
+      },
+    ],
   },
 
-  {
-    path: 'iniciar-sesion',
-    loadComponent: () => import('./pages/sign-in/sign-in'),
-  },
+  { path: 'sign-in', redirectTo: 'iniciar-sesion', pathMatch: 'full' },
+  { path: 'sign-up', redirectTo: 'registrarse', pathMatch: 'full' },
 
-  {
-    path: 'registrarse',
-    loadComponent: () => import('./pages/sign-up/sign-up'),
-  },
-
-  {
-    path: 'reserva',
-    loadComponent: () => import('./pages/reserva/reserva'),
-  },
-
-  {
-    path: 'sign-in',
-    redirectTo: 'iniciar-sesion',
-  },
-
-  {
-    path: 'sign-up',
-    redirectTo: 'registrarse',
-  },
-
-  { path: '**', redirectTo: 'landing' },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
