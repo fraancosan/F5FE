@@ -2,8 +2,6 @@
   box-sizing: border-box;
   height: 100%;
   margin: 0;
-  background: url("../../../../public/landing-bg.jpg") center/cover no-repeat;
-  /* background-attachment: fixed; */
   display: flex;
   align-items: center;
   justify-content: center;
