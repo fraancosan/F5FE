@@ -1,0 +1,29 @@
+.btn-primary {
+  background: var(--green-600);
+  width: 275px;
+  height: 36px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--green-600);
+}
+
+.btn-text {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 1300px) {
+  .btn-primary {
+    width: 224px;
+    height: 45px;
+  }
+
+  .btn-text {
+    font-size: 16px;
+  }
+}
