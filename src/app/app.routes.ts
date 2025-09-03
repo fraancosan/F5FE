@@ -4,34 +4,29 @@ export const routes: Routes = [
   // Landing directo
   {
     path: '',
-    loadComponent: () =>
-      import('./pages/landing/landing').then((m) => m.default),
+    loadComponent: () => import('./pages/landing/landing'),
   },
 
   // Grupo con layout principal (header + footer)
   {
     path: '',
-    loadComponent: () =>
-      import('./pages/home-layout/home-layout').then((m) => m.HomeLayout),
+    loadComponent: () => import('./pages/home-layout/home-layout'),
     children: [
       {
         path: 'inicio',
-        loadComponent: () => import('./pages/home/home').then((m) => m.default),
+        loadComponent: () => import('./pages/home/home'),
       },
       {
         path: 'iniciar-sesion',
-        loadComponent: () =>
-          import('./pages/sign-in/sign-in').then((m) => m.default),
+        loadComponent: () => import('./pages/sign-in/sign-in'),
       },
       {
         path: 'registrarse',
-        loadComponent: () =>
-          import('./pages/sign-up/sign-up').then((m) => m.default),
+        loadComponent: () => import('./pages/sign-up/sign-up'),
       },
       {
         path: 'reserva',
-        loadComponent: () =>
-          import('./pages/reserva/reserva').then((m) => m.default),
+        loadComponent: () => import('./pages/reserva/reserva'),
       },
     ],
   },

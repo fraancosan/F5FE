@@ -7,4 +7,4 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './home-layout.html',
   styleUrl: './home-layout.css',
 })
-export class HomeLayout {}
+export default class HomeLayout {}
