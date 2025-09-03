@@ -1,0 +1,10 @@
+.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 36px;
+  padding: 0 210px;
+  box-sizing: border-box;
+  justify-content: center;
+  width: 100%;
+}
