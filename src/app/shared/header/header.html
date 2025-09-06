@@ -1,1 +1,22 @@
-<p>header works!</p>
+<div class="header">
+  <a class="linkhome" (click)="goToLanding()">RODO</a>
+  <div class="actions">
+    <fa-icon class="notification" [icon]="bellIcon"></fa-icon>
+    <fa-icon
+      class="user"
+      matButton
+      [matMenuTriggerFor]="menu"
+      [icon]="userIcon"
+    ></fa-icon>
+    <mat-menu #menu="matMenu" class="menu-desplegable">
+      @if (!isLoggedIn) {
+      <button mat-menu-item (click)="goToLogin()">Iniciar Sesión</button>
+      <button mat-menu-item (click)="goToRegister()">Registrarse</button>
+      }@else {
+      <button mat-menu-item (click)="goToAccount()">Mi Cuenta</button>
+      <button mat-menu-item (click)="goToMyTurnos()">Mis Turnos</button>
+      <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
+      }
+    </mat-menu>
+  </div>
+</div>

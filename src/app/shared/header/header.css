@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px;
+}
+
+.linkhome {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: var(--green-500-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification {
+  font-size: 26px;
+  color: var(--white);
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.user {
+  font-size: 28px;
+  color: var(--green-500-primary);
+  cursor: pointer;
+}
+
+@media (min-width: 820px) {
+  .header {
+    padding: 32px;
+  }
+
+  .notification {
+    margin-right: 20px;
+  }
+}
