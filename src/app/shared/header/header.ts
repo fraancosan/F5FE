@@ -32,7 +32,6 @@ export class Header implements OnInit {
 
   goToLogin() {
     this.router.navigate(['/sign-in']);
-    //Cambiar estado de isLoggedIn
   }
 
   goToRegister() {
