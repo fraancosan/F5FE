@@ -1,1 +1,31 @@
-<p>sign-in works!</p>
+<div class="sign-in">
+  <div class="title">
+    <div class="back" (click)="goToMenu()">
+      <fa-icon class="arrow-icon" [icon]="faArrowLeft"></fa-icon>
+      <h4>Volver al Menú</h4>
+    </div>
+
+    <div class="page-title">
+      <h1>Iniciar Sesión</h1>
+    </div>
+  </div>
+
+  <div class="logosubrayado"></div>
+
+  <form class="form">
+    <div class="field correo">
+      <label for="correo"><fa-icon class="field-icon" [icon]="faCalendar"></fa-icon> Correo Electrónico</label>
+      <input type="email" id="correo" name="correo" placeholder="a@a.com" required />
+    </div>
+
+    <div class="field contrasena">
+      <label for="contrasena"><fa-icon class="field-icon" [icon]="faCalendar"></fa-icon> Contraseña</label>
+      <input type="password" id="contrasena" name="contrasena" placeholder="**********" required />
+    </div>
+
+    <div class="buttons">
+      <app-button2 class="btn btn-outline" text="Cancelar"></app-button2>
+      <app-button1 class="btn btn-primary" text="Confirmar"></app-button1>
+    </div>
+  </form>
+</div>
