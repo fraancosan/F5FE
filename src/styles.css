@@ -10,6 +10,7 @@
     #055629 0%,
     #0e4e28 100%
   ); /* Green-Gradient-Back */
+  --green-700-gradient-hover: linear-gradient(90deg, #0e4e28 100%);
   --green-900: #03170b; /* Dark */
   --green-900-alt: rgba(3, 23, 11, 0.81);
   --green-gradient-section: linear-gradient(90deg, #0d502a 0%, #03210e 100%);
