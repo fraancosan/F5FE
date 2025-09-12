@@ -26,7 +26,30 @@ export const routes: Routes = [
       },
       {
         path: 'reserva',
-        loadComponent: () => import('./pages/reserva/reserva'),
+        loadComponent: () => import('./pages/home-sections/reserva/reserva'),
+      },
+      {
+        path: 'buscar-partido',
+        loadComponent: () =>
+          import('./pages/home-sections/buscar-partido/buscar-partido'),
+      },
+      {
+        path: 'torneo',
+        loadComponent: () => import('./pages/home-sections/torneo/torneo'),
+      },
+      {
+        path: 'crear-equipo',
+        loadComponent: () =>
+          import('./pages/home-sections/crear-equipo/crear-equipo'),
+      },
+      {
+        path: 'gestionar-equipo',
+        loadComponent: () =>
+          import('./pages/home-sections/gestionar-equipo/gestionar-equipo'),
+      },
+      {
+        path: 'muro',
+        loadComponent: () => import('./pages/home-sections/muro/muro'),
       },
     ],
   },

@@ -1,8 +1,38 @@
 <div class="menu">
-  <app-card title="Reservar Turno" subtitle="Reserva tu cancha favorita" [icon]="faCalendar"></app-card>
-  <app-card title="Buscar Partido" subtitle="Encuentra partidos" [icon]="faMagnifyingGlass"></app-card>
-  <app-card title="Torneo" subtitle="Participa en torneos" [icon]="faTrophy"></app-card>
-  <app-card title="Crear Equipo" subtitle="Forma un equipo con tus amigos" [icon]="faPeopleGroup"></app-card>
-  <app-card title="Gestionar Equipo" subtitle="Administra tus equipos" [icon]="faGear"></app-card>
-  <app-card title="Muro" subtitle="Noticias importantes" [icon]="faMessage"></app-card>
+  <app-card-menu
+    [icon]="faCalendar"
+    title="Reservar Turno"
+    description="Reserva tu cancha favorita"
+    route="/reserva"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faMagnifyingGlass"
+    title="Buscar Partido"
+    description="Encuentra partidos"
+    route="/buscar-partido"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faTrophy"
+    title="Torneo"
+    description="Participa en torneos"
+    route="/torneo"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faPeopleGroup"
+    title="Crear Equipo"
+    description="Forma un equipo con tus amigos"
+    route="/crear-equipo"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faGear"
+    title="Gestionar Equipo"
+    description="Administra tus equipos"
+    route="/gestionar-equipo"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faMessage"
+    title="Muro"
+    description="Noticias importantes"
+    route="/muro"
+  ></app-card-menu>
 </div>
