@@ -12,12 +12,3 @@ main {
   justify-content: center;
 }
 
-.footer {
-  height: 100px;
-  background: rgba(23, 90, 14, 0.8);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 50px;
-}
