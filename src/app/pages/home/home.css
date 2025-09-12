@@ -2,9 +2,16 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 36px;
-  padding: 15px 15px;
+  gap: 26px;
+  padding: 55px 15px;
   box-sizing: border-box;
   justify-content: center;
   max-width: 1250px;
+}
+
+@media (min-width: 820px) {
+  .menu {
+    gap: 36px;
+    padding: 15px 15px;
+  }
 }
