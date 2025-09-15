@@ -1,31 +1,29 @@
 .sign-in {
-  width: 580px;
-  height: 640px;                
+  width: 580px;                     
+  height: 546px;                    
   max-width: 92%;
-  border: 2px solid rgba(0,0,0,0.06);
-  border-radius: 14px;
+  border: 1.71px solid rgba(0,0,0,0.06);   
+  border-radius: 11.94px;           
   background: #ffffff;
-  padding: 26px 34px;
+  padding: 22.18px 29.01px;         
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 13.65px;                     
   box-sizing: border-box;
-  box-shadow: 0 18px 60px rgba(2,8,6,0.45);
+  box-shadow: 0 15.36px 51.19px rgba(2,8,6,0.45); 
 }
 
 .title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  gap: 12px;
-  margin-top: 6px;
+  width: 100%;                                 
 }
 
 .back {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8.53px;                      
   color: var(--green-600, #086930);
   font-weight: 600;
   cursor: pointer;
@@ -33,45 +31,44 @@
 
 .back h4 {
   margin: 0;
-  font-size: 14px;
+  font-size: 11.94px;              
   color: var(--green-600, #086930);
 }
 
 .arrow-icon {
   color: var(--green-600, #086930);
-  font-size: 18px;
+  font-size: 15.36px;               
   cursor: pointer;
 }
 
 .page-title h1 {
   margin: 0;
-  font-size: 32px;           
+  font-size: 27.30px;              
   font-weight: 700;
-  color: #000;             
+  color: #000;
   text-align: right;
 }
 
 .logosubrayado {
   width: 100%;
-  height: 1px;
-  background: rgba(8,105,48,0.9); 
+  height: 1px;               
+  background: rgba(8,105,48,0.9);
   border-radius: 6px;
-  box-shadow: 0 6px 12px rgba(5,223,114,0.08);
-  margin-top: 4px;
+  box-shadow: 0 5.12px 10.24px rgba(5,223,114,0.08);               
 }
 
 .form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  margin-top: 6px;
+  gap: 12.36px;                
+  margin-top: 5.12px;           
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6.83px;                     
   width: 100%;
   margin: 0;
 }
@@ -79,25 +76,25 @@
 .field label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8.53px;                    
   font-weight: 700;
-  font-size: 14px;
-  color: #183f2b; 
+  font-size: 11.94px;              
+  color: #183f2b;
 }
 
 .field-icon {
   color: var(--green-600, #086930);
-  font-size: 16px;
+  font-size: 13.65px;             
 }
 
 .field input {
   width: 100%;
-  padding: 14px 16px;
-  border-radius: 8px;
-  border: 1.5px solid rgba(3,23,11,0.12);
+  padding: 11.94px 13.65px;         
+  border-radius: 6.83px;           
+  border: 1.28px solid rgba(3,23,11,0.12); 
   background: #ffffff;
   outline: none;
-  font-size: 14px;
+  font-size: 11.94px;             
   box-shadow: none;
   transition: border-color .18s, box-shadow .18s;
   box-sizing: border-box;
@@ -106,12 +103,12 @@
 
 .field input:focus {
   border-color: var(--green-600, #086930);
-  box-shadow: 0 6px 18px rgba(5,223,114,0.06);
+  box-shadow: 0 5.12px 13.5px rgba(5,223,114,0.06); 
 }
 
 .buttons {
   width: 100%;
   display: flex;
-  gap: 18px;
-  margin-top: 6px;
+  gap: 15.36px;                    
+  margin-top: 5.12px;            
 }
