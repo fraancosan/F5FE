@@ -27,16 +27,6 @@
           <div class="input-icon">
             <select id="hora" name="hora">
               <option value="">Seleccionar Hora</option>
-              <option>00:00</option>
-              <option>01:00</option>
-              <option>02:00</option>
-              <option>03:00</option>
-              <option>04:00</option>
-              <option>05:00</option>
-              <option>06:00</option>
-              <option>07:00</option>
-              <option>08:00</option>
-              <option>09:00</option>
               <option>10:00</option>
               <option>11:00</option>
               <option>12:00</option>
@@ -59,15 +49,21 @@
 
       <div class="parrilla-rival">
         <label class="option">
-          <input type="checkbox" name="parrilla" />
-          <span class="checkbox-custom" aria-hidden="true"></span>
+          <input type="checkbox" name="parrilla" [(ngModel)]="parrilla"/>
+          <span class="checkbox-custom" aria-hidden="true">
+            <fa-icon class="check-icon" [icon]="faCheck"></fa-icon>
+          </span>
+          <fa-icon class="label-icon-price" [icon]="faUtensils"></fa-icon>
           <span class="option-label">Parrilla</span>
           <span class="price">(+ $5.000)</span>
         </label>
 
         <label class="option">
-          <input type="checkbox" name="rival" />
-          <span class="checkbox-custom" aria-hidden="true"></span>
+          <input type="checkbox" name="rival" [(ngModel)]="rival"/>
+          <span class="checkbox-custom">
+            <fa-icon class="check-icon" [icon]="faCheck"></fa-icon>
+          </span>
+          <fa-icon class="label-icon-price" [icon]="faUserPlus"></fa-icon>
           <span class="option-label">Buscar Rival</span>
           <span class="price">(+ $3.000)</span>
         </label>
@@ -76,7 +72,7 @@
       <div class="total">
         <div class="total-box">
           <div class="total-label">Total:</div>
-          <div class="total-amount">$15.000</div>
+          <div class="total-amount">${{ totalFormateado }}</div>
         </div>
       </div>
 
