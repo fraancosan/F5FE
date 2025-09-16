@@ -1,1 +1,84 @@
-<p>reserva works!</p>
+<div class="reserva">
+  <div class="title">
+    <div class="back" (click)="goToMenu()">
+      <fa-icon class="arrow-icon" [icon]="faArrowLeft"></fa-icon>
+      <h4>Volver al Menú</h4>
+    </div>
+
+    <div class="page-title">
+      <h1>Reservar Turno</h1>
+    </div>
+  </div>
+
+  <div class="logosubrayado"></div>
+
+    <form class="form">
+      <div class="fecha-hora">
+        <div class="field fecha">
+          <label for="fecha"><span class="label-icon"><fa-icon [icon]="faCalendar"></fa-icon></span> Día</label>
+          <div class="input-icon">
+            <input id="fecha" name="fecha" type="date" placeholder="dd/mm/aaaa" />
+            <span class="icon-field"><fa-icon [icon]="faCalendar"></fa-icon></span>
+          </div>
+        </div>
+
+        <div class="field hora">
+          <label for="hora"><span class="label-icon"><fa-icon [icon]="faClock"></fa-icon></span> Hora</label>
+          <div class="input-icon">
+            <select id="hora" name="hora">
+              <option value="">Seleccionar Hora</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+              <option>22:00</option>
+              <option>23:00</option>
+            </select>
+            <span class="icon-field"><fa-icon [icon]="faChevronDown"></fa-icon></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="parrilla-rival">
+        <label class="option">
+          <input type="checkbox" name="parrilla" [(ngModel)]="parrilla"/>
+          <span class="checkbox-custom" aria-hidden="true">
+            <fa-icon class="check-icon" [icon]="faCheck"></fa-icon>
+          </span>
+          <fa-icon class="label-icon-price" [icon]="faUtensils"></fa-icon>
+          <span class="option-label">Parrilla</span>
+          <span class="price">(+ $5.000)</span>
+        </label>
+
+        <label class="option">
+          <input type="checkbox" name="rival" [(ngModel)]="rival"/>
+          <span class="checkbox-custom">
+            <fa-icon class="check-icon" [icon]="faCheck"></fa-icon>
+          </span>
+          <fa-icon class="label-icon-price" [icon]="faUserPlus"></fa-icon>
+          <span class="option-label">Buscar Rival</span>
+          <span class="price">(+ $3.000)</span>
+        </label>
+      </div>
+
+      <div class="total">
+        <div class="total-box">
+          <div class="total-label">Total:</div>
+          <div class="total-amount">${{ totalFormateado }}</div>
+        </div>
+      </div>
+
+      <div class="buttons">
+      <app-button4 class="botones" text="Cancelar"></app-button4>
+      <app-button3 class="botones" text="Confirmar Reserva"></app-button3>
+     </div>
+    </form>
+</div>
