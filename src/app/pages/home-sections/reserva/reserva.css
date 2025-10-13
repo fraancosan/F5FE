@@ -6,7 +6,8 @@
   padding: 26px 32px;
   box-sizing: border-box;
   border: 1px solid var(--green-500-primary);
-  box-shadow: 0 10px 30px rgba(3,23,11,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  box-shadow: 0 10px 30px rgba(3, 23, 11, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .title {
@@ -25,9 +26,9 @@
   cursor: pointer;
 }
 
-.arrow-icon { 
-  color: var(--green-300); 
-  font-size: 18px; 
+.arrow-icon {
+  color: var(--green-300);
+  font-size: 18px;
 }
 
 .page-title h1 {
@@ -41,12 +42,12 @@
   margin-top: 0px;
   height: 1px;
   width: 100%;
-  background: var(--Verde-light-S, #70F5A3CF);
+  background: var(--Verde-light-S, #70f5a3cf);
   border-radius: 4px;
 }
 
-.form { 
-  margin-top: 18px; 
+.form {
+  margin-top: 18px;
 }
 
 .fecha-hora {
@@ -59,7 +60,7 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .field label {
@@ -71,8 +72,8 @@
   font-size: 14px;
 }
 
-.label-icon { 
-  color: var(--green-300); 
+.label-icon {
+  color: var(--green-300);
 }
 
 .input-icon {
@@ -80,10 +81,9 @@
   display: block;
 }
 
-.input-icon input,
 .input-icon select {
   width: 100%;
-  padding: 12px 44px 12px 14px; 
+  padding: 12px 44px 12px 14px;
   border-radius: 8px;
   background: var(--green-900);
   color: #fff;
@@ -93,28 +93,9 @@
   border: 1px solid var(--green-500-primary);
 }
 
-.input-icon input::placeholder { 
-  color: rgba(223,255,218,0.45); 
-}
-
-.input-icon input[type="date"] {
-  -webkit-appearance: none;
-  -moz-appearance: textfield; 
-  appearance: none;
-}
-
-.input-icon input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-}
-
-.input-icon input[type="date"]::-webkit-clear-button {
-  display: none;
-}
-
 .input-icon select {
-  -webkit-appearance: none; 
-  -moz-appearance: none;    
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 
@@ -127,7 +108,7 @@
 }
 
 .input-icon .icon-field {
-  pointer-events: none;  
+  pointer-events: none;
   color: var(--green-300);
 }
 
@@ -147,7 +128,7 @@
   margin-bottom: 8px;
 }
 
- .option {
+.option {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -163,7 +144,7 @@
   width: 18px;
   height: 18px;
   margin: 0;
-  z-index: 2; 
+  z-index: 2;
   cursor: pointer;
 }
 
@@ -175,36 +156,40 @@
   border: 1px solid var(--green-500-primary);
   display: inline-block;
   flex: 0 0 18px;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .check-icon {
   display: inline-block;
-  width: 12px;      
+  width: 12px;
   height: 12px;
   color: var(--green-500-primary);
   opacity: 0;
 }
 
 .option input[type="checkbox"]:checked + .checkbox-custom {
-  background: linear-gradient(180deg, rgba(5,223,114,0.12), rgba(5,223,114,0.04));
-  border-color: rgba(5,223,114,0.6);
+  background: linear-gradient(
+    180deg,
+    rgba(5, 223, 114, 0.12),
+    rgba(5, 223, 114, 0.04)
+  );
+  border-color: rgba(5, 223, 114, 0.6);
 }
 .option input[type="checkbox"]:checked + .checkbox-custom .check-icon {
   opacity: 1;
 }
 
 .option input[type="checkbox"]:focus + .checkbox-custom {
-  box-shadow: 0 0 0 4px rgba(5,223,114,0.08);
+  box-shadow: 0 0 0 4px rgba(5, 223, 114, 0.08);
 }
 
-.option-label { 
-  color: #bff6cf; 
-  margin-left: 0px; 
+.option-label {
+  color: #bff6cf;
+  margin-left: 0px;
 }
-.price { 
-  color: #bff6cf; 
-  font-weight: 700; 
+.price {
+  color: #bff6cf;
+  font-weight: 700;
 }
 
 .total {
@@ -216,14 +201,17 @@
   width: 100%;
   display: flex;
   align-items: center;
-  background: var(--green-900);;
+  background: var(--green-900);
   border: 1px solid var(--green-500-primary);
   border-radius: 8px;
   padding: 14px;
   box-sizing: border-box;
 }
 
-.total-label { color: var(--green-300); font-weight: 700; }
+.total-label {
+  color: var(--green-300);
+  font-weight: 700;
+}
 .total-amount {
   margin-left: auto;
   font-weight: 800;
@@ -244,7 +232,13 @@
     width: 100%;
     padding: 18px;
   }
-  .fecha-hora { grid-template-columns: 1fr; }
-  .buttons { grid-template-columns: 1fr; }
-  .total-amount { font-size: 18px; }
+  .fecha-hora {
+    grid-template-columns: 1fr;
+  }
+  .buttons {
+    grid-template-columns: 1fr;
+  }
+  .total-amount {
+    font-size: 18px;
+  }
 }
