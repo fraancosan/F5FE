@@ -1,0 +1,22 @@
+<span class="label"
+  ><fa-icon class="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
+  {{ label }}</span
+>
+<div class="input-container">
+  <input
+    class="input"
+    type="date"
+    [name]="name"
+    [min]="fromDate ? (fromDate | date : 'yyyy-MM-dd') : null"
+    [max]="toDate ? (toDate | date : 'yyyy-MM-dd') : null"
+    placeholder="dd/mm/aaaa"
+    (input)="onInput($event)"
+  />
+  <span class="placeholder">{{ placeholder }}</span>
+  <fa-icon
+    class="icon-placeholder"
+    [icon]="icon"
+    size="lg"
+    [fixedWidth]="true"
+  ></fa-icon>
+</div>

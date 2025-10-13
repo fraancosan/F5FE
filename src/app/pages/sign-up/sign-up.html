@@ -1,46 +1,79 @@
-<div class="sign-in">
-  <div class="title">
-    <div class="back" (click)="goToMenu()">
-      <fa-icon class="arrow-icon" [icon]="faArrowLeft"></fa-icon>
-      <h4>Volver al Menú</h4>
-    </div>
-
-    <div class="page-title">
-      <h1>Registrarse</h1>
-    </div>
+<div class="title">
+  <div class="back" (click)="goToMenu()">
+    <fa-icon class="arrow-icon" [icon]="faArrowLeft"></fa-icon>
+    <h4>Volver al Menú</h4>
   </div>
 
-  <div class="logosubrayado"></div>
-
-  <form class="form">
-    <div class="field nombre">
-      <label for="nombre"><fa-icon class="field-icon" [icon]="faCalendar"></fa-icon> Nombre de Usuario</label>
-      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre de usuario" required />
-    </div>
-
-    <div class="field correo">
-      <label for="correo"><fa-icon class="field-icon" [icon]="faCalendar"></fa-icon> Correo Electrónico</label>
-      <input type="email" id="correo" name="correo" placeholder="a@a.com" required />
-    </div>
-
-    <div class="field contrasena">
-      <label for="contrasena"><fa-icon class="field-icon" [icon]="faCalendar"></fa-icon> Contraseña</label>
-      <input type="password" id="contrasena" name="contrasena" placeholder="**********" required />
-    </div>
-
-    <div class="field dni">
-      <label for="dni"><fa-icon class="field-icon" [icon]="faCalendar"></fa-icon> DNI</label>
-      <input type="number" id="dni" name="dni" placeholder="12345678" required />
-    </div>
-
-    <div class="field telefono">
-      <label for="telefono"><fa-icon class="field-icon" [icon]="faCalendar"></fa-icon> Teléfono</label>
-      <input type="tel" id="telefono" name="telefono" placeholder="+54 9 1234-5678" required />
-    </div>
-
-    <div class="buttons">
-      <app-button2 class="botones" text="Cancelar"></app-button2>
-      <app-button1 class="botones" text="Confirmar"></app-button1>
-    </div>
-  </form>
+  <div class="page-title">
+    <h1>Registrarse</h1>
+  </div>
 </div>
+
+<div class="logosubrayado"></div>
+
+<form class="form" [formGroup]="form">
+  <app-input-string
+    label="Nombre de Usuario"
+    [icon]="faCalendar"
+    type="text"
+    name="nombre"
+    placeholder="Ingrese su nombre"
+    prefixMessage="El nombre"
+    [required]="true"
+    [form]="form"
+    formControlName="nombre"
+  ></app-input-string>
+
+  <app-input-string
+    label="Correo Electrónico"
+    [icon]="faCalendar"
+    type="email"
+    name="mail"
+    placeholder="Ingrese su correo"
+    prefixMessage="El email"
+    [required]="true"
+    [form]="form"
+    formControlName="mail"
+  ></app-input-string>
+
+  <app-input-string
+    label="Contraseña"
+    [icon]="faCalendar"
+    type="password"
+    name="contraseña"
+    placeholder="Ingrese su contraseña"
+    prefixMessage="La contraseña"
+    [required]="true"
+    [form]="form"
+    formControlName="contraseña"
+  ></app-input-string>
+
+  <app-input-string
+    label="DNI"
+    [icon]="faCalendar"
+    type="text"
+    name="dni"
+    placeholder="Ingrese su DNI"
+    prefixMessage="El DNI"
+    [required]="true"
+    [form]="form"
+    formControlName="dni"
+  ></app-input-string>
+
+  <app-input-string
+    label="Teléfono"
+    [icon]="faCalendar"
+    type="text"
+    name="telefono"
+    placeholder="Ingrese su teléfono"
+    prefixMessage="El teléfono"
+    [required]="true"
+    [form]="form"
+    formControlName="telefono"
+  ></app-input-string>
+
+  <div class="buttons">
+    <app-button2 class="botones" text="Cancelar"></app-button2>
+    <app-button1 class="botones" text="Confirmar"></app-button1>
+  </div>
+</form>
