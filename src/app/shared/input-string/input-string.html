@@ -1,0 +1,22 @@
+@if (icon) {
+<span class="label"
+  ><fa-icon class="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
+  {{ label }}</span
+>
+} @else {
+<span class="label">{{ label }}</span>
+}
+<input
+  class="input"
+  [type]="type"
+  [name]="name"
+  [placeholder]="placeholder"
+  [required]="required"
+  [disabled]="disabled"
+  [value]="value"
+  (input)="handleInput($event)"
+/>
+@if ( form && form.controls[name].invalid && (form.controls[name].dirty ||
+form.controls[name].touched) ) {
+<span class="error">{{ vs.getMessageError(form, name, prefixMessage) }}</span>
+}
