@@ -4,19 +4,52 @@ import { Button1 } from '../../shared/button1/button1';
 import { faArrowLeft, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router } from '@angular/router';
+import { InputString } from '../../shared/input-string/input-string';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [Button1, Button2, FontAwesomeModule],
+  imports: [
+    Button1,
+    Button2,
+    FontAwesomeModule,
+    InputString,
+    ReactiveFormsModule,
+  ],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.css',
 })
 export default class SignIn {
   faArrowLeft = faArrowLeft;
   faCalendar = faCalendar;
+  form: FormGroup;
 
-  constructor(private router: Router) {}
-
+  constructor(private router: Router, private fb: FormBuilder) {
+    this.form = fb.group({
+      mail: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,}$'),
+          Validators.maxLength(60),
+        ],
+      ],
+      contraseña: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(60),
+        ],
+      ],
+    });
+  }
   goToMenu() {
     this.router.navigate(['/inicio']);
   }
