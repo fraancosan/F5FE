@@ -56,7 +56,6 @@ export interface muro {
 }
 
 export interface politica {
-  id: number;
   nombre: string;
   descripcion: string;
 }
