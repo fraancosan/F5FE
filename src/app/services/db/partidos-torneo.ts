@@ -18,8 +18,8 @@ export class PartidosTorneo {
     idTorneo,
     fechaPartido,
   }: {
-    idEquipo?: string;
-    idTorneo?: string;
+    idEquipo?: number;
+    idTorneo?: number;
     fechaPartido?: string;
   }): Observable<partidoTorneo[]> {
     let queryParams: string[] = [];
