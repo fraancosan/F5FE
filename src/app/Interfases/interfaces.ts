@@ -8,6 +8,15 @@ export interface usuario {
   rol: string;
 }
 
+export interface usuarioPremium {
+  id: number;
+  dni: string;
+  nombre: string;
+  mail: string;
+  telefono: string;
+  totalReservas: number;
+}
+
 export interface equipo {
   id: number;
   nombre: string;
@@ -56,7 +65,6 @@ export interface muro {
 }
 
 export interface politica {
-  id: number;
   nombre: string;
   descripcion: string;
 }
