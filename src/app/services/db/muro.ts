@@ -13,24 +13,26 @@ export class Muro {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
-  getAll(titulo: string): Observable<muro[]> {
-    return this.http.get<muro[]>(this.urlBack + 'muros').pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 400) {
-          this.snackBar.open('Error en solicitud', 'Cerrar', {
-            duration: 5000,
-          });
-          return throwError(() => error);
-        } else if (error.status === 404) {
-          return of([]);
-        } else {
-          this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {
-            duration: 5000,
-          });
-          return throwError(() => error);
-        }
-      })
-    );
+  getAll(titulo?: string): Observable<muro[]> {
+    return this.http
+      .get<muro[]>(this.urlBack + titulo ? `muros?titulo=${titulo}` : 'muros')
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            this.snackBar.open('Error en solicitud', 'Cerrar', {
+              duration: 5000,
+            });
+            return throwError(() => error);
+          } else if (error.status === 404) {
+            return of([]);
+          } else {
+            this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {
+              duration: 5000,
+            });
+            return throwError(() => error);
+          }
+        })
+      );
   }
 
   getAllVigentes(): Observable<muro[]> {
