@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Button2 } from '../../shared/button2/button2';
 import { Button1 } from '../../shared/button1/button1';
-import { faArrowLeft, faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import {
   FormBuilder,
@@ -11,21 +10,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { InputString } from '../../shared/input-string/input-string';
+import { GoBack } from '../../shared/go-back/go-back';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [
-    Button1,
-    Button2,
-    FontAwesomeModule,
-    ReactiveFormsModule,
-    InputString,
-  ],
+  imports: [Button1, Button2, ReactiveFormsModule, InputString, GoBack],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
 })
 export default class SignUp {
-  faArrowLeft = faArrowLeft;
   faCalendar = faCalendar;
   form: FormGroup;
 
@@ -76,9 +69,5 @@ export default class SignUp {
         ],
       ],
     });
-  }
-
-  goToMenu() {
-    this.router.navigate(['/inicio']);
   }
 }
