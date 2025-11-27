@@ -1,0 +1,23 @@
+<label class="option" [ngClass]="mode === 'dark' ? null : 'option-light'">
+  <input
+    type="checkbox"
+    [name]="name"
+    [checked]="value"
+    (change)="onChange($event)"
+  />
+  <span
+    class="checkbox-custom"
+    [ngClass]="mode === 'dark' ? null : 'checkbox-custom-light'"
+    aria-hidden="true"
+  >
+    <fa-icon
+      class="check-icon"
+      [ngClass]="mode === 'dark' ? null : 'check-icon-light'"
+      [icon]="faCheck"
+    ></fa-icon>
+  </span>
+  <fa-icon [icon]="icon"></fa-icon>
+  <span class="label" [ngClass]="mode === 'dark' ? null : 'label-light'">{{
+    label
+  }}</span>
+</label>

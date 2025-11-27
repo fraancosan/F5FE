@@ -8,16 +8,24 @@ import {
   faChevronDown,
   faUtensils,
   faUserPlus,
-  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InputDate } from '../../../shared/input-date/input-date';
+import { GoBack } from '../../../shared/go-back/go-back';
+import { InputCheckBox } from '../../../shared/input-check-box/input-check-box';
 
 @Component({
   selector: 'app-reserva',
-  imports: [Button3, Button4, FontAwesomeModule, FormsModule, InputDate],
+  imports: [
+    Button3,
+    Button4,
+    FontAwesomeModule,
+    FormsModule,
+    InputDate,
+    GoBack,
+    InputCheckBox,
+  ],
   templateUrl: './reserva.html',
   styleUrl: './reserva.css',
 })
@@ -28,7 +36,6 @@ export default class Reserva {
   faChevronDown = faChevronDown;
   faUtensils = faUtensils;
   faUserPlus = faUserPlus;
-  faCheck = faCheck;
 
   minDate: Date = new Date();
   maxDate: Date = new Date(new Date().setMonth(this.minDate.getMonth() + 1)); // tryhardcodeado a un mes, buscar por backend
@@ -36,12 +43,6 @@ export default class Reserva {
   base = 15000;
   parrilla = false;
   rival = false;
-
-  constructor(private router: Router) {}
-
-  goToMenu() {
-    this.router.navigate(['/inicio']);
-  }
 
   onDateSelected(date: string) {
     console.log('Fecha seleccionada:', date);
