@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   gap: 8.53px;
-  color: var(--green-600, #086930);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -17,4 +16,9 @@
 .icon {
   font-size: 1.2em;
   color: var(--green-600, #086930);
+}
+
+.icon-dark,
+.text-dark {
+  color: var(--green-300);
 }
