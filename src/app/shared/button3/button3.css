@@ -1,7 +1,13 @@
+:host {
+  width: 100%;
+  max-width: 275px;
+  height: 36px;
+}
+
 .btn-primary {
   background: var(--green-300);
-  width: 275px;
-  height: 36px;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -19,8 +25,8 @@
 }
 
 @media (min-width: 1300px) {
-  .btn-primary {
-    width: 224px;
+  :host {
+    max-width: 224px;
     height: 45px;
   }
 

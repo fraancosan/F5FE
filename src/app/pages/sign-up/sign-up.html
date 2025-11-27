@@ -1,12 +1,6 @@
 <div class="title">
-  <div class="back" (click)="goToMenu()">
-    <fa-icon class="arrow-icon" [icon]="faArrowLeft"></fa-icon>
-    <h4>Volver al Menú</h4>
-  </div>
-
-  <div class="page-title">
-    <h1>Registrarse</h1>
-  </div>
+  <app-go-back label="Volver al Menú" url="inicio" mode="light"></app-go-back>
+  <h1 class="page-title">Registrarse</h1>
 </div>
 
 <div class="logosubrayado"></div>
@@ -73,7 +67,7 @@
   ></app-input-string>
 
   <div class="buttons">
-    <app-button2 class="botones" text="Cancelar"></app-button2>
-    <app-button1 class="botones" text="Confirmar"></app-button1>
+    <app-button2 text="Cancelar"></app-button2>
+    <app-button1 text="Confirmar"></app-button1>
   </div>
 </form>

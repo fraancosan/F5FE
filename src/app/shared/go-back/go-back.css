@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 8.53px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.text {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--green-600, #086930);
+}
+
+.icon {
+  font-size: 1.2em;
+  color: var(--green-600, #086930);
+}
+
+.icon-dark,
+.text-dark {
+  color: var(--green-300);
+}

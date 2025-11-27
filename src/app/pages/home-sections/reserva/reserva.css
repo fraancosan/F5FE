@@ -1,11 +1,16 @@
-.reserva {
-  width: 720px;
-  height: 420px;
+:host {
+  width: calc(100% - 60px);
+  max-width: 720px;
+  border: 1.71px solid var(--green-500-primary);
   background: var(--green-gradient-section);
-  border-radius: 14px;
-  padding: 26px 32px;
+  border-radius: 11.94px;
+  padding: 22px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13.65px;
   box-sizing: border-box;
-  border: 1px solid var(--green-500-primary);
   box-shadow: 0 10px 30px rgba(3, 23, 11, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
@@ -14,47 +19,40 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 4px;
+  width: 100%;
 }
 
-.back {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--green-300);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.arrow-icon {
-  color: var(--green-300);
-  font-size: 18px;
-}
-
-.page-title h1 {
-  font-size: 28px;
-  color: #fff;
+.page-title {
+  margin: 0 0 0 auto;
+  font-size: 22px;
   font-weight: 700;
+  color: #fff;
   text-align: right;
 }
 
 .logosubrayado {
-  margin-top: 0px;
   height: 1px;
   width: 100%;
   background: var(--Verde-light-S, #70f5a3cf);
-  border-radius: 4px;
+  border-radius: 6px;
+  margin-top: 4px;
 }
 
 .form {
-  margin-top: 18px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 6px;
 }
 
 .fecha-hora {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 22px;
-  margin-bottom: 14px;
 }
 
 .field {
@@ -124,77 +122,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 12px;
-  margin-bottom: 8px;
 }
 
-.option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--green-300);
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-}
-
-.option input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  width: 18px;
-  height: 18px;
-  margin: 0;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.checkbox-custom {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  background: transparent;
-  border: 1px solid var(--green-500-primary);
-  display: inline-block;
-  flex: 0 0 18px;
-  pointer-events: none;
-}
-
-.check-icon {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  color: var(--green-500-primary);
-  opacity: 0;
-}
-
-.option input[type="checkbox"]:checked + .checkbox-custom {
-  background: linear-gradient(
-    180deg,
-    rgba(5, 223, 114, 0.12),
-    rgba(5, 223, 114, 0.04)
-  );
-  border-color: rgba(5, 223, 114, 0.6);
-}
-.option input[type="checkbox"]:checked + .checkbox-custom .check-icon {
-  opacity: 1;
-}
-
-.option input[type="checkbox"]:focus + .checkbox-custom {
-  box-shadow: 0 0 0 4px rgba(5, 223, 114, 0.08);
-}
-
-.option-label {
-  color: #bff6cf;
-  margin-left: 0px;
-}
 .price {
   color: #bff6cf;
   font-weight: 700;
-}
-
-.total {
-  margin-top: 18px;
-  margin-bottom: 18px;
 }
 
 .total-box {
@@ -221,24 +153,25 @@
 
 .buttons {
   display: flex;
-  width: 100%;
-  margin-top: 32px;
   justify-content: center;
-  gap: 100px;
+  flex-wrap: wrap;
+  column-gap: 2em;
+  row-gap: 1em;
+  margin-top: 5.12px;
+  width: 100%;
 }
 
 @media (max-width: 820px) {
-  .reserva {
-    width: 100%;
-    padding: 18px;
-  }
   .fecha-hora {
-    grid-template-columns: 1fr;
-  }
-  .buttons {
     grid-template-columns: 1fr;
   }
   .total-amount {
     font-size: 18px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .page-title {
+    font-size: 27px;
   }
 }

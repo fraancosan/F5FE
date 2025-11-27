@@ -1,0 +1,89 @@
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--green-300);
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+}
+
+.option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid var(--green-500-primary);
+  display: inline-block;
+  flex: 0 0 18px;
+  pointer-events: none;
+}
+
+.check-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  color: var(--green-500-primary);
+  opacity: 0;
+}
+
+.option input[type="checkbox"]:checked + .checkbox-custom {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 223, 114, 0.12),
+    rgba(5, 223, 114, 0.04)
+  );
+  border-color: rgba(5, 223, 114, 0.6);
+}
+.option input[type="checkbox"]:checked + .checkbox-custom .check-icon {
+  opacity: 1;
+}
+
+.option input[type="checkbox"]:focus + .checkbox-custom {
+  box-shadow: 0 0 0 4px rgba(5, 223, 114, 0.08);
+}
+
+.label {
+  color: #bff6cf;
+}
+
+/* De aca para abajo hay que personalizar el tema LIGHT */
+
+.option-light {
+  color: #ffffff;
+}
+
+.check-icon-light {
+  color: #ffffff;
+}
+
+.checkbox-custom-light {
+  border-color: #ffffff;
+}
+
+.option-light input[type="checkbox"]:checked + .checkbox-custom {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.option-light input[type="checkbox"]:focus + .checkbox-custom {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);
+}
+
+.label-light {
+  color: #ffffff;
+}
