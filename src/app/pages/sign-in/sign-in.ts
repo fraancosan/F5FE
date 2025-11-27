@@ -22,7 +22,7 @@ export default class SignIn {
   faCalendar = faCalendar;
   form: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
     this.form = fb.group({
       mail: [
         '',
