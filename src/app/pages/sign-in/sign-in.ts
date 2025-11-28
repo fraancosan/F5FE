@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Button2 } from '../../shared/button2/button2';
 import { Button1 } from '../../shared/button1/button1';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 import { InputString } from '../../shared/input-string/input-string';
 import {
   FormBuilder,
@@ -11,6 +10,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { GoBack } from '../../shared/go-back/go-back';
+import { Navigation } from '../../services/common/navigation';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Users } from '../../services/db/users';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,7 +24,12 @@ export default class SignIn {
   faCalendar = faCalendar;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private navService: Navigation,
+    private snackBar: MatSnackBar,
+    private usersService: Users,
+    private fb: FormBuilder
+  ) {
     this.form = fb.group({
       mail: [
         '',
@@ -42,5 +49,23 @@ export default class SignIn {
         ],
       ],
     });
+  }
+
+  cancelar() {
+    this.navService.toPageTop('inicio');
+  }
+
+  iniciarSesion() {
+    if (this.form.invalid) {
+      this.snackBar.open('Primero complete sus datos', 'Aceptar', {
+        duration: 5000,
+      });
+    } else {
+      this.usersService.signIn(this.form.value).subscribe({
+        next: () => {
+          this.navService.toPageTop('inicio');
+        },
+      });
+    }
   }
 }

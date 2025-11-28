@@ -31,7 +31,7 @@
   ></app-input-string>
 
   <div class="buttons">
-    <app-button2 text="Cancelar"></app-button2>
-    <app-button1 text="Confirmar"></app-button1>
+    <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
+    <app-button1 (click)="iniciarSesion()" text="Confirmar"></app-button1>
   </div>
 </form>

@@ -11,6 +11,9 @@ import {
 } from '@angular/forms';
 import { InputString } from '../../shared/input-string/input-string';
 import { GoBack } from '../../shared/go-back/go-back';
+import { Navigation } from '../../services/common/navigation';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Users } from '../../services/db/users';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,7 +25,12 @@ export default class SignUp {
   faCalendar = faCalendar;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private navService: Navigation,
+    private snackBar: MatSnackBar,
+    private usersService: Users,
+    private fb: FormBuilder
+  ) {
     this.form = fb.group({
       mail: [
         '',
@@ -69,5 +77,26 @@ export default class SignUp {
         ],
       ],
     });
+  }
+
+  cancelar() {
+    this.navService.toPageTop('inicio');
+  }
+
+  registrarse() {
+    if (this.form.invalid) {
+      this.snackBar.open('Primero complete sus datos', 'Aceptar', {
+        duration: 5000,
+      });
+    } else {
+      this.usersService.create(this.form.value).subscribe({
+        next: () => {
+          this.snackBar.open('Usuario creado, inicie sesión', 'Aceptar', {
+            duration: 5000,
+          });
+          this.navService.toPageTop('iniciar-sesion');
+        },
+      });
+    }
   }
 }
