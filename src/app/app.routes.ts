@@ -42,6 +42,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/home-sections/torneo/torneo'),
       },
       {
+        path: 'mis-turnos',
+        canActivate: [userGuard],
+        loadComponent: () => import('./pages/mis-turnos/mis-turnos'),
+      },
+      {
         path: 'crear-equipo',
         canActivate: [userGuard],
         loadComponent: () =>
