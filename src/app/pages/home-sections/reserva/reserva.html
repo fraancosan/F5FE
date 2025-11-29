@@ -21,22 +21,12 @@
         Hora</label
       >
       <div class="input-icon">
-        <select id="hora" name="hora">
-          <option value="">Seleccionar Hora</option>
-          <option>10:00</option>
-          <option>11:00</option>
-          <option>12:00</option>
-          <option>13:00</option>
-          <option>14:00</option>
-          <option>15:00</option>
-          <option>16:00</option>
-          <option>17:00</option>
-          <option>18:00</option>
-          <option>19:00</option>
-          <option>20:00</option>
-          <option>21:00</option>
-          <option>22:00</option>
-          <option>23:00</option>
+        <select id="hora" name="hora" [(ngModel)]="hora">
+          @for (hora of horasDisponibles; track $index) {
+          <option [disabled]="!hora.disponible" [value]="hora.hora">
+            {{ hora.hora }}
+          </option>
+          }
         </select>
         <span class="icon-field"
           ><fa-icon [icon]="faChevronDown"></fa-icon
