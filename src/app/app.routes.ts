@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { userGuard } from './guards/user-guard';
 
 export const routes: Routes = [
   // Landing directo
@@ -26,24 +27,34 @@ export const routes: Routes = [
       },
       {
         path: 'reserva',
+        canActivate: [userGuard],
         loadComponent: () => import('./pages/home-sections/reserva/reserva'),
       },
       {
         path: 'buscar-partido',
+        canActivate: [userGuard],
         loadComponent: () =>
           import('./pages/home-sections/buscar-partido/buscar-partido'),
       },
       {
         path: 'torneo',
+        canActivate: [userGuard],
         loadComponent: () => import('./pages/home-sections/torneo/torneo'),
       },
       {
+        path: 'mis-turnos',
+        canActivate: [userGuard],
+        loadComponent: () => import('./pages/mis-turnos/mis-turnos'),
+      },
+      {
         path: 'crear-equipo',
+        canActivate: [userGuard],
         loadComponent: () =>
           import('./pages/home-sections/crear-equipo/crear-equipo'),
       },
       {
         path: 'gestionar-equipo',
+        canActivate: [userGuard],
         loadComponent: () =>
           import('./pages/home-sections/gestionar-equipo/gestionar-equipo'),
       },

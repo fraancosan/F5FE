@@ -21,22 +21,12 @@
         Hora</label
       >
       <div class="input-icon">
-        <select id="hora" name="hora">
-          <option value="">Seleccionar Hora</option>
-          <option>10:00</option>
-          <option>11:00</option>
-          <option>12:00</option>
-          <option>13:00</option>
-          <option>14:00</option>
-          <option>15:00</option>
-          <option>16:00</option>
-          <option>17:00</option>
-          <option>18:00</option>
-          <option>19:00</option>
-          <option>20:00</option>
-          <option>21:00</option>
-          <option>22:00</option>
-          <option>23:00</option>
+        <select id="hora" name="hora" [(ngModel)]="hora">
+          @for (hora of horasDisponibles; track $index) {
+          <option [disabled]="!hora.disponible" [value]="hora.hora">
+            {{ hora.hora }}
+          </option>
+          }
         </select>
         <span class="icon-field"
           ><fa-icon [icon]="faChevronDown"></fa-icon
@@ -50,6 +40,7 @@
       label="Parrilla"
       [icon]="faUtensils"
       [(value)]="parrilla"
+      (valueChange)="loadPrecio()"
       name="parrilla"
       mode="dark"
     ></app-input-check-box>
@@ -58,6 +49,7 @@
       label="Buscar Rival"
       [icon]="faUserPlus"
       [(value)]="rival"
+      (valueChange)="loadPrecio()"
       name="rival"
       mode="dark"
     ></app-input-check-box>
@@ -65,13 +57,21 @@
 
   <div class="total">
     <div class="total-box">
-      <div class="total-label">Total:</div>
-      <div class="total-amount">${{ totalFormateado }}</div>
+      <span class="total-label">Seña{{ rival ? " por equipo:" : ":" }}</span>
+      <span class="total-amount">
+        {{ senia | currency : "$" : "symbol" : "1.0-0" }}
+      </span>
+    </div>
+    <div class="total-box">
+      <span class="total-label">Total{{ rival ? " por equipo:" : ":" }}</span>
+      <span class="total-amount">
+        {{ precio | currency : "$" : "symbol" : "1.0-0" }}
+      </span>
     </div>
   </div>
 
   <div class="buttons">
-    <app-button4 text="Cancelar"></app-button4>
-    <app-button3 text="Confirmar Reserva"></app-button3>
+    <app-button4 (click)="cancelar()" text="Cancelar"></app-button4>
+    <app-button3 (click)="reservar()" text="Confirmar Reserva"></app-button3>
   </div>
 </form>

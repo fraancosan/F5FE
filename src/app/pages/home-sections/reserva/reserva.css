@@ -129,6 +129,12 @@
   font-weight: 700;
 }
 
+.total {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .total-box {
   width: 100%;
   display: flex;

@@ -14,6 +14,10 @@ import { FormsModule } from '@angular/forms';
 import { InputDate } from '../../../shared/input-date/input-date';
 import { GoBack } from '../../../shared/go-back/go-back';
 import { InputCheckBox } from '../../../shared/input-check-box/input-check-box';
+import { Turnos } from '../../../services/db/turnos';
+import { CurrencyPipe } from '@angular/common';
+import { Navigation } from '../../../services/common/navigation';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reserva',
@@ -25,6 +29,7 @@ import { InputCheckBox } from '../../../shared/input-check-box/input-check-box';
     InputDate,
     GoBack,
     InputCheckBox,
+    CurrencyPipe,
   ],
   templateUrl: './reserva.html',
   styleUrl: './reserva.css',
@@ -38,20 +43,108 @@ export default class Reserva {
   faUserPlus = faUserPlus;
 
   minDate: Date = new Date();
-  maxDate: Date = new Date(new Date().setMonth(this.minDate.getMonth() + 1)); // tryhardcodeado a un mes, buscar por backend
+  maxDate: Date = new Date();
 
-  base = 15000;
+  turnosDisponibles: {
+    fecha: string;
+    horarios: { disponible: boolean; hora: string }[];
+  }[] = [];
+  horasDisponibles: { disponible: boolean; hora: string }[] = [
+    { disponible: false, hora: 'Seleccione un turno' },
+  ];
+
+  hora = 'Seleccione un turno';
+  fecha = '';
+
   parrilla = false;
   rival = false;
 
+  precio = 0;
+  senia = 0;
+
+  constructor(
+    private turnosService: Turnos,
+    private navService: Navigation,
+    private snackBar: MatSnackBar
+  ) {}
+
   onDateSelected(date: string) {
-    console.log('Fecha seleccionada:', date);
+    this.fecha = date;
+    this.horasDisponibles = [];
+    const turno = this.turnosDisponibles.find((t) => t.fecha === date);
+    if (turno) {
+      let disponible = false;
+      for (const horario of turno.horarios) {
+        if (horario.disponible) {
+          disponible = true;
+          this.horasDisponibles.push(horario);
+        }
+      }
+      if (!disponible) {
+        this.horasDisponibles = [
+          { disponible: false, hora: 'No hay turnos disponibles' },
+        ];
+      }
+    } else {
+      this.horasDisponibles = [
+        { disponible: false, hora: 'No hay turnos disponibles' },
+      ];
+    }
+    this.hora = this.horasDisponibles[0].hora;
   }
 
-  get total(): number {
-    return this.base + (this.parrilla ? 5000 : 0) + (this.rival ? 3000 : 0);
+  ngOnInit() {
+    this.loadPrecio();
+    this.turnosService.getDisponibles().subscribe((data) => {
+      this.turnosDisponibles = data;
+      this.minDate = data[0].fecha;
+      this.maxDate = data[data.length - 1].fecha;
+    });
   }
-  get totalFormateado(): string {
-    return new Intl.NumberFormat('es-AR').format(this.total);
+
+  loadPrecio() {
+    this.turnosService
+      .getPrePrecio(this.parrilla, this.rival)
+      .subscribe((data) => {
+        this.senia = data.precioSeña;
+        this.precio = data.precio;
+      });
+  }
+
+  isValid(): boolean {
+    return (
+      this.fecha !== '' &&
+      this.hora !== 'Seleccione un turno' &&
+      this.hora !== 'No hay turnos disponibles'
+    );
+  }
+
+  cancelar() {
+    this.navService.toPageTop('inicio');
+  }
+
+  reservar() {
+    if (!this.isValid()) {
+      this.snackBar.open('Por favor seleccione un turno disponible', 'Cerrar', {
+        duration: 5000,
+      });
+    } else {
+      this.turnosService
+        .create({
+          fecha: this.fecha,
+          hora: this.hora,
+          parrilla: this.parrilla ? 1 : 0,
+          buscandoRival: this.rival ? 1 : 0,
+        })
+        .subscribe({
+          next: (response) => {
+            window.open(response.urlPreferenciaPago, '_blank');
+            this.snackBar.open('Reserva realizada con éxito', 'Cerrar', {
+              duration: 5000,
+            });
+            this.navService.toPageTop('mis-turnos');
+          },
+        });
+    }
   }
 }
