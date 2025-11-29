@@ -283,8 +283,10 @@ export class Turnos {
     );
   }
 
-  create(data: Pick<turno, 'fecha' | 'hora' | 'buscandoRival' | 'parrilla'>) {
-    return this.http.post(this.urlBack + 'turnos', data).pipe(
+  create(
+    data: Pick<turno, 'fecha' | 'hora' | 'buscandoRival' | 'parrilla'>
+  ): Observable<turno> {
+    return this.http.post<turno>(this.urlBack + 'turnos', data).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 500) {
           this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {

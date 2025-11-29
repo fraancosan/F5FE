@@ -15,6 +15,9 @@ import { InputDate } from '../../../shared/input-date/input-date';
 import { GoBack } from '../../../shared/go-back/go-back';
 import { InputCheckBox } from '../../../shared/input-check-box/input-check-box';
 import { Turnos } from '../../../services/db/turnos';
+import { CurrencyPipe } from '@angular/common';
+import { Navigation } from '../../../services/common/navigation';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reserva',
@@ -26,6 +29,7 @@ import { Turnos } from '../../../services/db/turnos';
     InputDate,
     GoBack,
     InputCheckBox,
+    CurrencyPipe,
   ],
   templateUrl: './reserva.html',
   styleUrl: './reserva.css',
@@ -52,26 +56,35 @@ export default class Reserva {
   hora = 'Seleccione un turno';
   fecha = '';
 
-  base = 15000;
   parrilla = false;
   rival = false;
 
-  constructor(private turnosService: Turnos) {}
+  precio = 0;
+  senia = 0;
+
+  constructor(
+    private turnosService: Turnos,
+    private navService: Navigation,
+    private snackBar: MatSnackBar
+  ) {}
 
   onDateSelected(date: string) {
     this.fecha = date;
+    this.horasDisponibles = [];
     const turno = this.turnosDisponibles.find((t) => t.fecha === date);
     if (turno) {
       let disponible = false;
       for (const horario of turno.horarios) {
         if (horario.disponible) {
           disponible = true;
-          break;
+          this.horasDisponibles.push(horario);
         }
       }
-      this.horasDisponibles = disponible
-        ? turno.horarios
-        : [{ disponible: false, hora: 'No hay turnos disponibles' }];
+      if (!disponible) {
+        this.horasDisponibles = [
+          { disponible: false, hora: 'No hay turnos disponibles' },
+        ];
+      }
     } else {
       this.horasDisponibles = [
         { disponible: false, hora: 'No hay turnos disponibles' },
@@ -81,18 +94,57 @@ export default class Reserva {
   }
 
   ngOnInit() {
+    this.loadPrecio();
     this.turnosService.getDisponibles().subscribe((data) => {
-      console.log(data);
       this.turnosDisponibles = data;
       this.minDate = data[0].fecha;
       this.maxDate = data[data.length - 1].fecha;
     });
   }
 
-  get total(): number {
-    return this.base + (this.parrilla ? 5000 : 0) + (this.rival ? 3000 : 0);
+  loadPrecio() {
+    this.turnosService
+      .getPrePrecio(this.parrilla, this.rival)
+      .subscribe((data) => {
+        this.senia = data.precioSeña;
+        this.precio = data.precio;
+      });
   }
-  get totalFormateado(): string {
-    return new Intl.NumberFormat('es-AR').format(this.total);
+
+  isValid(): boolean {
+    return (
+      this.fecha !== '' &&
+      this.hora !== 'Seleccione un turno' &&
+      this.hora !== 'No hay turnos disponibles'
+    );
+  }
+
+  cancelar() {
+    this.navService.toPageTop('inicio');
+  }
+
+  reservar() {
+    if (!this.isValid()) {
+      this.snackBar.open('Por favor seleccione un turno disponible', 'Cerrar', {
+        duration: 5000,
+      });
+    } else {
+      this.turnosService
+        .create({
+          fecha: this.fecha,
+          hora: this.hora,
+          parrilla: this.parrilla ? 1 : 0,
+          buscandoRival: this.rival ? 1 : 0,
+        })
+        .subscribe({
+          next: (response) => {
+            window.open(response.urlPreferenciaPago, '_blank');
+            this.snackBar.open('Reserva realizada con éxito', 'Cerrar', {
+              duration: 5000,
+            });
+            this.navService.toPageTop('mis-turnos');
+          },
+        });
+    }
   }
 }

@@ -79,13 +79,13 @@ export interface turno {
   idCancha: number | cancha;
   idUsuario: number | usuario;
   idUsuarioCompartido: number | usuario;
-  fecha: Date;
-  hora: Date;
+  fecha: Date | string;
+  hora: string;
   estado: string;
   precio: number;
   precioSeña: number;
-  buscandoRival: boolean;
-  parrilla: boolean;
+  buscandoRival: boolean | number; // 1 o 0
+  parrilla: boolean | number; // 1 o 0
   fechaCreacion: Date;
   fechaUsuarioCompartido: Date;
   idMP: string;
