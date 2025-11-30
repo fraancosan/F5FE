@@ -39,6 +39,13 @@ export class Muro {
     return this.http.get<muro[]>(this.urlBack + 'muros/vigente').pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
+          this.snackBar.open(
+            'No hay noticias vigentes en este momento.',
+            'Cerrar',
+            {
+              duration: 5000,
+            }
+          );
           return of([]);
         } else {
           this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {

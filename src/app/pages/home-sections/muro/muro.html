@@ -1,1 +1,15 @@
-<p>muro works!</p>
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
+  <h1 class="page-title">Muro de Noticias</h1>
+</div>
+<div class="scroll-container">
+  <div class="muro-container">
+    @for (muro of muros; track muro.id){
+    <app-card-muro [muro]="muro"></app-card-muro>
+    } @empty { @if (loading) {
+    <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
+    } @else {
+    <span class="empty">No hay noticias vigentes en este momento.</span>
+    } }
+  </div>
+</div>
