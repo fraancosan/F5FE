@@ -1,0 +1,27 @@
+.spinner {
+  margin-top: 20px;
+}
+
+.centrado {
+  margin: 0 auto;
+}
+
+.spinner-xsm {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.spinner-sm {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.spinner-md {
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.spinner-lg {
+  width: 64px !important;
+  height: 64px !important;
+}
