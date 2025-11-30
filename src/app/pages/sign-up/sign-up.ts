@@ -14,16 +14,25 @@ import { GoBack } from '../../shared/go-back/go-back';
 import { Navigation } from '../../services/common/navigation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Users } from '../../services/db/users';
+import { Spinner } from '../../shared/spinner/spinner';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [Button1, Button2, ReactiveFormsModule, InputString, GoBack],
+  imports: [
+    Button1,
+    Button2,
+    ReactiveFormsModule,
+    InputString,
+    GoBack,
+    Spinner,
+  ],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
 })
 export default class SignUp {
   faCalendar = faCalendar;
   form: FormGroup;
+  loading = false;
 
   constructor(
     private navService: Navigation,
@@ -89,12 +98,17 @@ export default class SignUp {
         duration: 5000,
       });
     } else {
+      this.loading = true;
       this.usersService.create(this.form.value).subscribe({
         next: () => {
+          this.loading = false;
           this.snackBar.open('Usuario creado, inicie sesión', 'Aceptar', {
             duration: 5000,
           });
           this.navService.toPageTop('iniciar-sesion');
+        },
+        error: (err) => {
+          this.loading = false;
         },
       });
     }
