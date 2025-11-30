@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { Users } from '../../services/db/users';
+import { Navigation } from '../../services/common/navigation';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +18,7 @@ export class Header implements OnInit {
   userIcon = faCircleUser;
   isLoggedIn: boolean = false;
 
-  constructor(private router: Router, private user: Users) {}
+  constructor(private navService: Navigation, private user: Users) {}
 
   ngOnInit(): void {
     this.user.isLoggedIn.subscribe((status) => {
@@ -27,27 +27,27 @@ export class Header implements OnInit {
   }
 
   goToLanding() {
-    this.router.navigate(['/']);
+    this.navService.toPageTop('');
   }
 
   goToLogin() {
-    this.router.navigate(['/sign-in']);
+    this.navService.toPageTop('sign-in');
   }
 
   goToRegister() {
-    this.router.navigate(['/sign-up']);
+    this.navService.toPageTop('sign-up');
   }
 
   goToAccount() {
-    this.router.navigate(['/cuenta']); //cambiar despues
+    this.navService.toPageTop('mi-cuenta');
   }
 
   goToMyTurnos() {
-    this.router.navigate(['/mis-turnos']); //cambiar despues
+    this.navService.toPageTop('mis-turnos');
   }
 
   logout() {
     this.user.signOut(false);
-    this.router.navigate(['/']);
+    this.navService.toPageTop('');
   }
 }

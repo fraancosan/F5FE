@@ -47,6 +47,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/mis-turnos/mis-turnos'),
       },
       {
+        path: 'mi-cuenta',
+        canActivate: [userGuard],
+        loadComponent: () => import('./pages/mi-cuenta/mi-cuenta'),
+      },
+      {
         path: 'crear-equipo',
         canActivate: [userGuard],
         loadComponent: () =>
