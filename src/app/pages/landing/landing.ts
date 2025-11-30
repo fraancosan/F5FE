@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Button5 } from '../../shared/button5/button5';
+import { Button5 } from '../../shared/btns/button5/button5';
 import { Player } from '../../shared/player/player';
 
 @Component({

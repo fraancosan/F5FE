@@ -1,14 +1,14 @@
 import { usuario } from './../../Interfases/interfaces';
 import { Component } from '@angular/core';
-import { Button1 } from '../../shared/button1/button1';
-import { Button2 } from '../../shared/button2/button2';
+import { Button1 } from '../../shared/btns/button1/button1';
+import { Button2 } from '../../shared/btns/button2/button2';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputString } from '../../shared/input-string/input-string';
+import { InputString } from '../../shared/inputs/input-string/input-string';
 import { GoBack } from '../../shared/go-back/go-back';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { Navigation } from '../../services/common/navigation';
