@@ -70,4 +70,8 @@
     <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
     <app-button1 (click)="actualizarDatos()" text="Confirmar"></app-button1>
   </div>
+
+  @if (loading) {
+  <app-spinner mode="light" [centrado]="true" size="md"></app-spinner>
+  }
 </form>
