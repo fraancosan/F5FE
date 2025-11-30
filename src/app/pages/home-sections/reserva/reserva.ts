@@ -18,6 +18,7 @@ import { Turnos } from '../../../services/db/turnos';
 import { CurrencyPipe } from '@angular/common';
 import { Navigation } from '../../../services/common/navigation';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Spinner } from '../../../shared/spinner/spinner';
 
 @Component({
   selector: 'app-reserva',
@@ -30,6 +31,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     GoBack,
     InputCheckBox,
     CurrencyPipe,
+    Spinner,
   ],
   templateUrl: './reserva.html',
   styleUrl: './reserva.css',
@@ -61,6 +63,8 @@ export default class Reserva {
 
   precio = 0;
   senia = 0;
+
+  loading = false;
 
   constructor(
     private turnosService: Turnos,
@@ -103,12 +107,17 @@ export default class Reserva {
   }
 
   loadPrecio() {
-    this.turnosService
-      .getPrePrecio(this.parrilla, this.rival)
-      .subscribe((data) => {
+    this.loading = true;
+    this.turnosService.getPrePrecio(this.parrilla, this.rival).subscribe({
+      next: (data) => {
+        this.loading = false;
         this.senia = data.precioSeña;
         this.precio = data.precio;
-      });
+      },
+      error: () => {
+        this.loading = false;
+      },
+    });
   }
 
   isValid(): boolean {
@@ -129,6 +138,7 @@ export default class Reserva {
         duration: 5000,
       });
     } else {
+      this.loading = true;
       this.turnosService
         .create({
           fecha: this.fecha,
@@ -138,11 +148,15 @@ export default class Reserva {
         })
         .subscribe({
           next: (response) => {
+            this.loading = false;
             window.open(response.urlPreferenciaPago, '_blank');
             this.snackBar.open('Reserva realizada con éxito', 'Cerrar', {
               duration: 5000,
             });
             this.navService.toPageTop('mis-turnos');
+          },
+          error: (err) => {
+            this.loading = false;
           },
         });
     }
