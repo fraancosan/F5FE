@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Button3 } from '../../../shared/button3/button3';
-import { Button4 } from '../../../shared/button4/button4';
+import { Button3 } from '../../../shared/btns/button3/button3';
+import { Button4 } from '../../../shared/btns/button4/button4';
 import {
   faArrowLeft,
   faCalendar,
@@ -11,9 +11,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-import { InputDate } from '../../../shared/input-date/input-date';
+import { InputDate } from '../../../shared/inputs/input-date/input-date';
 import { GoBack } from '../../../shared/go-back/go-back';
-import { InputCheckBox } from '../../../shared/input-check-box/input-check-box';
+import { InputCheckBox } from '../../../shared/inputs/input-check-box/input-check-box';
 import { Turnos } from '../../../services/db/turnos';
 import { CurrencyPipe } from '@angular/common';
 import { Navigation } from '../../../services/common/navigation';

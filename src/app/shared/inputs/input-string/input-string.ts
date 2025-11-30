@@ -1,7 +1,7 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { ValidatorsService } from '../../services/common/validators';
+import { ValidatorsService } from '../../../services/common/validators';
 import {
   FormGroup,
   NG_VALUE_ACCESSOR,
