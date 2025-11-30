@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { Observable, catchError, of, map, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { turno } from '../../Interfases/interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,31 +13,51 @@ export class Turnos {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
-  getAll({
-    fechaI,
-    fechaF,
-    horaI,
-    horaF,
-  }: {
+  transformEstado(turno: turno) {
+    if (turno.estado === 'señado' && turno.idMP === null) {
+      turno.estadoDetallado = 'pendiente de pago';
+    } else if (
+      turno.estado === 'señado' &&
+      turno.idMP !== null &&
+      turno.buscandoRival
+    ) {
+      if (turno.idMPCompartido !== null) {
+        turno.estadoDetallado = 'Rival encontrado';
+      } else {
+        turno.estadoDetallado = 'buscando rival';
+      }
+    } else {
+      turno.estadoDetallado = turno.estado;
+    }
+  }
+
+  getAll(params?: {
     fechaI: string;
     fechaF: string;
     horaI: string;
     horaF: string;
   }): Observable<turno[]> {
     let query = '?';
-    if (fechaI) {
-      query += `fechai=${fechaI}&`;
+    if (params && params.fechaI) {
+      query += `fechai=${params.fechaI}&`;
     }
-    if (fechaF) {
-      query += `fechaf=${fechaF}&`;
+    if (params && params.fechaF) {
+      query += `fechaf=${params.fechaF}&`;
     }
-    if (horaI) {
-      query += `horai=${horaI}&`;
+    if (params && params.horaI) {
+      query += `horai=${params.horaI}&`;
     }
-    if (horaF) {
-      query += `horaf=${horaF}`;
+    if (params && params.horaF) {
+      query += `horaf=${params.horaF}`;
     }
     return this.http.get<turno[]>(this.urlBack + 'turnos' + query).pipe(
+      map((data) =>
+        data.map((turno) => {
+          this.transformEstado(turno);
+          turno.precioSenia = turno.precioSeña;
+          return turno;
+        })
+      ),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
           return of([]);
@@ -53,6 +73,11 @@ export class Turnos {
 
   getById(id: string): Observable<turno> {
     return this.http.get<turno>(this.urlBack + 'turnos/' + id).pipe(
+      map((turno) => {
+        this.transformEstado(turno);
+        turno.precioSenia = turno.precioSeña;
+        return turno;
+      }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
           this.snackBar.open('No se ha encontrado el turno', 'Cerrar', {

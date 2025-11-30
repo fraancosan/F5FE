@@ -82,8 +82,10 @@ export interface turno {
   fecha: Date | string;
   hora: string;
   estado: string;
+  estadoDetallado: string;
   precio: number;
   precioSeña: number;
+  precioSenia: number; // sin la ñ
   buscandoRival: boolean | number; // 1 o 0
   parrilla: boolean | number; // 1 o 0
   fechaCreacion: Date;

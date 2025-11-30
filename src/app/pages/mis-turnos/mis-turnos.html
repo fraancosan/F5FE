@@ -1,1 +1,65 @@
-<p>mis-turnos works!</p>
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
+  <h1 class="page-title">Mis Turnos</h1>
+</div>
+<div class="scroll-container">
+  <div class="muro-container"></div>
+</div>
+
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="turnos">
+    <ng-container matColumnDef="Fecha">
+      <th mat-header-cell *matHeaderCellDef>{{ "Fecha" | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.fecha | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Hora">
+      <th mat-header-cell *matHeaderCellDef>{{ "Hora" | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.hora }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Estado">
+      <th mat-header-cell *matHeaderCellDef>{{ "Estado" | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.estadoDetallado | titlecase }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Precio">
+      <th mat-header-cell *matHeaderCellDef>{{ "Precio" | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.precio | currency : "$" : "symbol" : "1.0-0" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Precio Seña">
+      <th mat-header-cell *matHeaderCellDef>{{ "Precio Seña" | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.precioSenia | currency : "$" : "symbol" : "1.0-0" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Cancha">
+      <th mat-header-cell *matHeaderCellDef>{{ "Cancha" | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.idCancha }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Parrilla">
+      <th mat-header-cell *matHeaderCellDef>{{ "Parrilla" | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.parrilla ? "Si" : "No" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Turno Compartido">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "Turno Compartido" | titlecase }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.buscandoRival ? "Si" : "No" }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+@if (loading) {
+<app-spinner margin="20px auto 0 auto" size="md" mode="dark"></app-spinner>
+}
