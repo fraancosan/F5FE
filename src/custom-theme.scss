@@ -24,6 +24,15 @@ html {
     )
   );
 
+  @include mat.table-overrides(
+    (
+      background-color: transparent,
+      row-item-outline-color: var(--Verde-light-S),
+      header-headline-color: var(--Verde-light-S),
+      row-item-label-text-color: #fff,
+    )
+  );
+
   .spinner-light {
     @include mat.progress-spinner-overrides(
       (
