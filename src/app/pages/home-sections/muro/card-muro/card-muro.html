@@ -1,0 +1,9 @@
+<div class="title-container">
+  <div class="primary-title">
+    <fa-icon [icon]="usersIcon" size="lg" [fixedWidth]="true"></fa-icon>
+    <h2 class="title">{{ muro.titulo | capitalize }}</h2>
+  </div>
+  <span class="date">{{ muro.fecha | date : "dd/MM/yyyy" }}</span>
+</div>
+
+<span class="text">{{ muro.noticia }}</span>

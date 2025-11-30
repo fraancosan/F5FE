@@ -1,4 +1,5 @@
 :root {
+  --Verde-light-S: #70f5a3cf;
   /* greens */
   --green-500-primary: #05df72; /* Green-500 - Primary */
   --green-300: rgba(112, 245, 163, 0.8); /* Secondary (claro) */
