@@ -23,6 +23,21 @@ html {
       container-shape: 16px,
     )
   );
+
+  .spinner-light {
+    @include mat.progress-spinner-overrides(
+      (
+        active-indicator-color: var(--green-600),
+      )
+    );
+  }
+  .spinner-dark {
+    @include mat.progress-spinner-overrides(
+      (
+        active-indicator-color: var(--green-300),
+      )
+    );
+  }
 }
 
 body {

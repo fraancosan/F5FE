@@ -1,0 +1,17 @@
+<mat-spinner
+  class="spinner"
+  [ngStyle]="{ margin: margin }"
+  [ngClass]="[
+    centrado ? 'centrado' : '',
+    mode === 'dark' ? 'spinner-dark' : 'spinner-light',
+    size === 'xsm'
+      ? 'spinner-xsm'
+      : size === 'sm'
+      ? 'spinner-sm'
+      : size === 'md'
+      ? 'spinner-md'
+      : size === 'lg'
+      ? 'spinner-lg'
+      : ''
+  ]"
+></mat-spinner>

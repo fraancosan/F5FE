@@ -14,16 +14,25 @@ import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { Navigation } from '../../services/common/navigation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Users } from '../../services/db/users';
+import { Spinner } from '../../shared/spinner/spinner';
 
 @Component({
   selector: 'app-mi-cuenta',
-  imports: [Button1, Button2, ReactiveFormsModule, InputString, GoBack],
+  imports: [
+    Button1,
+    Button2,
+    ReactiveFormsModule,
+    InputString,
+    GoBack,
+    Spinner,
+  ],
   templateUrl: './mi-cuenta.html',
   styleUrl: './mi-cuenta.css',
 })
 export default class MiCuenta {
   faCalendar = faCalendar;
   form: FormGroup;
+  loading = true;
 
   user: usuario = {} as usuario;
 
@@ -82,10 +91,15 @@ export default class MiCuenta {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.usersService.getOwnAccount().subscribe({
       next: (res) => {
         this.user = res;
         this.patchForm();
+        this.loading = false;
+      },
+      error: (err) => {
+        this.loading = false;
       },
     });
   }
@@ -114,11 +128,16 @@ export default class MiCuenta {
         duration: 5000,
       });
     } else {
+      this.loading = true;
       this.usersService.update(data).subscribe({
         next: () => {
+          this.loading = false;
           this.snackBar.open('Datos actualizados', 'Cerrar', {
             duration: 5000,
           });
+        },
+        error: (err) => {
+          this.loading = false;
         },
       });
     }

@@ -13,16 +13,25 @@ import { GoBack } from '../../shared/go-back/go-back';
 import { Navigation } from '../../services/common/navigation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Users } from '../../services/db/users';
+import { Spinner } from '../../shared/spinner/spinner';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [Button1, Button2, InputString, ReactiveFormsModule, GoBack],
+  imports: [
+    Button1,
+    Button2,
+    InputString,
+    ReactiveFormsModule,
+    GoBack,
+    Spinner,
+  ],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.css',
 })
 export default class SignIn {
   faCalendar = faCalendar;
   form: FormGroup;
+  loading = false;
 
   constructor(
     private navService: Navigation,
@@ -61,9 +70,14 @@ export default class SignIn {
         duration: 5000,
       });
     } else {
+      this.loading = true;
       this.usersService.signIn(this.form.value).subscribe({
         next: () => {
           this.navService.toPageTop('inicio');
+          this.loading = false;
+        },
+        error: (err) => {
+          this.loading = false;
         },
       });
     }
