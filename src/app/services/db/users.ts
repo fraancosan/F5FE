@@ -84,6 +84,19 @@ export class Users {
       );
   }
 
+  getOwnAccount(): Observable<usuario> {
+    return this.http.get<usuario>(this.urlBack + 'usuarios/mi-cuenta').pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 500) {
+          this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {
+            duration: 5000,
+          });
+        }
+        return throwError(() => error);
+      })
+    );
+  }
+
   getPremium(): Observable<usuarioPremium[]> {
     return this.http
       .get<usuarioPremium[]>(this.urlBack + 'usuarios/premium')

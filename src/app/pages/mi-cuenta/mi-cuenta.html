@@ -1,0 +1,73 @@
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="light"></app-go-back>
+  <h1 class="page-title">Mi cuenta</h1>
+</div>
+
+<div class="logosubrayado"></div>
+
+<form class="form" [formGroup]="form">
+  <app-input-string
+    label="Nombre de Usuario"
+    [icon]="faCalendar"
+    type="text"
+    name="nombre"
+    placeholder="Ingrese su nombre"
+    prefixMessage="El nombre"
+    [required]="true"
+    [form]="form"
+    formControlName="nombre"
+  ></app-input-string>
+
+  <app-input-string
+    label="Correo Electrónico"
+    [icon]="faCalendar"
+    type="email"
+    name="mail"
+    placeholder="Ingrese su correo"
+    prefixMessage="El email"
+    [required]="true"
+    [form]="form"
+    formControlName="mail"
+  ></app-input-string>
+
+  <app-input-string
+    label="Contraseña"
+    [icon]="faCalendar"
+    type="password"
+    name="contraseña"
+    placeholder="Ingrese su contraseña"
+    prefixMessage="La contraseña"
+    [required]="true"
+    [form]="form"
+    formControlName="contraseña"
+  ></app-input-string>
+
+  <app-input-string
+    label="DNI"
+    [icon]="faCalendar"
+    type="text"
+    name="dni"
+    placeholder="Ingrese su DNI"
+    prefixMessage="El DNI"
+    [required]="true"
+    [form]="form"
+    formControlName="dni"
+  ></app-input-string>
+
+  <app-input-string
+    label="Teléfono"
+    [icon]="faCalendar"
+    type="text"
+    name="telefono"
+    placeholder="Ingrese su teléfono"
+    prefixMessage="El teléfono"
+    [required]="true"
+    [form]="form"
+    formControlName="telefono"
+  ></app-input-string>
+
+  <div class="buttons">
+    <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
+    <app-button1 (click)="actualizarDatos()" text="Confirmar"></app-button1>
+  </div>
+</form>
