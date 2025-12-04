@@ -75,7 +75,7 @@ export interface cancha {
 }
 
 export interface turno {
-  id: number;
+  id: string;
   idCancha: number | cancha;
   idUsuario: number | usuario;
   idUsuarioCompartido: number | usuario;
