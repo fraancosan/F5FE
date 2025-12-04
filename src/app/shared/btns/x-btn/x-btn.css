@@ -1,0 +1,14 @@
+:host {
+  cursor: pointer;
+}
+
+.icon {
+  color: white;
+}
+
+.icon-light {
+  color: var(--green-600);
+}
+.icon-dark {
+  color: var(--Verde-light-S);
+}
