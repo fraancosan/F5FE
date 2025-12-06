@@ -2,8 +2,37 @@
   <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
   <h1 class="page-title">Mis Turnos</h1>
 </div>
-<div class="scroll-container">
-  <div class="muro-container"></div>
+
+<div class="filters-container">
+  <app-input-date
+    label="Desde"
+    name="Desde"
+    (dateSelected)="changeDesde($event)"
+  ></app-input-date>
+
+  <app-input-date
+    label="Hasta"
+    name="Hasta"
+    (dateSelected)="changeHasta($event)"
+  ></app-input-date>
+
+  <app-select
+    [icon]="filterIcon"
+    name="estado"
+    label="Estado"
+    [(value)]="estado"
+    [options]="estadoSelect"
+    (valueChange)="changeEstado($event)"
+  ></app-select>
+
+  <app-select
+    [icon]="orderIcon"
+    name="order"
+    label="Orden"
+    [(value)]="order"
+    [options]="orderSelect"
+    (valueChange)="changeOrder($event)"
+  ></app-select>
 </div>
 
 <div class="table-container mat-elevation-z8">
