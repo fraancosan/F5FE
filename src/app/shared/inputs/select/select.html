@@ -1,7 +1,8 @@
 <label class="label-container">
   <span class="label">
+    @if (icon) {
     <fa-icon [icon]="icon"></fa-icon>
-    Hora
+    } {{ label }}
   </span>
   <div class="input-icon">
     <select name="{{ name }}" (change)="onChange($event)">

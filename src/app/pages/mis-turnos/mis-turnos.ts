@@ -7,6 +7,9 @@ import { Spinner } from '../../shared/spinner/spinner';
 import { Turnos } from '../../services/db/turnos';
 import { XBtn } from '../../shared/btns/x-btn/x-btn';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Select } from '../../shared/inputs/select/select';
+import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
+import { InputDate } from '../../shared/inputs/input-date/input-date';
 @Component({
   selector: 'app-mis-turnos',
   imports: [
@@ -17,6 +20,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     DatePipe,
     CurrencyPipe,
     XBtn,
+    Select,
+    InputDate,
   ],
   templateUrl: './mis-turnos.html',
   styleUrl: './mis-turnos.css',
@@ -35,7 +40,41 @@ export default class MisTurnos {
   ];
   turnos: turno[] = [];
 
+  order: 'asc' | 'desc' = 'desc';
+  orderSelect = [
+    {
+      value: 'asc',
+      text: 'Ascendente',
+      disabled: false,
+    },
+    {
+      value: 'desc',
+      text: 'Descendente',
+      disabled: false,
+    },
+  ];
+
+  estado: string = '';
+  estadoSelect = [
+    { value: '', text: 'Todos', disabled: false },
+    { value: 'señado', text: 'Señado', disabled: false },
+    { value: 'cancelado', text: 'Cancelado', disabled: false },
+    { value: 'finalizado', text: 'Finalizado', disabled: false },
+    { value: 'pendiente de pago', text: 'Pendiente de pago', disabled: false },
+    { value: 'rival encontrado', text: 'Rival encontrado', disabled: false },
+    { value: 'buscando rival', text: 'Buscando rival', disabled: false },
+  ];
+
   loading: boolean = false;
+  orderIcon = faSort;
+  filterIcon = faFilter;
+
+  params: any = {
+    fechaI: undefined,
+    fechaF: undefined,
+    ordenFecha: this.order,
+    estado: this.estado,
+  };
 
   constructor(private turnosService: Turnos, private snackBar: MatSnackBar) {}
 
@@ -45,7 +84,7 @@ export default class MisTurnos {
 
   loadTurnos() {
     this.loading = true;
-    this.turnosService.getAll().subscribe((turnos) => {
+    this.turnosService.getAll(this.params).subscribe((turnos) => {
       this.turnos = turnos;
       this.loading = false;
     });
@@ -70,5 +109,22 @@ export default class MisTurnos {
         },
       });
     }
+  }
+
+  changeDesde(date: string) {
+    this.params.fechaI = date;
+    this.loadTurnos();
+  }
+  changeHasta(date: string) {
+    this.params.fechaF = date;
+    this.loadTurnos();
+  }
+  changeOrder(order: string) {
+    this.params.ordenFecha = order;
+    this.loadTurnos();
+  }
+  changeEstado(estado: string) {
+    this.params.estado = estado;
+    this.loadTurnos();
   }
 }

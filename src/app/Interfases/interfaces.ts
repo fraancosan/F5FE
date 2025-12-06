@@ -81,8 +81,14 @@ export interface turno {
   idUsuarioCompartido: number | usuario;
   fecha: Date | string;
   hora: string;
-  estado: string;
-  estadoDetallado: string;
+  estado: 'señado' | 'cancelado' | 'finalizado';
+  estadoDetallado:
+    | 'señado'
+    | 'cancelado'
+    | 'finalizado'
+    | 'pendiente de pago'
+    | 'rival encontrado'
+    | 'buscando rival';
   precio: number;
   precioSeña: number;
   precioSenia: number; // sin la ñ

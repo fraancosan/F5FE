@@ -17,6 +17,7 @@
   box-sizing: border-box;
   box-shadow: 0 10px 30px rgba(3, 23, 11, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  overflow-y: auto;
 }
 
 .title {
@@ -40,9 +41,31 @@
   text-align: right;
 }
 
+.filters-container {
+  width: calc(100% - 70px);
+  padding: 10px 30px;
+  display: grid;
+  column-gap: 10px;
+  row-gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 .table-container {
   width: calc(100% - 70px);
+  min-height: 350px;
   height: 100%;
   padding: 0 30px;
   overflow-y: auto;
+}
+
+@media (min-width: 600px) {
+  .filters-container {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .filters-container {
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+  }
 }

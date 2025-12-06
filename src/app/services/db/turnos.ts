@@ -22,7 +22,7 @@ export class Turnos {
       turno.buscandoRival
     ) {
       if (turno.idMPCompartido !== null) {
-        turno.estadoDetallado = 'Rival encontrado';
+        turno.estadoDetallado = 'rival encontrado';
       } else {
         turno.estadoDetallado = 'buscando rival';
       }
@@ -32,10 +32,12 @@ export class Turnos {
   }
 
   getAll(params?: {
-    fechaI: string;
-    fechaF: string;
-    horaI: string;
-    horaF: string;
+    fechaI?: string;
+    fechaF?: string;
+    horaI?: string;
+    horaF?: string;
+    ordenFecha?: 'asc' | 'desc';
+    estado?: string;
   }): Observable<turno[]> {
     let query = '?';
     if (params && params.fechaI) {
@@ -48,7 +50,23 @@ export class Turnos {
       query += `horai=${params.horaI}&`;
     }
     if (params && params.horaF) {
-      query += `horaf=${params.horaF}`;
+      query += `horaf=${params.horaF}&`;
+    }
+    if (params && params.ordenFecha) {
+      query += `ordenFecha=${params.ordenFecha}&`;
+    }
+    if (params && params.estado) {
+      if (params.estado === 'pendiente de pago') {
+        query += `estado=señado&hasIdMP=0&`;
+      } else if (params.estado === 'rival encontrado') {
+        query += `estado=señado&hasIdMP=1&hasIdMPCompartido=1&buscaRival=1&`;
+      } else if (params.estado === 'buscando rival') {
+        query += `estado=señado&hasIdMP=1&hasIdMPCompartido=0&buscaRival=1&`;
+      } else if (params.estado === 'señado') {
+        query += `estado=señado&hasIdMP=1&buscaRival=0&`;
+      } else {
+        query += `estado=${params.estado}&`;
+      }
     }
     return this.http.get<turno[]>(this.urlBack + 'turnos' + query).pipe(
       map((data) =>
