@@ -5,7 +5,6 @@ import {
   faArrowLeft,
   faCalendar,
   faClock,
-  faChevronDown,
   faUtensils,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +18,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Navigation } from '../../../services/common/navigation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Spinner } from '../../../shared/spinner/spinner';
+import { Select } from '../../../shared/inputs/select/select';
 
 @Component({
   selector: 'app-reserva',
@@ -32,6 +32,7 @@ import { Spinner } from '../../../shared/spinner/spinner';
     InputCheckBox,
     CurrencyPipe,
     Spinner,
+    Select,
   ],
   templateUrl: './reserva.html',
   styleUrl: './reserva.css',
@@ -40,7 +41,6 @@ export default class Reserva {
   faArrowLeft = faArrowLeft;
   faCalendar = faCalendar;
   faClock = faClock;
-  faChevronDown = faChevronDown;
   faUtensils = faUtensils;
   faUserPlus = faUserPlus;
 
@@ -51,8 +51,12 @@ export default class Reserva {
     fecha: string;
     horarios: { disponible: boolean; hora: string }[];
   }[] = [];
-  horasDisponibles: { disponible: boolean; hora: string }[] = [
-    { disponible: false, hora: 'Seleccione un turno' },
+  horasDisponibles: { value: string; text: string; disabled: boolean }[] = [
+    {
+      value: 'Seleccione un turno',
+      text: 'Seleccione un turno',
+      disabled: true,
+    },
   ];
 
   hora = 'Seleccione un turno';
@@ -81,20 +85,32 @@ export default class Reserva {
       for (const horario of turno.horarios) {
         if (horario.disponible) {
           disponible = true;
-          this.horasDisponibles.push(horario);
+          this.horasDisponibles.push({
+            value: horario.hora,
+            text: horario.hora,
+            disabled: !horario.disponible,
+          });
         }
       }
       if (!disponible) {
         this.horasDisponibles = [
-          { disponible: false, hora: 'No hay turnos disponibles' },
+          {
+            value: 'No hay turnos disponibles',
+            text: 'No hay turnos disponibles',
+            disabled: true,
+          },
         ];
       }
     } else {
       this.horasDisponibles = [
-        { disponible: false, hora: 'No hay turnos disponibles' },
+        {
+          value: 'No hay turnos disponibles',
+          text: 'No hay turnos disponibles',
+          disabled: true,
+        },
       ];
     }
-    this.hora = this.horasDisponibles[0].hora;
+    this.hora = this.horasDisponibles[0].value;
   }
 
   ngOnInit() {

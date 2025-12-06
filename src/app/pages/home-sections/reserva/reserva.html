@@ -15,24 +15,13 @@
       (dateSelected)="onDateSelected($event)"
     ></app-input-date>
 
-    <div class="field hora">
-      <label for="hora"
-        ><span class="label-icon"><fa-icon [icon]="faClock"></fa-icon></span>
-        Hora</label
-      >
-      <div class="input-icon">
-        <select id="hora" name="hora" [(ngModel)]="hora">
-          @for (hora of horasDisponibles; track $index) {
-          <option [disabled]="!hora.disponible" [value]="hora.hora">
-            {{ hora.hora }}
-          </option>
-          }
-        </select>
-        <span class="icon-field"
-          ><fa-icon [icon]="faChevronDown"></fa-icon
-        ></span>
-      </div>
-    </div>
+    <app-select
+      [icon]="faClock"
+      name="hora"
+      label="Hora"
+      [options]="horasDisponibles"
+      [(value)]="hora"
+    ></app-select>
   </div>
 
   <div class="parrilla-rival">
