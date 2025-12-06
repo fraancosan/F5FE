@@ -1,0 +1,20 @@
+<label class="label-container">
+  <span class="label">
+    <fa-icon [icon]="icon"></fa-icon>
+    Hora
+  </span>
+  <div class="input-icon">
+    <select name="{{ name }}" (change)="onChange($event)">
+      @for (option of options; track $index) {
+      <option
+        [selected]="value === option.value"
+        [disabled]="option.disabled"
+        [value]="option.value"
+      >
+        {{ option.text }}
+      </option>
+      }
+    </select>
+    <fa-icon class="icon-field" [icon]="faChevronDown"></fa-icon>
+  </div>
+</label>

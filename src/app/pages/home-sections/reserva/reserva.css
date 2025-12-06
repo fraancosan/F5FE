@@ -51,71 +51,8 @@
 
 .fecha-hora {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 22px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.field label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--green-300);
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.label-icon {
-  color: var(--green-300);
-}
-
-.input-icon {
-  position: relative;
-  display: block;
-}
-
-.input-icon select {
-  width: 100%;
-  padding: 12px 44px 12px 14px;
-  border-radius: 8px;
-  background: var(--green-900);
-  color: #fff;
-  font-weight: 700;
-  box-sizing: border-box;
-  font-size: 14px;
-  border: 1px solid var(--green-500-primary);
-}
-
-.input-icon select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.input-icon select::-ms-expand {
-  display: none;
-}
-
-.input-icon select::-moz-focus-inner {
-  border: 0;
-}
-
-.input-icon .icon-field {
-  pointer-events: none;
-  color: var(--green-300);
-}
-
-.icon-field {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--green-300);
 }
 
 .parrilla-rival {
@@ -154,7 +91,7 @@
   margin-left: auto;
   font-weight: 800;
   color: #ffffff;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .buttons {
@@ -167,12 +104,15 @@
   width: 100%;
 }
 
-@media (max-width: 820px) {
+@media (min-width: 600px) {
   .fecha-hora {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
+}
+
+@media (min-width: 820px) {
   .total-amount {
-    font-size: 18px;
+    font-size: 22px;
   }
 }
 

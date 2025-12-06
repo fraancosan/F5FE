@@ -1,0 +1,59 @@
+:host {
+  max-width: 500px;
+  width: 100%;
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--green-300);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.input-icon {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.input-icon select {
+  width: 100%;
+  padding: 12px 44px 12px 14px;
+  border-radius: 8px;
+  background: var(--green-900);
+  color: #fff;
+  font-weight: 700;
+  box-sizing: border-box;
+  font-size: 14px;
+  border: 1px solid var(--green-500-primary);
+}
+
+.input-icon select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.input-icon select::-ms-expand {
+  display: none;
+}
+
+.input-icon select::-moz-focus-inner {
+  border: 0;
+}
+
+.input-icon .icon-field {
+  pointer-events: none;
+  color: var(--green-300);
+}
+
+.icon-field {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--green-300);
+}
