@@ -1,1 +1,28 @@
-<p>crear-equipo works!</p>
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="light"></app-go-back>
+  <h1 class="page-title">Crear Equipo</h1>
+</div>
+
+<form class="form" [formGroup]="form">
+  <app-input-string
+    label="Nombre del equipo"
+    [icon]="faCalendar"
+    type="text"
+    name="nombre"
+    placeholder="Ingrese el nombre del equipo"
+    prefixMessage="El nombre del equipo"
+    [required]="true"
+    [form]="form"
+    formControlName="nombre"
+  ></app-input-string>
+
+
+  <div class="buttons">
+    <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
+    <app-button1 (click)="crearEquipo()" text="Crear equipo"></app-button1>
+  </div>
+
+  @if (loading) {
+  <app-spinner mode="light" [centrado]="true" size="md"></app-spinner>
+  }
+</form>
