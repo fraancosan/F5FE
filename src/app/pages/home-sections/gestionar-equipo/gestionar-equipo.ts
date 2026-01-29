@@ -9,6 +9,7 @@ import { EquipoUsuario } from '../../../services/db/equipo-usuario';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { equipo } from '../../../Interfases/interfaces';
 import { Equipo } from '../../../services/db/equipo';
+import { Button3 } from '../../../shared/btns/button3/button3';
 
 @Component({
   selector: 'app-gestionar-equipo',
@@ -17,6 +18,7 @@ import { Equipo } from '../../../services/db/equipo';
     Spinner,
     CardEquipo,
     XBtn,
+    Button3,
   ],
   templateUrl: './gestionar-equipo.html',
   styleUrl: './gestionar-equipo.css',
@@ -81,5 +83,9 @@ export default class GestionarEquipo {
       }
     });
     }
+  }
+
+  unirseEquipo() {
+  //Logica para unir el usuario a un equipo
   }
 }

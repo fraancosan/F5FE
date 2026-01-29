@@ -14,6 +14,8 @@ export class CardEquipo {
       }
       return 'Cargando nombre...';
     }
-}
+    linkDelEquipo: string = "Link no disponible";
+  }
+
 
 

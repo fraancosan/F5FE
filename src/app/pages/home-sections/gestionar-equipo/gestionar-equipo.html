@@ -3,7 +3,7 @@
   <h1 class="page-title">Gestionar Equipo</h1>
 </div>
 <div class="scroll-container">
-  <div class="muro-container">
+  <div class="gestionar-equipo-container">
       @for (item of equipos; track item.id){
         <div class="fila">
           <app-card-equipo [equipo]="item"></app-card-equipo>
@@ -16,5 +16,8 @@
     } @else {
     <span class="empty">No hay miembros en el equipo en este momento.</span>
     } }
+  </div>
+  <div class="button-container">
+      <app-button3 text="Unirme a un Equipo" (click)="unirseEquipo()"></app-button3>
   </div>
 </div>

@@ -45,9 +45,10 @@
   height: 100%;
   padding: 15px 30px 0 30px;
   overflow-y: auto;
+  scrollbar-color: var(--green-600) transparent;
 }
 
-.muro-container {
+.gestionar-equipo-container {
   display: flex;
   flex-direction: column;
   row-gap: 13.65px;
@@ -64,4 +65,13 @@
 .empty {
   width: 100%;
   color: #fff;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+
+app-button3{
+  margin: 2rem;
 }

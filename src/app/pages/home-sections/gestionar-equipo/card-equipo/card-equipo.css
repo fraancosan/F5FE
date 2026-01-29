@@ -11,6 +11,7 @@
 
 .title-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -23,15 +24,19 @@
   font-weight: 700;
 }
 
-.primary-title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1em;
+.primary-title{
+  align-self: flex-start;
 }
 
 .title {
   font-size: 22px;
   margin: 0;
+}
+
+.link-text {
+  font-size: 14px;
+  color: var(--green-200);
+  margin: 0;
+  margin-top: 0.5rem;
+  align-self: flex-end;
 }
