@@ -1,1 +1,20 @@
-<p>gestionar-equipo works!</p>
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
+  <h1 class="page-title">Gestionar Equipo</h1>
+</div>
+<div class="scroll-container">
+  <div class="muro-container">
+      @for (item of equipos; track item.id){
+        <div class="fila">
+          <app-card-equipo [equipo]="item"></app-card-equipo>
+          @if (item.capitan) {
+          <app-x-btn color="dark" (click) = "eliminarEquipo(item)"></app-x-btn>
+          }
+      </div>
+    } @empty { @if (loading) {
+    <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
+    } @else {
+    <span class="empty">No hay miembros en el equipo en este momento.</span>
+    } }
+  </div>
+</div>
