@@ -1,1 +1,18 @@
-<p>torneo works!</p>
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
+  <h1 class="page-title">Torneos</h1>
+</div>
+<div class="scroll-container">
+  <div class="torneos-container">
+      @for (item of torneos; track item.id){
+        <div class="fila">
+          <app-card-torneo [torneoDescripcion]="item.descripcion"></app-card-torneo>  
+            <app-button3 text = "Ver" (click)="verTorneo()"></app-button3>
+      </div>
+    } @empty { @if (loading) {
+    <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
+    } @else {
+    <span class="empty">No hay torneos en este momento.</span>
+    } }
+  </div>
+</div>

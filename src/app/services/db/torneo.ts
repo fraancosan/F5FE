@@ -33,7 +33,7 @@ export class Torneo {
   }
 
   getAll(descripcion?: string): Observable<torneo[]> {
-    let url = `${this.urlBack}/torneos`;
+    let url = `${this.urlBack}torneos`;
     if (descripcion !== undefined) {
       url += `?descripcion=${descripcion}`;
     }
