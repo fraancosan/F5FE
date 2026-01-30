@@ -1,0 +1,60 @@
+  @if (torneo){
+  <div class="title">
+    <app-go-back label="Volver al Menú" url="inicio" mode="light"></app-go-back>
+    <h1 class="page-title">{{torneo.descripcion}}</h1>
+    <span>{{torneo.cantidadEquipos}}</span>
+  </div>
+
+  <div class="logosubrayado"></div>
+
+      <div class="field-group">
+        <label> Descripcion</label>
+        <div class="info-box">
+          {{ torneo.descripcion || 'Torneo amistoso. Principiantes.' }}
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label> Fechas</label>
+        <div class="info-text">
+          Desde el {{ torneo.fechaInicio}} al {{ torneo.fechaFin }}
+        </div>
+        <hr class="sub-divider">
+      </div>
+
+      <div class="field-group">
+        <label> Horario</label>
+        <div class="info-box text-green">
+          Desde las 17:00 a las 20:00
+        </div>
+      </div>
+
+      <div class="field-group inline">
+        <label> Precio</label>
+        <div class="price-badge">
+          ${{ torneo.precioInscripcion}} por equipo
+        </div>
+      </div>
+
+          <div class="field-group">
+        <div class="info-box text-green">
+        <app-select
+          label="Equipo"
+          [name]="'equipoSelect'"
+          [options]="equiposOptions"
+          [value]="equipoSeleccionadoId"
+          (valueChange)="equipoSeleccionadoId = $event">
+        </app-select>
+        </div>
+      </div>
+
+    <div class="buttons">
+      <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
+      <app-button1 (click)="InscripcionTorneo(torneo, equipoSeleccionadoId)" text="Inscribirse"></app-button1>
+    </div>
+
+    @if (loading) {
+    <app-spinner mode="light" [centrado]="true" size="md"></app-spinner>
+    }
+  }
+ 

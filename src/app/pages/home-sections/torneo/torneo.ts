@@ -5,6 +5,8 @@ import {Torneo} from '../../../services/db/torneo';
 import { torneo as TorneoInterface } from '../../../Interfases/interfaces';
 import { Spinner } from '../../../shared/spinner/spinner';
 import { Button3} from '../../../shared/btns/button3/button3';
+import { Navigation } from '../../../services/common/navigation';
+
 @Component({
   selector: 'app-torneo',
   imports: [
@@ -22,6 +24,7 @@ export default class torneo {
   isVerTorneo: boolean = false;
   constructor(
     private torneoService: Torneo,
+    private navService: Navigation
   )
   {}
   ngOnInit(): void {
@@ -39,8 +42,8 @@ export default class torneo {
     });
   }
 
-  verTorneo(){
-    //Logica de navegacion a ver torneo
+  verTorneo(torneo: TorneoInterface) {
+    this.navService.toPageTop('/inscripcion-torneo', { id:  torneo.id });
   }
 
 }

@@ -7,7 +7,7 @@
       @for (item of torneos; track item.id){
         <div class="fila">
           <app-card-torneo [torneoDescripcion]="item.descripcion"></app-card-torneo>  
-            <app-button3 text = "Ver" (click)="verTorneo()"></app-button3>
+            <app-button3 text = "Ver" (click)="verTorneo(item)"></app-button3>
       </div>
     } @empty { @if (loading) {
     <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>

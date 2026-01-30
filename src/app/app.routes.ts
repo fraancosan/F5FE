@@ -67,6 +67,11 @@ export const routes: Routes = [
         path: 'muro',
         loadComponent: () => import('./pages/home-sections/muro/muro'),
       },
+      {
+        path: 'inscripcion-torneo',
+        canActivate: [userGuard],
+        loadComponent: () => import('./pages/home-sections/torneo/inscripcion-torneo/inscripcion-torneo'),
+      }
     ],
   },
 
