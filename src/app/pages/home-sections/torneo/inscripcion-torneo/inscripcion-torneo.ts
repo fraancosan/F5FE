@@ -13,7 +13,8 @@ import { EquipoTorneo } from '../../../../services/db/equipo-torneo'
 import { EquipoUsuario } from '../../../../services/db/equipo-usuario';
 import { Torneo } from '../../../../services/db/torneo';
 import { torneo as TorneoInterface } from '../../../../Interfases/interfaces';
-import { Equipo } from '../../../../services/db/equipo';
+import { InputString } from '../../../../shared/inputs/input-string/input-string';
+import { FormGroup,FormControl, ReactiveFormsModule } from '@angular/forms';
 
 interface SelectOption {
   value: string;
@@ -29,6 +30,8 @@ interface SelectOption {
     Spinner,
     GoBack,
     Select,
+    InputString,
+    ReactiveFormsModule
   ],
   templateUrl: './inscripcion-torneo.html',
   styleUrl: './inscripcion-torneo.css'
@@ -39,17 +42,26 @@ export default class InscripcionTorneo {
   equiposOptions: SelectOption[] = [];
   equipoSeleccionadoId: string = '';
   loading: boolean = false;
+  equiposInscritosCount: number = 0;
+
+  form = new FormGroup({
+  descripcion: new FormControl({ value: '', disabled: true }),
+  fechas: new FormControl({ value: '', disabled: true }),
+  horario: new FormControl({ value: '', disabled: true }),
+  precio: new FormControl({ value: '', disabled: true }),
+});
+
   constructor(
     private torneoService: Torneo,
     private equipoTorneoService: EquipoTorneo,
     private EquipoUsuarioService: EquipoUsuario,
-    private EquipoService: Equipo,
     private navService: Navigation,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private usersService: Users
+    private usersService: Users,
   )
   {}
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
     const id = params['id'];
@@ -75,9 +87,21 @@ export default class InscripcionTorneo {
     this.torneoService.getById(idTorneo).subscribe({
       next: (torneo) => {
         this.torneo  = torneo;
+        this.obtenerCupos(idTorneo);
       },
       error: (err) => {
         this.snackBar.open('Error al obtener los datos del torneo', 'Cerrar', { duration: 5000 });
+      }
+    });
+  }
+  obtenerCupos(idTorneo: number) {
+    this.equipoTorneoService.getAll({idTorneo : idTorneo}).subscribe({
+      next: (res: any[]) => {
+        this.equiposInscritosCount = res.length;
+      },
+      error: (err) => {
+        console.error('Error al obtener inscritos del torneo:', err);
+        
       }
     });
   }
@@ -116,7 +140,7 @@ export default class InscripcionTorneo {
    });
   }
   
-  cancelar() {
-    this.navService.toPageTop('inicio');
+  volverTorneos() {
+    this.navService.toPageTop('torneo');
   }
 }

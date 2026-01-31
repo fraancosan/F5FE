@@ -13,6 +13,11 @@ export class EquipoTorneo {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
+  // Nuevo método para obtener inscritos a torneo
+  getAll(params: { idTorneo?: number; idEquipo?: number }): Observable<equipoTorneo[]> {
+    return this.http.get<equipoTorneo[]>(this.urlBack + 'equiposTorneos', { params});
+  }
+
   create(data: Pick<equipoTorneo, 'idEquipo' | 'idTorneo'>): Observable<any> {
     return this.http
       .post(
