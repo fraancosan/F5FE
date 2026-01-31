@@ -95,13 +95,14 @@ export default class InscripcionTorneo {
     });
   }
   obtenerCupos(idTorneo: number) {
-    this.equipoTorneoService.getAll({idTorneo : idTorneo}).subscribe({
-      next: (res: any[]) => {
-        this.equiposInscritosCount = res.length;
+    this.equipoTorneoService.getAllById({idTorneo : idTorneo}).subscribe({
+      next: (res: any) => {
+        this.equiposInscritosCount = res.cantidad;
+        console.log('Cantidad de equipos inscritos:', this.equiposInscritosCount);
       },
       error: (err) => {
         console.error('Error al obtener inscritos del torneo:', err);
-        
+        this.equiposInscritosCount = 0;
       }
     });
   }
