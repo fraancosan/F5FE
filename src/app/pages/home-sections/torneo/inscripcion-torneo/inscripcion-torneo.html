@@ -67,7 +67,10 @@
       
     <div class="buttons">
       <app-button2 (click)="volverTorneos()" text="Volver a Torneos"></app-button2>
-      <app-button1 (click)="InscripcionTorneo(torneo, equipoSeleccionadoId)" text="Unirse a Torneo"></app-button1>
+      <app-button1 
+      [text] = "obtenerTextoBotonInscripcion()"
+      [disabled]="!puedeInscribirse"
+      (click)=" InscripcionTorneo(torneo, +equipoSeleccionadoId)"></app-button1>
     </div>
 
     @if (loading) {

@@ -24,6 +24,15 @@
   letter-spacing: 0.02em;
 }
 
+button:disabled,
+.btn-primary:disabled {
+  background: #cccccc !important; 
+  border: 1px solid #999999 !important;
+  cursor: not-allowed;
+  color: #666666 !important;
+  display: flex !important; 
+}
+
 @media (min-width: 1300px) {
   :host {
     max-width: 224px;

@@ -49,7 +49,13 @@ export default class InscripcionTorneo {
   fechas: new FormControl({ value: '', disabled: true }),
   horario: new FormControl({ value: '', disabled: true }),
   precio: new FormControl({ value: '', disabled: true }),
-});
+  });
+
+  get puedeInscribirse(): boolean {
+    const tieneEquipo = this.equipoSeleccionadoId !== '';
+    const hayCupos = this.torneo ? this.equiposInscritosCount < this.torneo.cantidadEquipos : false;
+    return tieneEquipo && hayCupos;
+  }
 
   constructor(
     private torneoService: Torneo,
@@ -82,7 +88,15 @@ export default class InscripcionTorneo {
     });
 }
 
-
+  obtenerTextoBotonInscripcion(): string {
+    if (this.torneo && this.equiposInscritosCount >= this.torneo.cantidadEquipos) {
+      return 'Cupo Lleno';
+    }
+    if (!this.equipoSeleccionadoId) {
+      return 'Seleccione un Equipo'; 
+    }
+    return "Unirse a Torneo";
+  }
   obtenerTorneo(idTorneo: number) {
     this.torneoService.getById(idTorneo).subscribe({
       next: (torneo) => {
@@ -94,6 +108,7 @@ export default class InscripcionTorneo {
       }
     });
   }
+
   obtenerCupos(idTorneo: number) {
     this.equipoTorneoService.getAllById({idTorneo : idTorneo}).subscribe({
       next: (res: any) => {
@@ -123,20 +138,29 @@ export default class InscripcionTorneo {
       });
     }
 
-  InscripcionTorneo(torneo: TorneoInterface | null, equipo: any){
-    if (!torneo) {
-    this.snackBar.open('El torneo aún no está cargado', 'Cerrar', { duration: 3000 });
+  InscripcionTorneo(torneo: TorneoInterface | null, idEquipo: number){
+    if (!torneo || !idEquipo) {
+    this.snackBar.open('Faltan datos por cargar...', 'Cerrar', { duration: 3000 });
     return;
     }
 
-    this.equipoTorneoService.create({idEquipo: equipo.id, idTorneo: torneo.id}).subscribe({
-      next: (res) => {
-        this.snackBar.open('Inscripción al torneo exitosa', 'Cerrar', { duration: 3000 });
-        console.log('Inscripción exitosa:', res);
+    this.loading = true;
+
+    this.equipoTorneoService.create({idEquipo: Number(idEquipo), idTorneo: torneo.id}).subscribe({
+      next: (response) => {
+        this.loading = false;
+
+        if (response.urlPreferenciaPago) {
+        window.open(response.urlPreferenciaPago, '_blank');
+  
+        this.snackBar.open('Redirigiendo a la plataforma de pago...', 'Cerrar', {duration: 5000,});
+        
+        this.navService.toPageTop('torneo');
+        }
       },
     error: (err) => {
-      this.snackBar.open('Error al inscribirse al torneo', 'Cerrar', { duration: 5000 });
-      console.error('Error en la inscripción:', err);
+      this.loading = false;
+      console.log('Error en la inscripción:', err);
     }
    });
   }
