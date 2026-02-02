@@ -14,10 +14,29 @@
     } @empty { @if (loading) {
     <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
     } @else {
-    <span class="empty">No hay miembros en el equipo en este momento.</span>
+    <span class="empty">No hay equipos registrados.</span>
     } }
   </div>
   <div class="button-container">
-      <app-button3 text="Unirme a un Equipo" (click)="unirseEquipo()"></app-button3>
+      <app-button3 text="Unirme a un Equipo" (click)="abrirUnirseEquipo()"></app-button3>
   </div>
+
+@if (isUnirseEquipo) {
+  <div class="modal-overlay" (click)="isUnirseEquipo = false">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2>Unirse a un Equipo</h2>       
+        <app-input-string
+          [label]="'ID del Equipo'"
+          [placeholder]="'Ingrese el ID del equipo'"
+          [formControl]="idEquipoControl"
+          [required]="true">
+        </app-input-string>
+
+        <div class="modal-buttons">
+          <app-button3 text="Cancelar" (click)="isUnirseEquipo = false"></app-button3>
+          <app-button3 text="Unirme al Equipo" (click)="unirseEquipo()"></app-button3>
+        </div>
+    </div>
+  </div>
+}
 </div>

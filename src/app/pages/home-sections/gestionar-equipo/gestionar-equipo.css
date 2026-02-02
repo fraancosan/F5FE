@@ -75,3 +75,39 @@
 app-button3{
   margin: 2rem;
 }
+
+ /* Estilos para el modal de unirse al equipo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+  backdrop-filter: blur(4px); /
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 450px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-content h2{
+  text-align: center;
+  color: #fff;
+}
+
+app-input-string {
+color: var(--green-500-primary)
+}

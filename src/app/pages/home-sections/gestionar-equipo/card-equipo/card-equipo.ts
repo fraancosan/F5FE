@@ -14,8 +14,12 @@ export class CardEquipo {
       }
       return 'Cargando nombre...';
     }
-    linkDelEquipo: string = "Link no disponible";
+  get IdDelEquipo(): string {
+      if (this.equipo && this.equipo.Equipo) {
+        return this.equipo.idEquipo.toString();}
+      return 'Cargando ID...';
   }
+}
 
 
 

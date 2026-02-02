@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { equipo } from '../../../Interfases/interfaces';
 import { Equipo } from '../../../services/db/equipo';
 import { Button3 } from '../../../shared/btns/button3/button3';
+import { InputString } from '../../../shared/inputs/input-string/input-string';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-gestionar-equipo',
@@ -19,14 +21,18 @@ import { Button3 } from '../../../shared/btns/button3/button3';
     CardEquipo,
     XBtn,
     Button3,
+    InputString,
+    ReactiveFormsModule
   ],
   templateUrl: './gestionar-equipo.html',
   styleUrl: './gestionar-equipo.css',
 })
 export default class GestionarEquipo {
+  isUnirseEquipo: boolean = false;
   equipos: equipoUsuario[] = [];
   loading = false;
 
+  idEquipoControl = new FormControl('', [Validators.required]);
   constructor(
     private navService: Navigation,
     private EquipoUsuarioService: EquipoUsuario,
@@ -72,8 +78,6 @@ export default class GestionarEquipo {
           },
           error: (err) => {
             this.loading = false;
-            // Si entra aquí, es probable que la DB haya bloqueado el borrado 
-            // porque el equipo aún tiene otros jugadores inscritos.
             console.error("Error al borrar el equipo:", err);
           }
         });
@@ -85,7 +89,25 @@ export default class GestionarEquipo {
     }
   }
 
+  abrirUnirseEquipo() {
+   this.isUnirseEquipo = true; 
+  }
+
   unirseEquipo() {
-  //Logica para unir el usuario a un equipo
+    const id = Number(this.idEquipoControl.value);
+    const idLogueado = Number(localStorage.getItem('idUsuario'));
+
+    this.EquipoUsuarioService.create({idEquipo: id, idUsuario: idLogueado}).subscribe({
+      next: () => {
+        this.snackBar.open('Te has unido al equipo correctamente', 'Cerrar', { duration: 3000 });
+        this.idEquipoControl.setValue('');
+        this.isUnirseEquipo = false;
+        this.ngOnInit();
+      },
+      error: (err) => {
+        this.snackBar.open('Error al unirse al equipo', 'Cerrar', { duration: 3000 });
+        this.isUnirseEquipo = false;
+      }
+    });
   }
 }
