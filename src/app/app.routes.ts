@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { userGuard } from './guards/user-guard';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
   // Landing directo
@@ -71,8 +72,36 @@ export const routes: Routes = [
         path: 'inscripcion-torneo',
         canActivate: [userGuard],
         loadComponent: () => import('./pages/home-sections/torneo/inscripcion-torneo/inscripcion-torneo'),
+      },
+      {
+        path: 'admin',
+        canActivate: [adminGuard],
+        children: [
+          {  
+            path: 'turnos',
+            loadComponent: () => import('./pages/admin/gestion-turnos/gestion-turnos'),
+          },
+          {
+            path: 'torneos',
+            loadComponent: () => import('./pages/admin/gestion-torneos/gestion-torneos'),
+          },
+          {
+            path: 'canchas',
+            loadComponent: () => import('./pages/admin/gestion-canchas/gestion-canchas'),
+          },
+          {
+            path: 'politicas',
+            loadComponent: () => import('./pages/admin/gestion-politicas/gestion-politicas'),
+          },
+          {
+            path: 'informes',
+            loadComponent: () => import('./pages/admin/informes/informes'),
+          }
+          //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
+        ],
       }
     ],
+
   },
 
   { path: 'sign-in', redirectTo: 'iniciar-sesion', pathMatch: 'full' },
