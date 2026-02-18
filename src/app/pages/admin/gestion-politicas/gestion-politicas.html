@@ -8,7 +8,7 @@
       <div class="politica-wrapper">
         <app-card-politicas [politica]="politica"></app-card-politicas>
         <div class="acciones-politica">
-          <button mat-icon-button color="primary" title="Editar">
+          <button mat-icon-button color="primary" title="Editar" (click)="editarPolitica(politica.nombre)">
             <mat-icon>edit</mat-icon>
           </button>
           

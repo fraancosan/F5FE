@@ -100,6 +100,10 @@ export const routes: Routes = [
           {
             path: 'crear-politica',
             loadComponent: () => import('./pages/admin/gestion-politicas/crear-politica/crear-politica'),
+          },
+          {
+            path: 'editar-politica/:nombre',
+            loadComponent: () => import('./pages/admin/gestion-politicas/crear-politica/crear-politica'),
           }
           //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
         ],

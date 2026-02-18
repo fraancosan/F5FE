@@ -61,4 +61,8 @@ eliminarPolitica(nombre: string){
 crearPolitica() {
   this.navService.toPageTop('admin/crear-politica');
 }
+
+editarPolitica(nombre: string) {
+  this.navService.toPageTop(`admin/editar-politica/${nombre}`);
+}
 }

@@ -1,6 +1,6 @@
 <div class="title">
   <app-go-back label="Volver al Menú" url="inicio" mode="light"></app-go-back>
-  <h1 class="page-title">Crear Politica</h1>
+  <h1 class="page-title">{{isEditMode ? 'Editar Politica' : 'Crear Politica'}}</h1>
 </div>
 
 <form class="form" [formGroup]="form">
@@ -30,7 +30,7 @@
   
   <div class="buttons">
     <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
-    <app-button1 (click)="crearPolitica()" text="Crear politica"></app-button1>
+    <app-button1 (click)="guardarPolitica()" text="{{isEditMode ? 'Actualizar politica' : 'Crear politica'}}"></app-button1>
   </div>
 
   @if (loading) {

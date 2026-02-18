@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Spinner } from '../../../../shared/spinner/spinner';
 import { Politicas} from '../../../../services/db/politicas';
 import { politica } from '../../../../Interfases/interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-crear-politica',
@@ -35,21 +36,36 @@ export default class CrearPolitica {
   faCalendar = faCalendar;
   form: FormGroup;
   loading = false;
+  isEditMode = false;
+  nombreOriginal: string = '';
 
   constructor(
     private navService: Navigation,
+    private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private politicasService: Politicas,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.maxLength(60)]],
-      descripcion: ['', [Validators.required, Validators.maxLength(255)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(50)]],
     });
   }
 
+  ngOnInit() {
+    const nombreParam = this.route.snapshot.paramMap.get('nombre');
+
+    if (nombreParam) {
+      this.isEditMode = true;
+      this.nombreOriginal = nombreParam;
+      this.cargarPolitica(nombreParam);
+
+      this.form.get('nombre')?.disable();
+    }
+  }
+
   cancelar() {
-    this.navService.toPageTop('inicio');
+    this.navService.toPageTop('admin/politicas');
   }
 
   crearPolitica() {
@@ -73,4 +89,49 @@ export default class CrearPolitica {
         });
       }
   }
+
+  cargarPolitica(nombre: string) {
+    this.loading = true;
+    this.politicasService.getByNombre(nombre).subscribe({
+      next: (res: politica) => {
+        this.form.patchValue(res);
+        this.loading = false
+      },
+      error: (err) => {
+        this.loading = false;
+      }
+    });
+  }
+
+  guardarPolitica() {
+    if (this.form.invalid) {
+      this.snackBar.open('Primero complete sus datos', 'Aceptar', {
+        duration: 5000,
+      });
+      return;
+    }
+    this.loading = true;
+
+    if (this.isEditMode) {
+        const textoDescripcion = String(this.form.value.descripcion).trim();
+        this.politicasService.update(this.nombreOriginal, textoDescripcion).subscribe({
+        next: () => {
+          this.loading = false;
+          this.snackBar.open('Politica actualizada con éxito', 'Aceptar', {
+            duration: 5000,
+          });
+          this.navService.toPageTop('admin/politicas');
+        },
+        error: (err) => {
+          this.loading = false;
+          this.snackBar.open('Error al actualizar la política ', 'Aceptar', {
+            duration: 5000,
+          });
+        }
+      });
+      } else {
+         this.crearPolitica();
+      }
+
+  } 
 }
