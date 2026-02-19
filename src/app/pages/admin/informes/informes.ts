@@ -30,7 +30,8 @@ export default class Informes {
     },
     {
       nombre: 'Dias con mas turnos',
-      descripcion: 'Generar reporte de los dias con mas turnos del complejo por periodo'
+      descripcion: 'Generar reporte de los dias con mas turnos del complejo por periodo',
+      url: 'admin/turnos-dia'
     },
     {
       nombre: 'Listado de usuarios premium',

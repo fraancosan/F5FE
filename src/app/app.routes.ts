@@ -113,6 +113,10 @@ export const routes: Routes = [
             path: 'reservas-canceladas',
             loadComponent: () => import('./pages/admin/informes/reservas-canceladas/reservas-canceladas'),
           },
+          {
+            path: 'turnos-dia',
+            loadComponent: () => import('./pages/admin/informes/turnos-dia/turnos-dia'),
+          }
           //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
         ],
       }
