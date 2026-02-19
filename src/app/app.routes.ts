@@ -120,6 +120,10 @@ export const routes: Routes = [
           {
             path: 'reservas-parrilla',
             loadComponent: () => import('./pages/admin/informes/reservas-parrilla/reservas-parrilla'),
+          },
+          {
+            path: 'usuarios-premium',
+            loadComponent: () => import('./pages/admin/informes/usuarios-premium/usuarios-premium'),
           }
           //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
         ],

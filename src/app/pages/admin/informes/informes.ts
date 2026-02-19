@@ -35,7 +35,8 @@ export default class Informes {
     },
     {
       nombre: 'Listado de usuarios premium',
-      descripcion: 'Generar reporte de los usuarios premium del complejo'
+      descripcion: 'Generar reporte de los usuarios premium del complejo',
+      url: 'admin/usuarios-premium'
     },
     {
       nombre: 'Reservas de la parrilla',
