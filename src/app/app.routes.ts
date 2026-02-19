@@ -109,6 +109,10 @@ export const routes: Routes = [
             path: 'ingresos-brutos',
             loadComponent: () => import('./pages/admin/informes/ingresos-brutos/ingresos-brutos'),
           },
+          {
+            path: 'reservas-canceladas',
+            loadComponent: () => import('./pages/admin/informes/reservas-canceladas/reservas-canceladas'),
+          },
           //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
         ],
       }

@@ -26,7 +26,7 @@ export default class Informes {
     {
       nombre: 'Reservas Canceladas',
       descripcion: 'Generar reporte de reservas canceladas del complejo en un periodo determinado de tiempo',
-      Url: 'admin/reservas-canceladas'
+      url: 'admin/reservas-canceladas'
     },
     {
       nombre: 'Dias con mas turnos',
