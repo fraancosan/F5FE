@@ -39,7 +39,8 @@ export default class Informes {
     },
     {
       nombre: 'Reservas de la parrilla',
-      descripcion: 'Generar reporte de las reservas de la parrilla del complejo por periodo'
+      descripcion: 'Generar reporte de las reservas de la parrilla del complejo por periodo',
+      url : 'admin/reservas-parrilla'
     }
   ]
   constructor(private navService: Navigation) {}

@@ -167,9 +167,7 @@ export class Turnos {
   }): Observable<any> {
     const query = `?fechaD=${fechaI}&fechaH=${fechaF}`;
     return this.http
-      .get(this.urlBack + 'turnos/reporte-parrilla' + query, {
-        responseType: 'blob',
-      })
+      .get(this.urlBack + 'turnos/reporte-parrillas' + query)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404) {

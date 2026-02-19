@@ -116,6 +116,10 @@ export const routes: Routes = [
           {
             path: 'turnos-dia',
             loadComponent: () => import('./pages/admin/informes/turnos-dia/turnos-dia'),
+          },
+          {
+            path: 'reservas-parrilla',
+            loadComponent: () => import('./pages/admin/informes/reservas-parrilla/reservas-parrilla'),
           }
           //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
         ],
