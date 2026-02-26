@@ -132,8 +132,19 @@ export const routes: Routes = [
           {
             path: 'editar-torneo/:id',
             loadComponent: () => import('./pages/admin/gestion-torneos/crear-torneo/crear-torneo'),
+          },
+          {
+            path: 'comunicacion',
+            loadComponent: () => import('./pages/admin/comunicacion/comunicacion'),
+          },
+          {
+            path: 'comunicacion/gestion-muro',
+            loadComponent: () => import('./pages/admin/comunicacion/gestion-muro/gestion-muro'),
+          },
+          {
+            path: 'comunicacion/mensaje-usuario',
+            loadComponent: () => import('./pages/admin/comunicacion/mensaje-usuario/mensaje-usuario'),
           }
-          //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
         ],
       }
     ],
