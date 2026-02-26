@@ -124,6 +124,14 @@ export const routes: Routes = [
           {
             path: 'usuarios-premium',
             loadComponent: () => import('./pages/admin/informes/usuarios-premium/usuarios-premium'),
+          },
+          {
+            path: 'crear-torneo',
+            loadComponent: () => import('./pages/admin/gestion-torneos/crear-torneo/crear-torneo'),
+          },
+          {
+            path: 'editar-torneo/:id',
+            loadComponent: () => import('./pages/admin/gestion-torneos/crear-torneo/crear-torneo'),
           }
           //AGREGAR RUTA PARA COMUNICACIONES ADMINISTRADOR (MURO Y ENVIAR MENSAJE)
         ],
