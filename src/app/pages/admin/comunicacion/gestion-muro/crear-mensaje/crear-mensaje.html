@@ -1,0 +1,52 @@
+<div class="title">
+  <app-go-back label="Volver al Muro" url="admin/comunicacion/gestion-muro" mode="light"></app-go-back>
+  <h1 class="page-title">{{isEditMode ? 'Editar Mensaje' : 'Crear Mensaje'}}</h1>
+</div>
+
+<form class="form" [formGroup]="form">
+
+  <app-input-string
+    label="Título"
+    [icon]="faCalendar"
+    type="text"
+    name="titulo"
+    placeholder="Ingrese el título del mensaje"
+    prefixMessage="El título"
+    [required]="true"
+    [form]="form"
+    formControlName="titulo"
+  ></app-input-string>
+
+  <app-input-string
+    label="Noticia"
+    [icon]="faCalendar"
+    type="text"
+    name="noticia"
+    placeholder="Ingrese el contenido del mensaje"
+    prefixMessage="El contenido"
+    [required]="true"
+    [form]="form"
+    formControlName="noticia"
+  ></app-input-string>
+
+  <app-input-date
+    label="Fecha de inicio"
+    name="fecha"
+    (dateSelected)="form.get('fecha')!.setValue($event)"
+  ></app-input-date>
+
+  <app-input-date
+    label="Fecha de fin"
+    name="fechaFin"
+    (dateSelected)="form.get('fechaFin')!.setValue($event)"
+  ></app-input-date>
+
+  <div class="buttons">
+    <app-button2 text="Cancelar" (click)="cancelarMensaje()"></app-button2>
+    <app-button1 text="{{isEditMode ? 'Actualizar mensaje' : 'Crear mensaje'}}" (click)="crearMensaje()"></app-button1>
+  </div>
+
+  @if (loading) {
+  <app-spinner mode="light" [centrado]="true" size="md"></app-spinner>
+  }
+</form>

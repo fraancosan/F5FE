@@ -144,6 +144,14 @@ export const routes: Routes = [
           {
             path: 'comunicacion/mensaje-usuario',
             loadComponent: () => import('./pages/admin/comunicacion/mensaje-usuario/mensaje-usuario'),
+          },
+          {
+            path: 'crear-mensaje',
+            loadComponent: () => import('./pages/admin/comunicacion/gestion-muro/crear-mensaje/crear-mensaje'),
+          },
+          {
+            path: 'editar-mensaje/:id',
+            loadComponent: () => import('./pages/admin/comunicacion/gestion-muro/crear-mensaje/crear-mensaje'),
           }
         ],
       }
