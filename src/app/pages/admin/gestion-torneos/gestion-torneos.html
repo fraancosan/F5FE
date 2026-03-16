@@ -3,56 +3,52 @@
   <h1 class="page-title">Torneos del complejo </h1>
 </div>
 
-<div class="filters-container"></div>
-
 <div class="table-container mat-elevation-z8">
   <table mat-table [dataSource]="torneos">
     
     <ng-container matColumnDef="Descripcion">
       <th mat-header-cell *matHeaderCellDef>Descripcion</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" data-label = "Descripcion">
         {{element.descripcion}}
-        <div class="user-info">
-        </div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Inicio">
       <th mat-header-cell *matHeaderCellDef>Inicio</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" data-label = "Inicio">
         {{element.fechaInicio | date:'dd/MM/yyyy'}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Fin">
       <th mat-header-cell *matHeaderCellDef>Fin</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" data-label = "Fin">
         {{element.fechaFin | date:'dd/MM/yyyy'}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Precio">
       <th mat-header-cell *matHeaderCellDef>Precio</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" data-label = "Precio">
        ${{element.precioInscripcion}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="NroEquipos">
       <th mat-header-cell *matHeaderCellDef>Nro Equipos</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" data-label = "Nro Equipos">
         {{element.cantidadEquipos}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Acciones">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" data-label = "Acciones">
         <div class="actions-wrapper">
             <button mat-icon-button color="dark" title="Editar torneo" (click)="editarTorneo(element.id)">
               <mat-icon>edit</mat-icon>
             </button>
-            <app-x-btn color = "dark" (click)="eliminarTorneo(element.id)"></app-x-btn>
+            <app-x-btn color = "dark" (click)="eliminarTorneo(element.id)" title="Eliminar torneo"></app-x-btn>
             <button mat-icon-button title="Agregar partido">
                 <mat-icon color = "dark">event</mat-icon>
             </button>

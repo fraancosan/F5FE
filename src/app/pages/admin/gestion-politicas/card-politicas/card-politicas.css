@@ -56,3 +56,16 @@
   overflow-wrap: normal;
   word-break: normal;
 }
+
+@media (max-width: 600px) {
+
+  .title-container {
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 18px;
+    overflow-wrap: break-word;
+  }
+
+}
