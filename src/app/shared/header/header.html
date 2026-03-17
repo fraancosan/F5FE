@@ -1,12 +1,15 @@
 <div class="header">
   <a class="linkhome" (click)="goToLanding()">RODO</a>
   <div class="actions">
-    <fa-icon class="notification" [icon]="bellIcon"></fa-icon>
+    @if (isUser) {
+      <app-notificacion></app-notificacion>
+    }
     <fa-icon
       class="user"
       matButton
       [matMenuTriggerFor]="menu"
       [icon]="userIcon"
+      [fixedWidth]="true"
     ></fa-icon>
     <mat-menu #menu="matMenu" class="menu-desplegable">
       @if (!isLoggedIn) {
