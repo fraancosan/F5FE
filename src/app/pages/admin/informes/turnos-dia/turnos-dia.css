@@ -48,19 +48,6 @@
   overflow-y: auto;
 }
 
-@media (min-width: 600px) {
-  .filters-container {
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-  }
-}
-
-@media (min-width: 1000px) {
-  .filters-container {
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
-  }
-}
-
-
 .filters-container {
   width: calc(100% - 60px);
   padding: 10px 30px;
@@ -128,3 +115,45 @@ app-button3 {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+
+  :host {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }
+  
+  .inputs-row{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .total-superior{
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .total-superior span {
+    width: auto;
+  }
+
+  app-input-date {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .totales {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .container-subtotales span {
+    font-size: 14px;
+  }
+
+  .table-container {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }

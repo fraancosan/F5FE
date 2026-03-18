@@ -120,3 +120,45 @@ app-button3 {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+
+  :host {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }
+  
+  .inputs-row{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .total-superior{
+    margin-bottom: 20px;
+  }
+
+  app-input-date {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .container-subtotales {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .container-subtotales .total-superior {
+    justify-content: space-between;
+  }
+
+  .container-subtotales span {
+    font-size: 14px;
+    width: auto;
+  }
+
+  .table-container {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }
+}

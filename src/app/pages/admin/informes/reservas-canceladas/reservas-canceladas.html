@@ -1,5 +1,5 @@
 <div class="title">
-  <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
+  <app-go-back label="Volver al Menú" url="admin/informes" mode="dark"></app-go-back>
   <h1 class="page-title">Reservas Canceladas</h1>
 </div>
 
@@ -65,10 +65,11 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-
 </div>
 
 <app-button3 text="Generar Reporte" (click)="generarReporte()"></app-button3>
 @if (loading) {
   <app-spinner margin="20px auto 0 auto" size="md" mode="dark"></app-spinner>
 }
+  
+

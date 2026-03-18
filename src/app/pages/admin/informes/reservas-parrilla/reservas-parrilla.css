@@ -128,3 +128,30 @@ app-button3 {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+
+  :host {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }
+  
+  .inputs-row{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .total-superior{
+    margin-bottom: 20px;
+  }
+
+  app-input-date {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .table-container {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }
+}
