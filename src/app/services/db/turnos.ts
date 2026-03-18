@@ -11,7 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class Turnos {
   private urlBack: string = environment.urlBackend;
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
+  ) {}
 
   transformEstado(turno: turno) {
     if (turno.estado === 'señado' && turno.idMP === null) {
@@ -74,7 +77,7 @@ export class Turnos {
           this.transformEstado(turno);
           turno.precioSenia = turno.precioSeña;
           return turno;
-        })
+        }),
       ),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
@@ -85,7 +88,7 @@ export class Turnos {
           });
           return throwError(() => error);
         }
-      })
+      }),
     );
   }
 
@@ -107,7 +110,7 @@ export class Turnos {
           });
         }
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -118,33 +121,40 @@ export class Turnos {
           duration: 5000,
         });
         return throwError(() => error);
-      })
+      }),
     );
   }
 
   getPrePrecio(
     parrilla: boolean,
-    compartido: boolean
+    compartido: boolean,
   ): Observable<{ precio: number; precioSeña: number }> {
     const query = `?parrilla=${parrilla ? '1' : '0'}&compartido=${
       compartido ? '1' : '0'
     }`;
     return this.http
-      .get<{ precio: number; precioSeña: number }>(
-        this.urlBack + 'turnos/pre-precio' + query
-      )
+      .get<{
+        precio: number;
+        precioSeña: number;
+      }>(this.urlBack + 'turnos/pre-precio' + query)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {
             duration: 5000,
           });
           return throwError(() => error);
-        })
+        }),
       );
   }
 
   getBuscarRival(): Observable<turno[]> {
     return this.http.get<turno[]>(this.urlBack + 'turnos/buscar-rival').pipe(
+      map((data) =>
+        data.map((turno) => {
+          turno.precioSenia = turno.precioSeña;
+          return turno;
+        }),
+      ),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
           return of([]);
@@ -154,7 +164,7 @@ export class Turnos {
           });
           return throwError(() => error);
         }
-      })
+      }),
     );
   }
 
@@ -176,7 +186,7 @@ export class Turnos {
               'Cerrar',
               {
                 duration: 5000,
-              }
+              },
             );
             return of([]);
           } else {
@@ -185,7 +195,7 @@ export class Turnos {
             });
             return throwError(() => error);
           }
-        })
+        }),
       );
   }
 
@@ -205,7 +215,7 @@ export class Turnos {
             this.snackBar.open(
               'No se encontraron turnos cancelados en ese rango de fechas',
               'Cerrar',
-              { duration: 5000 }
+              { duration: 5000 },
             );
             return of([]);
           } else {
@@ -214,7 +224,7 @@ export class Turnos {
             });
             return throwError(() => error);
           }
-        })
+        }),
       );
   }
 
@@ -234,7 +244,7 @@ export class Turnos {
             'Cerrar',
             {
               duration: 5000,
-            }
+            },
           );
           return of([]);
         } else {
@@ -243,7 +253,7 @@ export class Turnos {
           });
           return throwError(() => error);
         }
-      })
+      }),
     );
   }
 
@@ -265,7 +275,7 @@ export class Turnos {
               'Cerrar',
               {
                 duration: 5000,
-              }
+              },
             );
             return of([]);
           } else {
@@ -274,7 +284,7 @@ export class Turnos {
             });
             return throwError(() => error);
           }
-        })
+        }),
       );
   }
 
@@ -287,7 +297,7 @@ export class Turnos {
             'Cerrar',
             {
               duration: 5000,
-            }
+            },
           );
         } else if (error.status === 404) {
           this.snackBar.open(
@@ -295,7 +305,7 @@ export class Turnos {
             'Cerrar',
             {
               duration: 5000,
-            }
+            },
           );
         } else {
           this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {
@@ -303,7 +313,7 @@ export class Turnos {
           });
         }
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -320,12 +330,12 @@ export class Turnos {
           });
         }
         return throwError(() => error);
-      })
+      }),
     );
   }
 
   create(
-    data: Pick<turno, 'fecha' | 'hora' | 'buscandoRival' | 'parrilla'>
+    data: Pick<turno, 'fecha' | 'hora' | 'buscandoRival' | 'parrilla'>,
   ): Observable<turno> {
     return this.http.post<turno>(this.urlBack + 'turnos', data).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -339,7 +349,7 @@ export class Turnos {
           });
         }
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -355,7 +365,7 @@ export class Turnos {
       | 'idUsuarioCompartido'
       | 'idCancha'
       | 'estado'
-    >
+    >,
   ) {
     return this.http.patch(this.urlBack + 'turnos/' + id, data).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -369,7 +379,7 @@ export class Turnos {
           });
         }
         return throwError(() => error);
-      })
+      }),
     );
   }
 }

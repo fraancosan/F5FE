@@ -1,0 +1,17 @@
+<div [ngClass]="cantidadTurnos > 0 && !wasOpened ? 'shake' : ''">
+  <fa-icon class="notification" [icon]="bellIcon" [fixedWidth]="true" (click)="openDialog(notificationContent)"></fa-icon>
+</div>
+
+<ng-template #notificationContent>
+  <h2 mat-dialog-title>¡Recordatorio de Turno!</h2>
+  @if (cantidadTurnos > 0) {
+    <mat-dialog-content>Tienes un turno programado en las próximas horas.</mat-dialog-content>
+  }
+  @else {
+    <mat-dialog-content>No tienes turnos programados en las próximas horas.</mat-dialog-content>
+  }
+  <mat-dialog-actions class="actions">
+    <app-button2 mat-dialog-close text="Cerrar"></app-button2>
+    <app-button1 text="Ver Turnos" (click)="goToMyTurnos()"></app-button1>
+  </mat-dialog-actions>
+</ng-template>
