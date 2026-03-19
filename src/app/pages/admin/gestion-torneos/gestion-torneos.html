@@ -45,12 +45,12 @@
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element" data-label = "Acciones">
         <div class="actions-wrapper">
-            <button mat-icon-button color="dark" title="Editar torneo" (click)="editarTorneo(element.id)">
+            <button mat-icon-button  color="primary" title="Editar torneo" (click)="editarTorneo(element.id)">
               <mat-icon>edit</mat-icon>
             </button>
             <app-x-btn color = "dark" (click)="eliminarTorneo(element.id)" title="Eliminar torneo"></app-x-btn>
-            <button mat-icon-button title="Agregar partido">
-                <mat-icon color = "dark">event</mat-icon>
+            <button mat-icon-button  color="primary" title="Agregar partido">
+                <mat-icon>event</mat-icon>
             </button>
     
         </div>

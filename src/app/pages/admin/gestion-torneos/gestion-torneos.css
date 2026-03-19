@@ -48,6 +48,10 @@
   overflow-y: auto;
 }
 
+.actions-wrapper button{
+  transform: scale(0.9);
+  color: var(--green-500-primary);
+}
 @media (max-width: 768px) {
 
   .table-container {

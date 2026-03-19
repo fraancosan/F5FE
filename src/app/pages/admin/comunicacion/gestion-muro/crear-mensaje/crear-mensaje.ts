@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { GoBack } from '../../../../../shared/go-back/go-back';
 import { Button2 } from '../../../../../shared/btns/button2/button2';
 import { Button1 } from '../../../../../shared/btns/button1/button1';
@@ -42,6 +42,7 @@ export default class CrearMensaje {
   muro: muro | null = null;
 
   constructor (
+    private host: ElementRef<HTMLElement>,
     private navService: Navigation,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
@@ -68,9 +69,10 @@ export default class CrearMensaje {
           this.form.patchValue({
             titulo: data.titulo,
             noticia: data.noticia,
-            fecha: data.fecha,
-            fechaFin: data.fechaFin,
+            fecha: this.formatDateForInput(data.fecha),
+            fechaFin: this.formatDateForInput(data.fechaFin),
           });
+          this.syncDateInputsWithForm();
           this.loading = false;
         },
         error: () => {
@@ -112,6 +114,40 @@ export default class CrearMensaje {
         }
       });
     }
+  }
+
+  private formatDateForInput(value: Date | string): string {
+    if (!value) return '';
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  // app-input-date no implementa ControlValueAccessor, por eso seteamos el valor visualmente en modo edición.
+  private syncDateInputsWithForm() {
+    setTimeout(() => {
+      const dateInputs = this.host.nativeElement.querySelectorAll(
+        'app-input-date input[type="date"]'
+      ) as NodeListOf<HTMLInputElement>;
+
+      const fecha = this.form.get('fecha')?.value || '';
+      const fechaFin = this.form.get('fechaFin')?.value || '';
+
+      if (dateInputs[0]) {
+        dateInputs[0].value = fecha;
+        dateInputs[0].dispatchEvent(new Event('input'));
+      }
+
+      if (dateInputs[1]) {
+        dateInputs[1].value = fechaFin;
+        dateInputs[1].dispatchEvent(new Event('input'));
+      }
+    });
   }
 
 }
