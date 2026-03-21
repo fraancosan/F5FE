@@ -72,8 +72,31 @@
   justify-content: center;
 }
 
-app-button3{
+.button-container app-button3{
   margin: 2rem;
+}
+
+.modal-buttons app-button3 {
+  margin: 0;
+}
+
+.integrantes-icon-btn {
+  color: var(--green-500-primary);
+  background: rgba(6, 51, 24, 0.35);
+  border: none;
+  cursor: pointer;
+}
+
+.integrantes-lista {
+  max-height: 240px;
+  overflow-y: auto;
+  margin: 16px 0;
+  padding-left: 20px;
+  color: #fff;
+}
+
+.integrantes-lista li {
+  margin-bottom: 6px;
 }
 
  /* Estilos para el modal de unirse al equipo */

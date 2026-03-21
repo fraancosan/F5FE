@@ -12,6 +12,7 @@ import { Equipo } from '../../../services/db/equipo';
 import { Button3 } from '../../../shared/btns/button3/button3';
 import { InputString } from '../../../shared/inputs/input-string/input-string';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-gestionar-equipo',
@@ -22,15 +23,20 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
     XBtn,
     Button3,
     InputString,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
   ],
   templateUrl: './gestionar-equipo.html',
   styleUrl: './gestionar-equipo.css',
 })
 export default class GestionarEquipo {
   isUnirseEquipo: boolean = false;
+  isVerIntegrantesModal: boolean = false;
   equipos: equipoUsuario[] = [];
   loading = false;
+  loadingIntegrantes = false;
+  integrantesEquipoNombres: string[] = [];
+  nombreEquipoSeleccionado: string = '';
 
   idEquipoControl = new FormControl('', [Validators.required]);
   constructor(
@@ -48,7 +54,6 @@ export default class GestionarEquipo {
     this.EquipoUsuarioService.getAll({idUsuario : idLogueado}).subscribe({
       next: (equipo: equipoUsuario[]) => {
         this.equipos = equipo;
-        console.log(this.equipos);
         this.loading = false;
       },
       error: (err) => {
@@ -91,6 +96,40 @@ export default class GestionarEquipo {
 
   abrirUnirseEquipo() {
    this.isUnirseEquipo = true; 
+  }
+
+  abrirModalIntegrantes(item: equipoUsuario) {
+    const idEquipo = typeof item.idEquipo === 'number' ? item.idEquipo : item.idEquipo.id;
+    if (item && (item as any).Equipo) {
+        this.nombreEquipoSeleccionado = (item as any).Equipo.nombre;
+      } else {
+        this.nombreEquipoSeleccionado = `Equipo ${idEquipo}`;
+      }
+    this.integrantesEquipoNombres = [];
+    this.loadingIntegrantes = true;
+    this.isVerIntegrantesModal = true;
+
+    this.EquipoUsuarioService.getAll({ idEquipo }).subscribe({
+      next: (relaciones: any[]) => {
+        this.integrantesEquipoNombres = relaciones
+          .map((relacion) => relacion.Usuario?.nombre)
+          .filter((nombre): nombre is string => !!nombre);
+        this.loadingIntegrantes = false;
+      },
+      error: () => {
+        this.integrantesEquipoNombres = [];
+        this.loadingIntegrantes = false;
+        this.snackBar.open('No se pudieron cargar los integrantes', 'Cerrar', {
+          duration: 3000,
+        });
+      },
+    });
+  }
+
+  cerrarModalIntegrantes() {
+    this.isVerIntegrantesModal = false;
+    this.integrantesEquipoNombres = [];
+    this.nombreEquipoSeleccionado = '';
   }
 
   unirseEquipo() {
