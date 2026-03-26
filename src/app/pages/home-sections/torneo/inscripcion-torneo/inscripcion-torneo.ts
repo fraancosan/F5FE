@@ -113,7 +113,6 @@ export default class InscripcionTorneo {
     this.equipoTorneoService.getAllById({idTorneo : idTorneo}).subscribe({
       next: (res: any) => {
         this.equiposInscritosCount = res.cantidad;
-        console.log('Cantidad de equipos inscritos:', this.equiposInscritosCount);
       },
       error: (err) => {
         console.error('Error al obtener inscritos del torneo:', err);
@@ -123,7 +122,6 @@ export default class InscripcionTorneo {
   }
 
   obtenerEquiposUsuario(idLogueado: number) {
-    console.log('Buscando equipos para usuario:', idLogueado);
     this.EquipoUsuarioService.getAll({idUsuario : idLogueado}).subscribe({
         next: (res: any[]) => {
           this.equiposOptions = res.map(relacion => ({

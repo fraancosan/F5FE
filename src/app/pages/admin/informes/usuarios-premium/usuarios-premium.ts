@@ -3,7 +3,6 @@ import { GoBack } from '../../../../shared/go-back/go-back';
 import { MatTableModule } from '@angular/material/table';
 import { Spinner } from '../../../../shared/spinner/spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
 import { Button3 } from '../../../../shared/btns/button3/button3';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,8 +37,6 @@ export default class UsuariosPremium {
   ];
 
   loading: boolean = false;
-  orderIcon = faSort
-  filterIcon = faFilter;
   fechaHoy: string = new Date().toLocaleDateString();
 
   constructor(

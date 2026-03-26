@@ -53,15 +53,3 @@
   transform: scale(0.9);
   color: var(--green-500-primary);
 }
-
-@media (min-width: 600px) {
-  .filters-container {
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-  }
-}
-
-@media (min-width: 1000px) {
-  .filters-container {
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
-  }
-}

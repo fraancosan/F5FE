@@ -6,7 +6,6 @@ import { DatePipe  } from '@angular/common';
 import { Spinner } from '../../../../shared/spinner/spinner';
 import { Turnos } from '../../../../services/db/turnos';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import { InputDate } from '../../../../shared/inputs/input-date/input-date';
 import { FormsModule } from '@angular/forms';
 import { Button3 } from '../../../../shared/btns/button3/button3';
@@ -31,8 +30,6 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export default class TurnosDia {
   loading: boolean = false;
-  orderIcon = faSort;
-  filterIcon = faFilter;
   totalTurnos: number = 0;
   totalBuscarRival: number = 0;
   totalParrilla: number = 0;

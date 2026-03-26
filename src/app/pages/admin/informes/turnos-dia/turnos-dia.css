@@ -102,14 +102,6 @@ app-input-date {
   text-align: center;
 }
 
-.container-subtotales {
-  width: calc(100% - 60px);
-  padding: 20px 30px;
-  display: flex;
-  justify-content: flex-start; 
-  gap: 40px; 
-}
-
 /* --- BOTÓN FINAL --- */
 app-button3 {
   margin-top: 10px;
@@ -149,11 +141,8 @@ app-button3 {
     gap: 20px;
   }
 
-  .container-subtotales span {
-    font-size: 14px;
-  }
-
   .table-container {
     overflow-y: auto;
     scrollbar-color: var(--green-500-primary) transparent;
   }
+}

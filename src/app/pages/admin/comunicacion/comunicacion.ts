@@ -37,7 +37,7 @@ export default class Comunicacion {
         url: '/admin/comunicacion/gestion-muro'
       },
       {
-      nombre: ' Mensaje privado a usuario',
+      nombre: 'Mensaje privado a usuario',
       descripcion: 'Envía mensajes privados a usuarios específicos para comunicar información importante o responder consultas de manera directa.',
       url: '/admin/comunicacion/mensaje-usuario'
     }];

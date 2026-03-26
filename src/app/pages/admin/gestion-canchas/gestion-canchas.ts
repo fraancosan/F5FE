@@ -6,7 +6,6 @@ import { TitleCasePipe } from '@angular/common';
 import { Spinner } from '../../../shared/spinner/spinner';
 import { Cancha } from '../../../services/db/cancha';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,8 +39,6 @@ filaEditar: any = null;
 
   canchas: cancha[] = [];
   loading: boolean = false;
-  orderIcon = faSort;
-  filterIcon = faFilter;
 
   constructor(private canchaService: Cancha,
      private snackBar: MatSnackBar) {}
@@ -71,7 +68,6 @@ filaEditar: any = null;
 
    const nuevoEstado = Boolean(this.filaEditar.disponible);
 
-    console.log('Enviando al Backend:', nuevoEstado);
     this.canchaService.update(this.filaEditar.id, nuevoEstado).subscribe({
       next: () => {
         this.snackBar.open('Cancha actualizada exitosamente', 'Cerrar', { duration: 3000 });

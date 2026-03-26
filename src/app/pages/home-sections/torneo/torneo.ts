@@ -32,7 +32,6 @@ export default class torneo {
     this.torneoService.getAll().subscribe({
       next: (torneos: TorneoInterface[]) => {
         this.torneos = torneos;
-        console.log(this.torneos);
         this.loading = false;
       },
       error: (err) => {

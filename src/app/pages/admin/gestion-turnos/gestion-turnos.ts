@@ -112,7 +112,6 @@ export default class GestionTurnos implements OnInit {
     body.idUsuarioCompartido = Number(this.filaEditar.idUsuarioCompartido);
     }
 
-    console.log('Enviando al Backend:', body);
     this.turnosService.update(this.filaEditar.id, body as any).subscribe({
       next: () => {
         this.snackBar.open('Turno actualizado exitosamente', 'Cerrar', { duration: 3000 });

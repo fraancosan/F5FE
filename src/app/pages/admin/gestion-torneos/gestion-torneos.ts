@@ -6,7 +6,6 @@ import { DatePipe } from '@angular/common';
 import { Spinner } from '../../../shared/spinner/spinner';
 import { Torneo } from '../../../services/db/torneo';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -42,8 +41,6 @@ export default class GestionTorneos {
 
   torneos: torneo[] = [];
   loading: boolean = false;
-  orderIcon = faSort
-  filterIcon = faFilter;
 
   constructor(
     private torneosService: Torneo,

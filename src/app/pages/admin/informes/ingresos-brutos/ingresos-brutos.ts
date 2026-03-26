@@ -6,7 +6,6 @@ import { DatePipe  } from '@angular/common';
 import { Spinner } from '../../../../shared/spinner/spinner';
 import { Turnos } from '../../../../services/db/turnos';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import { InputDate } from '../../../../shared/inputs/input-date/input-date';
 import { FormsModule } from '@angular/forms';
 import { Button3 } from '../../../../shared/btns/button3/button3';
@@ -50,8 +49,6 @@ export default class IngresosBrutos {
   ];
 
   loading: boolean = false;
-  orderIcon = faSort;
-  filterIcon = faFilter;
 
   params: any = {
     fechaI:new Date().toISOString().split('T')[0],
@@ -68,7 +65,6 @@ export default class IngresosBrutos {
     this.turnosService.reporteIngresos(this.params).subscribe({
       next: (data) => {
         this.turnos = data.ingresos || [];
-        console.log('Turnos cargados:', this.turnos);
         this.actualizarTabla();
       },
       error: (err) => {
@@ -88,7 +84,6 @@ export default class IngresosBrutos {
       next: (data) => {
         this.torneos = data.ingresos || [];
         this.loading = false;
-        console.log('Torneos cargados:', this.torneos);
         this.actualizarTabla();
       },
       error: (err) => {
