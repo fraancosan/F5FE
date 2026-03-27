@@ -15,7 +15,7 @@ export class Muro {
 
   getAll(titulo?: string): Observable<muro[]> {
     return this.http
-      .get<muro[]>(this.urlBack + titulo ? `muros?titulo=${titulo}` : 'muros')
+      .get<muro[]>(this.urlBack + (titulo ? `muros?titulo=${titulo}` : 'muros'))
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 400) {

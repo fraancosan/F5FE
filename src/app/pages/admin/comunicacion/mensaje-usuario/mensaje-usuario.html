@@ -1,0 +1,52 @@
+<div class="title">
+  <app-go-back label="Volver a Comunicación" url="admin/comunicacion" mode="light"></app-go-back>
+  <h1 class="page-title">Mensaje Privado</h1>
+</div>
+
+<form class="form" [formGroup]="form">
+
+  <app-input-string
+    label="Email del usuario"
+    [icon]="faEnvelope"
+    type="email"
+    name="mail"
+    placeholder="Ingrese el email del usuario"
+    prefixMessage="El email"
+    [required]="true"
+    [form]="form"
+    formControlName="mail"
+  ></app-input-string>
+
+  <app-input-string
+    label="Asunto"
+    [icon]="faHeading"
+    type="text"
+    name="subject"
+    placeholder="Ingrese el asunto del mensaje"
+    prefixMessage="El asunto"
+    [required]="true"
+    [form]="form"
+    formControlName="subject"
+  ></app-input-string>
+
+  <app-input-string
+    label="Mensaje"
+    [icon]="faMessage"
+    type="text"
+    name="text"
+    placeholder="Ingrese el contenido del mensaje"
+    prefixMessage="El mensaje"
+    [required]="true"
+    [form]="form"
+    formControlName="text"
+  ></app-input-string>
+
+  <div class="buttons">
+    <app-button2 text="Cancelar" (click)="cancelar()"></app-button2>
+    <app-button1 text="Enviar mensaje" (click)="enviarMensaje()"></app-button1>
+  </div>
+
+  @if (loading) {
+  <app-spinner mode="light" [centrado]="true" size="md"></app-spinner>
+  }
+</form>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CardMenu } from '../../shared/card-menu/card-menu';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
+import { Auth } from '../../services/common/auth';
 import {
   faMagnifyingGlass,
   faTrophy,
@@ -22,4 +23,10 @@ export default class Home {
   faPeopleGroup = faPeopleGroup;
   faGear = faGear;
   faMessage = faMessage;
+
+  constructor (private auth: Auth) {}
+
+  get isAdmin(): boolean {
+    return this.auth.admin();
+  }
 }

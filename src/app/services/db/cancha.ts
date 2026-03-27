@@ -14,7 +14,7 @@ export class Cancha {
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   getAll(disponible?: boolean): Observable<cancha[]> {
-    let url = `${this.urlBack}/canchas`;
+    let url = `${this.urlBack}canchas`;
     if (disponible !== undefined) {
       url += `?disponible=${disponible ? '1' : '0'}`;
     }

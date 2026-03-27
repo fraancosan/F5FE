@@ -16,7 +16,7 @@ export class Torneo {
   reporteIngresos(fechaD: Date, fechaH: Date): Observable<any> {
     const url = `${
       this.urlBack
-    }/torneos/reporte-ingresos?fechaD=${fechaD.toISOString()}&fechaH=${fechaH.toISOString()}`;
+    }torneos/reporte-ingresos?fechaD=${fechaD.toISOString()}&fechaH=${fechaH.toISOString()}`;
 
     return this.http.get(url).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -33,7 +33,7 @@ export class Torneo {
   }
 
   getAll(descripcion?: string): Observable<torneo[]> {
-    let url = `${this.urlBack}/torneos`;
+    let url = `${this.urlBack}torneos`;
     if (descripcion !== undefined) {
       url += `?descripcion=${descripcion}`;
     }

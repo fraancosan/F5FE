@@ -61,9 +61,10 @@ export class Users {
   }
 
   getAll(mail?: string): Observable<usuario[]> {
+    const endpoint = mail ? `usuarios?mail=${mail}` : 'usuarios';
     return this.http
       .get<usuario[]>(
-        this.urlBack + mail ? `usuarios?mail=${mail}` : 'usuarios'
+        this.urlBack + endpoint
       )
       .pipe(
         catchError((error: HttpErrorResponse) => {

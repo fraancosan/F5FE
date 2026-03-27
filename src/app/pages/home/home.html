@@ -1,4 +1,5 @@
 <div class="menu">
+  @if (!isAdmin){
   <app-card-menu
     [icon]="faCalendar"
     title="Reservar Turno"
@@ -35,4 +36,43 @@
     description="Noticias importantes"
     route="/muro"
   ></app-card-menu>
+  }
+  @if (isAdmin){
+    <app-card-menu
+    [icon]="faCalendar"
+    title="Turnos"
+    description="Administrar turnos"
+    route="/admin/turnos"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faMagnifyingGlass"
+    title="Informes"
+    description="Ver informes estadisticos"
+    route="/admin/informes"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faTrophy"
+    title="Torneos"
+    description="Administrar torneos"
+    route="/admin/torneos"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faPeopleGroup"
+    title="Canchas"
+    description="Administrar las canchas del predio"
+    route="/admin/canchas"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faGear"
+    title="Politicas"
+    description="Administra las politicas del predio"
+    route="/admin/politicas"
+  ></app-card-menu>
+  <app-card-menu
+    [icon]="faMessage"
+    title="Comunicacion"
+    description="Adm. del muro y envio de mensajes a los usuarios"
+    route="/admin/comunicacion"
+  ></app-card-menu>
+  }
 </div>

@@ -1,0 +1,24 @@
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
+  <h1 class="page-title">Informes</h1>
+</div>
+<div class="scroll-container">
+  <div class="muro-container">
+    @for (informe of informes; track informe.nombre){
+      <div class="politica-wrapper">
+        <app-card-politicas [politica]="informe"></app-card-politicas>
+        <div class="acciones-politica">
+          <button mat-icon-button color="primary" title="Ver Informe" (click)="verInforme(informe)">
+            <mat-icon>search</mat-icon>
+          </button>
+          
+        </div>
+      </div>
+    } @empty { @if (loading) {
+    <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
+    } @else {
+    <span class="empty">No hay informes vigentes en este momento.</span>
+    } }
+
+  </div>
+</div>

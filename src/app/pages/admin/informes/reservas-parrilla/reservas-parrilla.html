@@ -1,0 +1,65 @@
+<div class="title">
+  <app-go-back label="Volver al Menú" url="admin/informes" mode="dark"></app-go-back>
+  <h1 class="page-title">Reservas Parrilla</h1>
+</div>
+
+<div class="filters-container">
+    <div class="inputs-row">
+        <app-input-date label="Desde" name="Desde" (dateSelected)="changeDesde($event)"></app-input-date>
+        <app-input-date label="Hasta" name="Hasta" (dateSelected)="changeHasta($event)"></app-input-date>
+        <div class="total-superior">
+            <span>Total Parrilla:</span>
+            <div class="amount-box">{{totalParrilla}}</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="turnos">
+   <!--- 
+    <ng-container matColumnDef="ID-TURNO">
+      <th mat-header-cell *matHeaderCellDef>ID-TURNO</th>
+      <td mat-cell *matCellDef="let element">
+          {{ element.id }}
+      </td>
+    </ng-container>
+-->
+        <ng-container matColumnDef="Fecha">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let element">
+          {{ element.fecha }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Hora">
+      <th mat-header-cell *matHeaderCellDef>Hora</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.hora }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ID-USUARIO">
+      <th mat-header-cell *matHeaderCellDef>ID-USUARIO</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.idUsuario }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="NombreUsuario">
+      <th mat-header-cell *matHeaderCellDef>Nombre Usuario</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.usuario.nombre }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+</div>
+
+<app-button3 text="Generar Reporte" (click)="generarReporte()"></app-button3>
+@if (loading) {
+  <app-spinner margin="20px auto 0 auto" size="md" mode="dark"></app-spinner>
+}

@@ -1,0 +1,134 @@
+<div class="title">
+  <app-go-back label="Volver al Menú" url="inicio" mode="dark"></app-go-back>
+  <h1 class="page-title">Turnos del complejo</h1>
+</div>
+
+<div class="filters-container">
+  <app-input-date label="Desde" name="Desde" (dateSelected)="changeDesde($event)"></app-input-date>
+  <app-input-date label="Hasta" name="Hasta" (dateSelected)="changeHasta($event)"></app-input-date>
+
+  <app-select
+    [icon]="filterIcon"
+    name="estado"
+    label="Estado"
+    [(value)]="estado"
+    [options]="estadoSelect"
+    (valueChange)="changeEstado($event)"
+  ></app-select>
+
+  <app-select
+    [icon]="orderIcon"
+    name="order"
+    label="Orden"
+    [(value)]="order"
+    [options]="orderSelect"
+    (valueChange)="changeOrder($event)"
+  ></app-select>
+</div>
+
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="turnos">
+    
+    <ng-container matColumnDef="Usuario">
+      <th mat-header-cell *matHeaderCellDef>Usuario</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="user-info">
+          {{ element.usuario?.nombre ? (element.usuario.nombre + ' ' + element.usuario.apellido) : 'ID: ' + element.idUsuario }}
+          <small style="display: block; color: gray;">{{ element.usuario?.mail }}</small>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Fecha">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let element">
+        @if (filaEditar?.id === element.id) {
+          <input type="date" [(ngModel)]="filaEditar.fecha" class="inline-input">
+        } @else {
+          {{ element.fecha | date : "dd/MM/yyyy" }}
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Hora">
+      <th mat-header-cell *matHeaderCellDef>Hora</th>
+      <td mat-cell *matCellDef="let element">
+        @if (filaEditar?.id === element.id) {
+          <input type="time" [(ngModel)]="filaEditar.hora" class="inline-input">
+        } @else {
+          {{ element.hora }}
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let element">
+        <span [class]="'badge-' + element.estado">{{ element.estadoDetallado | titlecase }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Precio">
+      <th mat-header-cell *matHeaderCellDef>Precio</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.precio | currency : "$" : "symbol" : "1.0-0" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cancha">
+      <th mat-header-cell *matHeaderCellDef>Cancha</th>
+      <td mat-cell *matCellDef="let element">
+        @if (filaEditar?.id === element.id) {
+          <input type="number" [(ngModel)]="filaEditar.idCancha" class="inline-input small-input">
+        } @else {
+          {{ element.idCancha }}
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Parrilla">
+      <th mat-header-cell *matHeaderCellDef>Parrilla</th>
+      <td mat-cell *matCellDef="let element">{{ element.parrilla ? "Si" : "No" }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Buscar Rival">
+      <th mat-header-cell *matHeaderCellDef>Buscar Rival</th>
+      <td mat-cell *matCellDef="let element">{{ element.buscandoRival ? "Si" : "No" }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Acciones">
+      <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="actions-wrapper">
+          
+          @if (filaEditar?.id === element.id) {
+            <button mat-icon-button color="accent" (click)="guardarCambios(element)" title="Confirmar">
+              <mat-icon>check_circle</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="cancelarEdicion()" title="Cancelar">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          } @else if (element.estado === 'señado') {
+            <button mat-icon-button color="primary" (click)="habilitarEdicion(element)" title="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+          } @else {
+            <mat-icon style="color: #ccc; cursor: not-allowed;" title="No editable">lock_outline</mat-icon>
+          }
+
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  @if (turnos.length === 0 && !loading) {
+    <div class="no-data">No se encontraron turnos con los filtros seleccionados.</div>
+  }
+</div>
+
+@if (loading) {
+  <app-spinner margin="20px auto 0 auto" size="md" mode="dark"></app-spinner>
+}

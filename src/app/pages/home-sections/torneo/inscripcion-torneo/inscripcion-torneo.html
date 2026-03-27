@@ -1,0 +1,80 @@
+  @if (torneo){
+  <div class="title">
+    <app-go-back label="Volver al Menú" url="inicio" mode="light"></app-go-back>
+    <div class="title-text">
+    <h1 class="page-title">{{torneo.descripcion}}</h1>
+      <span>Cupos: {{equiposInscritosCount}} / {{torneo.cantidadEquipos}}</span>
+    </div>
+  </div>
+
+  <div class="logosubrayado"></div>
+
+<div [formGroup]="form" class="form">
+      <app-input-string
+        label="Descripción"
+        [icon]="faCalendar"
+        type="text"
+        name="descripcion"
+        placeholder="{{ torneo.descripcion }}"
+        prefixMessage="La descripción del torneo"
+        [required]="true"
+        formControlName="descripcion"
+      ></app-input-string>
+
+      <app-input-string
+        label="Fechas"
+        [icon]="faCalendar"
+        type="text"
+        name="fechas"
+        placeholder="{{ torneo.fechaInicio }} - {{ torneo.fechaFin }}"
+        prefixMessage="Las fechas del torneo"
+        [required]="true"
+        formControlName="fechas"
+      ></app-input-string>
+
+      <app-input-string
+        label="Horario"
+        [icon]="faCalendar"
+        type="text"
+        name="horario"
+        placeholder="Desde las 17:00 a las 20:00"
+        prefixMessage="El horario del torneo"
+        [required]="true"
+        formControlName="horario"
+      ></app-input-string>
+
+
+      <app-input-string
+        label="Precio"
+        [icon]="faCalendar"
+        type="text"
+        name="precio"
+        placeholder="{{ '$' +  torneo.precioInscripcion }}"
+        prefixMessage="El precio del torneo"
+        [required]="true"
+        formControlName="precio"
+      ></app-input-string>
+
+      <app-select
+              label="Equipo"
+              [name]="'equipoSelect'"
+              [options]="equiposOptions"
+              [value]="equipoSeleccionadoId"
+              (valueChange)="equipoSeleccionadoId = $event">
+       </app-select>
+    
+  </div>
+      
+    <div class="buttons">
+      <app-button2 (click)="volverTorneos()" text="Volver a Torneos"></app-button2>
+      <app-button1 
+      [text] = "obtenerTextoBotonInscripcion()"
+      [disabled]="!puedeInscribirse"
+      (click)=" InscripcionTorneo(torneo, +equipoSeleccionadoId)"></app-button1>
+    </div>
+
+    @if (loading) {
+    <app-spinner mode="light" [centrado]="true" size="md"></app-spinner>
+    }
+  }
+ 

@@ -1,0 +1,136 @@
+:host {
+  position: relative;
+  width: calc(100% - 60px);
+  max-width: 1080px;
+  height: 100%;
+  min-height: 500px;
+  max-height: 70dvh;
+  border: 1.71px solid var(--green-500-primary);
+  background: var(--green-gradient-section);
+  border-radius: 11.94px;
+  padding: 22px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(3, 23, 11, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.title {
+  width: calc(100% - 60px);
+  margin: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 4px;
+  padding-bottom: 17.65px;
+  border-bottom: 1px solid var(--Verde-light-S, #70f5a3cf);
+}
+
+.page-title {
+  margin: 0 0 0 auto;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  text-align: right;
+}
+
+.table-container {
+  width: calc(100% - 70px);
+  min-height: 350px;
+  height: 100%;
+  padding: 0 30px;
+  overflow-y: auto;
+}
+
+.filters-container {
+  width: calc(100% - 60px);
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center; 
+  flex-direction: column;
+}
+
+.inputs-row {
+  display: flex;
+  flex-direction: row;     
+  align-items: center;     
+  justify-content: space-between; 
+  width: 100%;
+  gap: 20px;                
+}
+
+app-input-date {
+  flex: 0 1 auto; 
+  min-width: 180px; 
+}
+
+.totales {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.total-superior {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;        
+}
+
+.total-superior span {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.amount-box {
+  border: 1px solid var(--green-500-primary);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 25px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  min-width: 120px;
+  text-align: center;
+}
+
+/* --- BOTÓN FINAL --- */
+app-button3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+
+  :host {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }
+  
+  .inputs-row{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .total-superior{
+    margin-bottom: 20px;
+  }
+
+  app-input-date {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .table-container {
+    overflow-y: auto;
+    scrollbar-color: var(--green-500-primary) transparent;
+  }
+}

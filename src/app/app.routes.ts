@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { userGuard } from './guards/user-guard';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
   // Landing directo
@@ -67,7 +68,95 @@ export const routes: Routes = [
         path: 'muro',
         loadComponent: () => import('./pages/home-sections/muro/muro'),
       },
+      {
+        path: 'inscripcion-torneo',
+        canActivate: [userGuard],
+        loadComponent: () => import('./pages/home-sections/torneo/inscripcion-torneo/inscripcion-torneo'),
+      },
+      {
+        path: 'admin',
+        canActivate: [adminGuard],
+        children: [
+          {  
+            path: 'turnos',
+            loadComponent: () => import('./pages/admin/gestion-turnos/gestion-turnos'),
+          },
+          {
+            path: 'torneos',
+            loadComponent: () => import('./pages/admin/gestion-torneos/gestion-torneos'),
+          },
+          {
+            path: 'canchas',
+            loadComponent: () => import('./pages/admin/gestion-canchas/gestion-canchas'),
+          },
+          {
+            path: 'politicas',
+            loadComponent: () => import('./pages/admin/gestion-politicas/gestion-politicas'),
+          },
+          {
+            path: 'informes',
+            loadComponent: () => import('./pages/admin/informes/informes'),
+          },
+          {
+            path: 'crear-politica',
+            loadComponent: () => import('./pages/admin/gestion-politicas/crear-politica/crear-politica'),
+          },
+          {
+            path: 'editar-politica/:nombre',
+            loadComponent: () => import('./pages/admin/gestion-politicas/crear-politica/crear-politica'),
+          },
+          {
+            path: 'ingresos-brutos',
+            loadComponent: () => import('./pages/admin/informes/ingresos-brutos/ingresos-brutos'),
+          },
+          {
+            path: 'reservas-canceladas',
+            loadComponent: () => import('./pages/admin/informes/reservas-canceladas/reservas-canceladas'),
+          },
+          {
+            path: 'turnos-dia',
+            loadComponent: () => import('./pages/admin/informes/turnos-dia/turnos-dia'),
+          },
+          {
+            path: 'reservas-parrilla',
+            loadComponent: () => import('./pages/admin/informes/reservas-parrilla/reservas-parrilla'),
+          },
+          {
+            path: 'usuarios-premium',
+            loadComponent: () => import('./pages/admin/informes/usuarios-premium/usuarios-premium'),
+          },
+          {
+            path: 'crear-torneo',
+            loadComponent: () => import('./pages/admin/gestion-torneos/crear-torneo/crear-torneo'),
+          },
+          {
+            path: 'editar-torneo/:id',
+            loadComponent: () => import('./pages/admin/gestion-torneos/crear-torneo/crear-torneo'),
+          },
+          {
+            path: 'comunicacion',
+            loadComponent: () => import('./pages/admin/comunicacion/comunicacion'),
+          },
+          {
+            path: 'comunicacion/gestion-muro',
+            loadComponent: () => import('./pages/admin/comunicacion/gestion-muro/gestion-muro'),
+          },
+          {
+            path: 'comunicacion/mensaje-usuario',
+            loadComponent: () => import('./pages/admin/comunicacion/mensaje-usuario/mensaje-usuario'),
+          },
+          {
+            path: 'crear-mensaje',
+            loadComponent: () => import('./pages/admin/comunicacion/gestion-muro/crear-mensaje/crear-mensaje'),
+          },
+          {
+            path: 'editar-mensaje/:id',
+            loadComponent: () => import('./pages/admin/comunicacion/gestion-muro/crear-mensaje/crear-mensaje'),
+          }
+        ],
+      }
     ],
+
   },
 
   { path: 'sign-in', redirectTo: 'iniciar-sesion', pathMatch: 'full' },

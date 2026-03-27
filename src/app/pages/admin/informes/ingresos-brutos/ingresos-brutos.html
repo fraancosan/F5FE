@@ -1,0 +1,63 @@
+<div class="title">
+  <app-go-back label="Volver al Menú" url="admin/informes" mode="dark"></app-go-back>
+  <h1 class="page-title">Ingresos Brutos</h1>
+</div>
+
+<div class="filters-container">
+    <div class="inputs-row">
+        <app-input-date label="Desde" name="Desde" (dateSelected)="changeDesde($event)"></app-input-date>
+        <app-input-date label="Hasta" name="Hasta" (dateSelected)="changeHasta($event)"></app-input-date>
+        <div class="total-superior">
+            <span>Ingresos Brutos:</span>
+            <div class="amount-box">{{ (sumarTurnos() + sumarTorneos())  }}</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="datosTabla">
+    
+    <ng-container matColumnDef="Fecha">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="user-info">
+          {{ element.fecha | date: 'dd/MM/yyyy' }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="IngresosTurno">
+      <th mat-header-cell *matHeaderCellDef>Cantidad de ingresos por turno</th>
+      <td mat-cell *matCellDef="let element">
+        ${{ element.ingresosTurno  }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="IngresosInscriptos">
+      <th mat-header-cell *matHeaderCellDef>Cantidad de ingresos por inscripto</th>
+      <td mat-cell *matCellDef="let element">
+        ${{element.ingresosInscripto  }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="container-subtotales">
+        <div class="total-superior">
+            <span>Subtotal Turnos</span>
+            <div class="amount-box">{{ sumarTurnos()   }}</div>
+        </div>
+        <div class="total-superior">
+            <span>Subtotal Inscripciones</span>
+            <div class="amount-box">{{sumarTorneos()  }}</div>
+        </div>
+  </div>
+
+</div>
+
+<app-button3 text="Generar Reporte" (click)="generarReporte()"></app-button3>
+@if (loading) {
+  <app-spinner margin="20px auto 0 auto" size="md" mode="dark"></app-spinner>
+}

@@ -1,0 +1,95 @@
+:host {
+  width: calc(100% - 60px);
+  max-width: 580px;
+  border: 1.71px solid rgba(0, 0, 0, 0.06);
+  border-radius: 11.94px;
+  background: #ffffff;
+  padding: 22px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13.65px;
+  box-sizing: border-box;
+  box-shadow: 0 15.36px 51.19px rgba(2, 8, 6, 0.45);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 4px;
+  width: 100%;
+}
+
+.page-title {
+  margin: 0 0 0 auto;
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  text-align: right;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 6px;
+}
+
+/*  (light theme a input date) */
+::ng-deep app-input-date .label {
+  font-weight: 700 !important;
+  font-size: 1.1em !important;
+  margin-bottom: 4px !important;
+  color: inherit !important;
+}
+
+::ng-deep app-input-date .icon {
+  color: var(--green-600, #086930) !important;
+}
+
+::ng-deep app-input-date .input-container {
+  font-weight: normal !important;
+}
+
+::ng-deep app-input-date .input,
+::ng-deep app-input-date .placeholder {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(3, 23, 11, 0.12) !important;
+  color: #111 !important;
+  padding: 14px 16px !important;
+  transition: border-color 0.18s, box-shadow 0.18s !important;
+}
+
+::ng-deep app-input-date .input:focus {
+  border-color: var(--green-600, #086930) !important;
+  box-shadow: 0 6px 18px rgba(5, 223, 114, 0.06) !important;
+}
+
+::ng-deep app-input-date .placeholder {
+  color: #9ca3af !important;
+}
+
+::ng-deep app-input-date .icon-placeholder {
+  color: var(--green-600, #086930) !important;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 2em;
+  row-gap: 1em;
+  margin-top: 5.12px;
+  width: 100%;
+}
+
+@media (min-width: 1300px) {
+  .page-title {
+    font-size: 27px;
+  }
+}

@@ -1,0 +1,30 @@
+<div class="title">
+  <app-go-back label="Volver al Menú" url="admin/comunicacion" mode="dark"></app-go-back>
+  <h1 class="page-title">Muro de Noticias</h1>
+</div>
+<div class="scroll-container">
+
+ <app-button3 (click)="crearMensaje()" text="Crear nuevo mensaje"></app-button3>
+ 
+  <div class="muro-container">
+    @for (muro of muros; track muro.id){
+    <div class="card-wrapper">
+      <app-card-muro [muro]="muro"></app-card-muro>
+      <div class="card-actions">
+        <button class="btn-edit" (click)="editarMensaje(muro)">
+          <mat-icon>edit</mat-icon>
+          Editar
+        </button>
+        <button class="btn-delete" (click)="eliminarMensaje(muro)">
+          <mat-icon>delete</mat-icon>
+          Eliminar
+        </button>
+      </div>
+    </div>
+    } @empty { @if (loading) {
+    <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
+    } @else {
+    <span class="empty">No hay noticias generadas actualmente.</span>
+    } }
+  </div>
+</div>

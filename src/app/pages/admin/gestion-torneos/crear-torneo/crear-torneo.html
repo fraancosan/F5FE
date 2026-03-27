@@ -1,0 +1,65 @@
+<div class="title">
+  <app-go-back label="Volver al Menú" url="admin/torneos" mode="light"></app-go-back>
+  <h1 class="page-title">{{isEditMode ? 'Editar Torneo' : 'Crear Torneo'}}</h1>
+</div>
+
+<form class="form" [formGroup]="form">
+
+    <app-input-string
+    label="Descripcion del torneo"
+    [icon]="faCalendar"
+    type="text"
+    name="descripcion"
+    placeholder="Ingrese la descripcion del torneo"
+    prefixMessage="La descripcion del torneo"
+    [required]="true"
+    [form]="form"
+    formControlName="descripcion"
+  ></app-input-string>
+
+  <app-input-date
+    label="Fecha de inicio"
+    name="fechaInicio"
+    (dateSelected)="form.get('fechaInicio')!.setValue($event)"
+  ></app-input-date>
+
+  <app-input-date
+    label="Fecha de fin"
+    name="fechaFin"
+    (dateSelected)="form.get('fechaFin')!.setValue($event)"
+  ></app-input-date>
+  
+
+  <app-input-string
+    label="Precio Inscripcion"
+    [icon]="faCalendar"
+    type="text"
+    name="precioInscripcion"
+    placeholder="Ingrese el precio de inscripcion del torneo"
+    prefixMessage="El precio de inscripcion del torneo"
+    [required]="true"
+    [form]="form"
+    formControlName="precioInscripcion"
+  ></app-input-string>
+  
+  <app-input-string
+    label="Cantidad de equipos"
+    [icon]="faCalendar"
+    type="text"
+    name="cantidadEquipos"
+    placeholder="Ingrese la cantidad de equipos del torneo"
+    prefixMessage="La cantidad de equipos del torneo"
+    [required]="true"
+    [form]="form"
+    formControlName="cantidadEquipos"
+  ></app-input-string>
+  
+  <div class="buttons">
+    <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
+    <app-button1 (click)="guardarTorneo()" text="{{isEditMode ? 'Actualizar torneo' : 'Crear torneo'}}"></app-button1>
+  </div>
+
+  @if (loading) {
+  <app-spinner mode="light" [centrado]="true" size="md"></app-spinner>
+  }
+</form>
