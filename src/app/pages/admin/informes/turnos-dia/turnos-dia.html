@@ -60,7 +60,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-
+  @if (turnos.length === 0 && !loading) {
+    <div class="no-data">No hay turnos para mostrar con los filtros actuales.</div>
+  }
 </div>
 
 <app-button3 text="Generar Reporte" (click)="generarReporte()"></app-button3>

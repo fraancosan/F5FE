@@ -18,7 +18,7 @@ export class CardMenu {
   constructor(private router: Router) {}
 
   onCardClick() {
-    console.log('Card:', this.title, 'clickeada');
+    //console.log('Card:', this.title, 'clickeada');
     this.router.navigate([this.route]);
   }
 }

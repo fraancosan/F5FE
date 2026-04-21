@@ -58,9 +58,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-
+  @if (usuarios.length === 0 && !loading) {
+    <div class="no-data">No se encontraron usuarios premium para mostrar.</div>
+  }
 </div>
-
 <app-button3 text="Generar Reporte" (click)="generarReporte()"></app-button3>
 @if (loading) {
   <app-spinner margin="20px auto 0 auto" size="md" mode="dark"></app-spinner>
