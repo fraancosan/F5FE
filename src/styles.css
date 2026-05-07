@@ -44,3 +44,12 @@ app-root,
 .menu-desplegable {
   margin-top: 12px;
 }
+
+/*Mensajes de listados vacios en admin*/
+.no-data{
+  color: var(--white);
+  font-weight: 500;
+  font-size: larger;
+  text-align: center;
+  padding: 12px 16px;
+}
