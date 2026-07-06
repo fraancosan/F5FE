@@ -1,5 +1,5 @@
 :host {
-  width: 85%;
+  width: 100%;
   border-radius: 10px;
   background: var(--green-700-gradient);
   border: 1px solid var(--green-500-primary);
@@ -30,11 +30,14 @@
   align-items: center;
   justify-content: flex-start;
   gap: 1em;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .title {
   font-size: 22px;
   margin: 0;
+  min-width: 0;
 }
 
 .text {
@@ -50,15 +53,23 @@
   word-break: normal;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+
 
   .title-container {
     align-items: flex-start;
   }
 
   .title {
+    max-width: 100%;
     font-size: 18px;
-    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .text {
+    text-align: left;
   }
 
 }
