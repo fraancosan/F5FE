@@ -14,7 +14,9 @@ import { Navigation } from '../../../../services/common/navigation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Spinner } from '../../../../shared/spinner/spinner';
 import { Users } from '../../../../services/db/users';
-
+import { InputTextArea } from '../../../../shared/inputs/input-text-area/input-text-area';
+import { Select } from '../../../../shared/inputs/select/select';
+import {usuario} from '../../../../Interfases/interfaces';
 @Component({
   selector: 'app-mensaje-usuario',
   imports: [
@@ -22,6 +24,8 @@ import { Users } from '../../../../services/db/users';
     Button2,
     Button1,
     InputString,
+    InputTextArea,
+    Select,
     ReactiveFormsModule,
     Spinner,
   ],
@@ -35,6 +39,11 @@ export default class MensajeUsuario {
   faMessage = faMessage;
   form: FormGroup;
   loading = false;
+  mailOptions: {
+    value: string;
+    text: string;
+    disabled: boolean;
+  }[] = [];
 
   constructor(
     private navService: Navigation,
@@ -46,6 +55,18 @@ export default class MensajeUsuario {
       mail: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
       text: ['', Validators.required],
+    });
+  }
+
+  ngOnInit() {
+    this.usersService.getAll().subscribe({
+      next: (usuarios: usuario[]) => {
+        this.mailOptions = usuarios.map(usuario => ({
+          value: usuario.mail,
+          text: usuario.nombre + " - " + usuario.mail,
+          disabled: false
+        }));
+      }
     });
   }
 
