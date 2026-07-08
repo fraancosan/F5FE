@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { GoBack } from '../../../../../shared/go-back/go-back';
 import { Button2 } from '../../../../../shared/btns/button2/button2';
 import { Button1 } from '../../../../../shared/btns/button1/button1';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar,faFileLines } from '@fortawesome/free-solid-svg-icons';
 import { InputString } from '../../../../../shared/inputs/input-string/input-string';
 import {
   FormBuilder,
@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 import { InputDate } from '../../../../../shared/inputs/input-date/input-date';
 import { muro } from '../../../../../Interfases/interfaces';
 import { Muro } from '../../../../../services/db/muro';
+import { InputTextArea } from '../../../../../shared/inputs/input-text-area/input-text-area';
 
 @Component({
   selector: 'app-crear-mensaje',
@@ -26,6 +27,7 @@ import { Muro } from '../../../../../services/db/muro';
     Button1,
     InputString,
     InputDate,
+    InputTextArea,
     ReactiveFormsModule,
     Spinner,
   ],
@@ -35,6 +37,7 @@ import { Muro } from '../../../../../services/db/muro';
 export default class CrearMensaje {
 
   faCalendar = faCalendar;
+  faFileLines = faFileLines;
   form: FormGroup;
   loading = false;
   isEditMode = false;
