@@ -158,7 +158,7 @@ export default class InscripcionTorneo {
       },
     error: (err) => {
       this.loading = false;
-      console.log('Error en la inscripción:', err);
+      this.snackBar.open('Error al inscribirse en el torneo', 'Cerrar', { duration: 5000 });
     }
    });
   }
