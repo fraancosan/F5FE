@@ -20,6 +20,10 @@
   overflow-y: auto;
 }
 
+.mat-column-ID { width: 20%; }
+.mat-column-Disponible { width: 60%; }
+.mat-column-Acciones { width: 20%; }
+
 .title {
   width: calc(100% - 60px);
   margin: 0 30px;
@@ -49,7 +53,36 @@
   overflow-y: auto;
 }
 
+th {
+  font-size: 16px ;
+}
+
 .actions-wrapper button{
   transform: scale(0.9);
   color: var(--green-500-primary);
+}
+
+.contenido-centrado {
+  text-align: center;
+}
+
+.text-success {
+  color: var(--green-900);
+  background-color: var(--green-300);
+  border: 1px solid var(--green-300);
+}
+
+.text-danger {
+  color: #7a4100; 
+  background-color: #ffecb3; 
+  border: 1px solid #ffe082; 
+
+}
+
+.text-success, .text-danger {
+  min-width: 100px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px 8px;
+  display: inline-block;
 }

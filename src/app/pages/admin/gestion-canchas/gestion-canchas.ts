@@ -105,7 +105,11 @@ filaEditar: any = null;
         this.loadCanchas();
       },
       error: () => {
-        this.snackBar.open('Error al eliminar la cancha', 'Cerrar', { duration: 3000 });
+        if (cancha.disponible) {
+          this.snackBar.open('No se puede eliminar una cancha disponible. Recuerde deshabilitarla primero.', 'Cerrar', { duration: 3000 });
+          return;
+        }
+        this.snackBar.open('Ocurrio un error al eliminar la cancha', 'Cerrar', { duration: 3000 });
       }
     });
   }
