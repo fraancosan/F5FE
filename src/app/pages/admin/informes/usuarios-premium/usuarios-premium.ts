@@ -43,21 +43,27 @@ export default class UsuariosPremium {
     private snackBar: MatSnackBar,
     private usersService: Users) {}
 
-  loadUsuariosPremium() {
-  this.loading = true;
-  this.usersService.getPremium().subscribe({
-    next: (usuarios) => {
-      this.usuarios = usuarios;
-      this.loading = false;
-    },
-    error: (error) => {
-      this.usuarios = [];
-      this.snackBar.open('Error al cargar usuarios premium', 'Cerrar', { duration: 3000 });
-      this.loading = false;
-    }
-  });
+  //Lo ejecuta una vez al abrirse la pantalla
+  ngOnInit() {
+    this.loadUsuariosPremium()
   }
 
+  loadUsuariosPremium() {
+    this.loading = true;
+    this.usersService.getPremium().subscribe({
+      next: (usuarios) => {
+        this.usuarios = usuarios;
+        this.loading = false;
+      },
+      error: (error) => {
+        this.usuarios = [];
+        this.snackBar.open('Error al cargar usuarios premium', 'Cerrar', { duration: 3000 });
+        this.loading = false;
+      }
+    });
+  }
+  
+  //Se mantiene la opcion de volverlo a cargar al apretar el boton de generar reporte
   generarReporte() {
     this.loadUsuariosPremium();
   }
