@@ -56,3 +56,20 @@
   overflow-wrap: normal;
   word-break: normal;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 18px;
+  }
+  .date {
+    font-size: 18px;
+  }
+
+  .text {
+    text-align: left;
+    font-size: 14px;
+    max-width: fit-content;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
