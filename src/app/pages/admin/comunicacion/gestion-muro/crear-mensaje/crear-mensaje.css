@@ -40,6 +40,14 @@
   margin-top: 6px;
 }
 
+.scroll-container {
+  width: 100%;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
 /*  (light theme a input date) */
 ::ng-deep app-input-date .label {
   font-weight: 700 !important;

@@ -5,17 +5,15 @@
 
 <form class="form" [formGroup]="form">
 
-  <app-input-string
-    label="Email del usuario"
-    [icon]="faEnvelope"
-    type="email"
-    name="mail"
-    placeholder="Ingrese el email del usuario"
-    prefixMessage="El email"
-    [required]="true"
-    [form]="form"
-    formControlName="mail"
-  ></app-input-string>
+
+  <app-select
+  label="Usuario"
+  [icon]="faEnvelope"
+  name="mail"
+  [value]="form.get('mail')?.value"
+  [options]="mailOptions"
+  (valueChange)="form.get('mail')?.setValue($event)"
+  ></app-select>
 
   <app-input-string
     label="Asunto"
@@ -29,17 +27,17 @@
     formControlName="subject"
   ></app-input-string>
 
-  <app-input-string
-    label="Mensaje"
-    [icon]="faMessage"
-    type="text"
-    name="text"
-    placeholder="Ingrese el contenido del mensaje"
-    prefixMessage="El mensaje"
-    [required]="true"
-    [form]="form"
-    formControlName="text"
-  ></app-input-string>
+  <app-input-text-area
+      label="Mensaje"
+      [icon]="faMessage"
+      name="text"
+      placeholder="Ingrese el contenido del mensaje"
+      prefixMessage="El mensaje"
+      [required]="true"
+      [form]="form"
+      formControlName="text"
+      [rows]="7"
+    ></app-input-text-area>
 
   <div class="buttons">
     <app-button2 text="Cancelar" (click)="cancelar()"></app-button2>
