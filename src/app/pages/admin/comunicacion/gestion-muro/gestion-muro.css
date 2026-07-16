@@ -116,3 +116,47 @@
   width: 16px;
   height: 16px;
 }
+
+@media (max-width: 768px) {
+  :host {
+  width: calc(100% - 24px); 
+  padding: 16px 0;         
+  max-height: 85dvh;       
+  }
+
+  .title {
+  width: 100%;
+  margin: 0;
+  padding: 0 16px 12px 16px;
+  align-items: center;    
+  gap: 12px;               
+  box-sizing: border-box;
+  }
+
+  .page-title {
+  margin: 0;               
+  text-align: center;      
+  font-size: 20px;         
+  }
+
+  .scroll-container {
+  width: 100%;            
+  padding: 15px 16px 0 16px;
+  box-sizing: border-box;  
+  }
+
+  .btn-edit,
+  .btn-delete {
+  justify-content: center;  
+  padding: 10px 12px;     
+  font-size: 12px;        
+  }
+
+  .btn-edit mat-icon,
+  .btn-delete mat-icon {
+  font-size: 14px;        
+  width: 14px;
+  height: 14px;
+  }
+
+}
