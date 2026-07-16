@@ -49,10 +49,12 @@ export default class IngresosBrutos {
   ];
 
   loading: boolean = false;
+  loadingTurnos: boolean = false;
+  loadingTorneos: boolean = false;
 
   params: any = {
-    fechaI:new Date().toISOString().split('T')[0],
-    fechaF:new Date().toISOString().split('T')[0],
+    fechaI:'',
+    fechaF:'',
   };
 
   constructor(
@@ -65,12 +67,15 @@ export default class IngresosBrutos {
     this.turnosService.reporteIngresos(this.params).subscribe({
       next: (data) => {
         this.turnos = data.ingresos || [];
+        this.loadingTurnos = false;
         this.actualizarTabla();
       },
       error: (err) => {
-        this.snackBar.open('Error al cargar los turnos', 'Cerrar', { duration: 3000 });
-        this.loading = false;
+        this.loadingTurnos = false;
         this.actualizarTabla();
+        if (err.status !== 404) {
+          this.snackBar.open('Error al cargar los turnos para el reporte.', 'Cerrar', { duration: 3000 });
+        }
       }
     });
 
@@ -83,14 +88,15 @@ export default class IngresosBrutos {
     this.torneoService.reporteIngresos(fechaD, fechaH).subscribe({
       next: (data) => {
         this.torneos = data.ingresos || [];
-        this.loading = false;
+        this.loadingTorneos = false;
         this.actualizarTabla();
       },
       error: (err) => {
         this.torneos = []; 
+        this.loadingTorneos = false;
         this.actualizarTabla();
         if (err.status !== 404) {
-        this.snackBar.open('Error al cargar los torneos', 'Cerrar', { duration: 3000 });
+        this.snackBar.open('Error al cargar los torneos para el reporte.', 'Cerrar', { duration: 3000 });
         }
       }
     });
@@ -117,8 +123,8 @@ export default class IngresosBrutos {
   });
 
   this.datosTabla.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
-  
-  this.loading = false;
+  if (!this.loadingTurnos && !this.loadingTorneos){
+    this.loading = false;}
 }
 
   sumarTurnos(): number {
@@ -130,11 +136,24 @@ export default class IngresosBrutos {
   }
 
   generarReporte(){
+    if (!this.params.fechaI || !this.params.fechaF) {
+      this.snackBar.open('Por favor, ingrese ambas fechas para generar el reporte.', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    if (this.params.fechaI > this.params.fechaF) {
+      this.snackBar.open('La fecha "Desde" no puede ser mayor que la fecha "Hasta".', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
     this.turnos = [];
     this.torneos = [];
+    this.loadingTurnos = true;
+    this.loadingTorneos = true;
     this.loading = true;
     this.loadTurnos();
     this.loadTorneos();
+
   }
 
   
