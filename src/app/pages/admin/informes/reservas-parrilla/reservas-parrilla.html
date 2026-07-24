@@ -9,7 +9,7 @@
         <app-input-date label="Hasta" name="Hasta" (dateSelected)="changeHasta($event)"></app-input-date>
         <div class="total-superior">
             <span>Total Parrilla:</span>
-            <div class="amount-box">{{totalParrilla}}</div>
+          <div class="amount-box">{{ totalParrilla | currency : '$' : 'symbol' : '1.0-0' }}</div>
         </div>
     </div>
 </div>

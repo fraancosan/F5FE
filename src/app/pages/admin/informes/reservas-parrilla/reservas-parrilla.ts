@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GoBack } from '../../../../shared/go-back/go-back'; 
 import { MatTableModule } from '@angular/material/table';
 import { turno } from '../../../../Interfases/interfaces';
-import { DatePipe  } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { Spinner } from '../../../../shared/spinner/spinner';
 import { Turnos } from '../../../../services/db/turnos';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     GoBack,
     MatTableModule,
     Spinner,
-    DatePipe,
+    CurrencyPipe,
     InputDate,
     FormsModule,
     MatIconModule,
