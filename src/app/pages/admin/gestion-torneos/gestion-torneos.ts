@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GoBack } from '../../../shared/go-back/go-back'; 
 import { MatTableModule } from '@angular/material/table';
 import { torneo } from '../../../Interfases/interfaces';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 import { Spinner } from '../../../shared/spinner/spinner';
 import { Torneo } from '../../../services/db/torneo';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -24,6 +24,7 @@ import { Navigation } from '../../../services/common/navigation';
     MatButtonModule,
     Button3,
     DatePipe,
+    CurrencyPipe,
     XBtn
   ],
   templateUrl: './gestion-torneos.html',
