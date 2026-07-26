@@ -64,6 +64,20 @@ export default class CrearPolitica {
     }
   }
 
+  private esPorcentajeValido(nombre: string, descripcion: string): boolean {
+  const camposPorcentaje = ['descuentoPremium', 'porcentajeSeña'];
+  
+  if (camposPorcentaje.includes(nombre)) {
+    const valorNum = Number(descripcion.replace(',', '.'));
+    
+    // Debe ser un número válido, mayor que 0 y menor o igual a 1 (ej: 0.25 para 25%)
+    if (isNaN(valorNum) || valorNum <= 0 || valorNum > 1) {
+      return false;
+    }
+  }
+  return true;
+  }
+
   cancelar() {
     this.navService.toPageTop('admin/politicas');
   }
@@ -111,6 +125,18 @@ export default class CrearPolitica {
       return;
     }
     this.loading = true;
+    // Validacion de porcentajes para que siempre sean menores a 1 (ej: 0.25 = 25%)
+    const nombrePol = (this.isEditMode ? this.nombreOriginal : this.form.get('nombre')?.value) ?? '';
+    const textoDescripcion = String(this.form.get('descripcion')?.value ?? '').trim();
+    //VALIDACIÓN DE SEGURIDAD PARA PORCENTAJES
+    if (!this.esPorcentajeValido(nombrePol, textoDescripcion)) {
+      this.snackBar.open(
+        'Para porcentajes debe ingresar un formato decimal menor a 1 (ej: 0.25 para 25%)',
+        'Aceptar',
+        { duration: 6000 }
+      );
+      return;
+    }
 
     if (this.isEditMode) {
         const textoDescripcion = String(this.form.value.descripcion).trim();
