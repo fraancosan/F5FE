@@ -134,6 +134,10 @@ export const routes: Routes = [
             loadComponent: () => import('./pages/admin/gestion-torneos/crear-torneo/crear-torneo'),
           },
           {
+            path: 'ver-partidos/:id',
+            loadComponent: () => import('./pages/admin/gestion-torneos/ver-partidos/ver-partidos'),
+          },
+          {
             path: 'comunicacion',
             loadComponent: () => import('./pages/admin/comunicacion/comunicacion'),
           },

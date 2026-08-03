@@ -75,6 +75,10 @@ export default class GestionTorneos {
     this.navService.toPageTop(`/admin/editar-torneo/${id}`);
   }
 
+  verPartidos(id: number) {
+    this.navService.toPageTop(`/admin/ver-partidos/${id}`);
+  }
+
   eliminarTorneo(id: number) {
     if (confirm('¿Está seguro de que desea eliminar este torneo?')) {
     }
