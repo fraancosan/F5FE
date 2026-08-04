@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CapitalizePipe } from '../../../../pipes/capitalize-pipe';
+import { equipoUsuario } from '../../../../Interfases/interfaces';
 @Component({
   selector: 'app-card-equipo',
   imports: [CapitalizePipe],
@@ -14,11 +15,6 @@ export class CardEquipo {
       }
       return 'Cargando nombre...';
     }
-  get IdDelEquipo(): string {
-      if (this.equipo && this.equipo.Equipo) {
-        return this.equipo.idEquipo.toString();}
-      return 'Cargando ID...';
-  }
 }
 
 

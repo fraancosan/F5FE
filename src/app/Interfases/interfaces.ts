@@ -20,13 +20,16 @@ export interface usuarioPremium {
 export interface equipo {
   id: number;
   nombre: string;
+  linkInvitacion?: string;
 }
 
 export interface equipoUsuario {
   id: number;
-  idEquipo: number | equipo;
-  idUsuario: number | usuario;
+  idEquipo: number;
+  idUsuario: number;
   capitan: boolean;
+  Equipo?: equipo;
+  Usuario?: usuario;
 }
 
 export interface torneo {

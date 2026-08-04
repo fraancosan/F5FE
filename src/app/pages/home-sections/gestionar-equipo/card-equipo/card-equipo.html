@@ -2,5 +2,9 @@
   <div class="primary-title">
     <h2 class="title">{{ nombreDelEquipo | capitalize }}</h2>
   </div>
-  <p class="link-text">Id: {{ IdDelEquipo }}</p>
+  @if (equipo && equipo.capitan) {
+    <p class="link-text">Capitán</p>
+  } @else if (equipo && !equipo.capitan) {
+    <p class="link-text">Miembro</p>
+  }
 </div>

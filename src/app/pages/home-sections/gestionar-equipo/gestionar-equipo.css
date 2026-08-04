@@ -117,6 +117,7 @@
 .modal-content {
   width: 90%;
   max-width: 450px;
+  color: #fff;
 }
 
 .modal-buttons {
