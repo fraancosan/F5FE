@@ -44,6 +44,25 @@ export class EquipoUsuario {
       );
   }
 
+  getAllMiembros(idEquipo: number): Observable<equipoUsuario[]> {
+    return this.http
+      .get<
+        equipoUsuario[]
+      >(this.urlBack + `equiposUsuarios/miembros-equipo/${idEquipo}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            return of([]);
+          } else {
+            this.snackBar.open('Error al contactar con el servidor', 'Cerrar', {
+              duration: 5000,
+            });
+            return throwError(() => error);
+          }
+        }),
+      );
+  }
+
   getById(id: number): Observable<equipoUsuario> {
     return this.http
       .get<equipoUsuario>(this.urlBack + 'equiposUsuarios/' + id)
@@ -61,14 +80,20 @@ export class EquipoUsuario {
       );
   }
 
-  create(body: Pick<equipoUsuario, 'idEquipo' | 'idUsuario'>): Observable<any> {
-    return this.http.post(this.urlBack + 'equiposUsuarios', body).pipe(
+  create(linkInvitacion: string): Observable<any> {
+    return this.http.post(this.urlBack + 'equiposUsuarios', {linkInvitacion}).pipe(
       catchError((error: HttpErrorResponse) => {
-        const message =
-          error.status === 400
-            ? 'Error en los datos enviados'
-            : 'Error al contactar con el servidor';
-        this.snackBar.open(message, 'Cerrar', {
+        let message = '';
+        if (error.status === 400 && error.error && error.error.message === 'El usuario ya está unido al equipo') {
+          message = 'El usuario ya pertenece a este equipo';
+        } else if (error.status === 400) {
+          message ='Error en los datos enviados'
+        } else if (error.status === 404) {
+          message = 'No se ha encontrado el equipo';
+        } else {
+          message = 'Error al contactar con el servidor';
+        }
+          this.snackBar.open(message, 'Cerrar', {
           duration: 5000,
         });
         return throwError(() => error);

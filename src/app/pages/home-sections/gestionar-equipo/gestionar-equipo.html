@@ -15,9 +15,7 @@
             (click)="abrirModalIntegrantes(item)">
             <mat-icon>person</mat-icon>
           </button>
-          @if (item.capitan) {
           <app-x-btn color="dark" (click) = "eliminarEquipo(item)"></app-x-btn>
-          }
       </div>
     } @empty { @if (loading) {
     <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
@@ -34,9 +32,9 @@
     <div class="modal-content" (click)="$event.stopPropagation()">
         <h2>Unirse a un Equipo</h2>       
         <app-input-string
-          [label]="'ID del Equipo'"
-          [placeholder]="'Ingrese el ID del equipo'"
-          [formControl]="idEquipoControl"
+          [label]="'Link del Equipo'"
+          [placeholder]="'Ingrese el link del equipo'"
+          [formControl]="linkEquipoControl"
           [required]="true">
         </app-input-string>
 
@@ -51,23 +49,29 @@
 @if (isVerIntegrantesModal) {
   <div class="modal-overlay" (click)="cerrarModalIntegrantes()">
     <div class="modal-content" (click)="$event.stopPropagation()">
-      <h2>Integrantes - {{ nombreEquipoSeleccionado }}</h2>
+      <h2>Integrantes - {{ equipoSeleccionado!.Equipo!.nombre | capitalize }}</h2>
 
       @if (loadingIntegrantes) {
         <app-spinner [centrado]="true" size="md" mode="dark"></app-spinner>
       } @else {
-        @if (integrantesEquipoNombres.length > 0) {
+        @if (integrantesEquipo.length > 0) {
           <ul class="integrantes-lista">
-            @for (nombre of integrantesEquipoNombres; track nombre) {
-              <li>{{ nombre }}</li>
+            @for (integrante of integrantesEquipo; track integrante.idUsuario) {
+              <li>{{ integrante.Usuario!.nombre | capitalize }} - {{ integrante.capitan ? 'Capitán' : 'Miembro' }}</li>
             }
           </ul>
         } @else {
           <span class="empty">No se encontraron integrantes para este equipo.</span>
         }
+        @if (equipoSeleccionado!.Equipo!.linkInvitacion) {
+          <span>Link de invitación: <b>{{ equipoSeleccionado!.Equipo!.linkInvitacion }}</b></span>
+        }
       }
 
       <div class="modal-buttons">
+        @if (equipoSeleccionado!.capitan) {
+        <app-button3 [text]="equipoSeleccionado!.Equipo!.linkInvitacion ? 'Remover Link' : 'Invitar Usuarios'" (click)="linkInvitacion()"></app-button3>
+        }
         <app-button3 text="Cerrar" (click)="cerrarModalIntegrantes()"></app-button3>
       </div>
     </div>

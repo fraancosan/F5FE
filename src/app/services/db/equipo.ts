@@ -101,6 +101,36 @@ export class Equipo {
       );
   }
 
+  crearLinkInvitacion(id: number): Observable<any> {
+    return this.http.post(this.urlBack + 'equipos/crearLink/' + id, {}).pipe(
+      catchError((error: HttpErrorResponse) => {
+        const message =
+          error.status === 404
+            ? 'No se ha encontrado el equipo'
+            : 'Error al contactar con el servidor';
+        this.snackBar.open(message, 'Cerrar', {
+          duration: 5000,
+        });
+        return throwError(() => error);
+      }),
+    );
+  }
+
+  removerLinkInvitacion(id: number): Observable<any> {
+    return this.http.post(this.urlBack + 'equipos/borrarLink/' + id, {}).pipe(
+      catchError((error: HttpErrorResponse) => {
+        const message =
+          error.status === 404
+            ? 'No se ha encontrado el equipo'
+            : 'Error al contactar con el servidor';
+        this.snackBar.open(message, 'Cerrar', {
+          duration: 5000,
+        });
+        return throwError(() => error);
+      }),
+    );
+  }
+
   delete(id: number): Observable<any> {
     return this.http.delete(this.urlBack + 'equipos/' + id).pipe(
       catchError((error: HttpErrorResponse) => {
