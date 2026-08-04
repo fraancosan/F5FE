@@ -34,11 +34,9 @@ export class Notificacion {
 
   getNotifications() {
     const hoy = new Date();
-    const [year, month, day] = hoy
-      .toISOString()
-      .split('T')[0]
-      .split('-')
-      .map(Number);
+    const year = hoy.getFullYear();
+    const month = hoy.getMonth() + 1;
+    const day = hoy.getDate();
 
     const horaActual = hoy.getHours();
     const horaSiguiente = horaActual + 2 > 23 ? 23 : horaActual + 2;
