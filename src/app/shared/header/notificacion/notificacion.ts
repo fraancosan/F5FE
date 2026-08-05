@@ -34,19 +34,15 @@ export class Notificacion {
 
   getNotifications() {
     const hoy = new Date();
-    const [year, month, day] = hoy
-      .toISOString()
-      .split('T')[0]
-      .split('-')
-      .map(Number);
+    const year = hoy.getFullYear();
+    const month = hoy.getMonth() + 1;
+    const day = hoy.getDate();
 
     const horaActual = hoy.getHours();
-    const horaSiguiente = horaActual + 2 > 23 ? 23 : horaActual + 2;
 
     const fechaI = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const fechaF = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const horaI = `${String(horaActual).padStart(2, '0')}:00:00`;
-    const horaF = `${String(horaSiguiente).padStart(2, '0')}:59:59`;
 
     // obtener turnos propios y compartidos en paralelo
     forkJoin([
@@ -54,7 +50,6 @@ export class Notificacion {
         fechaI,
         fechaF,
         horaI,
-        horaF,
         estado: 'señado',
       }),
 
@@ -62,7 +57,6 @@ export class Notificacion {
         fechaI,
         fechaF,
         horaI,
-        horaF,
         estado: 'rival encontrado',
       }),
     ]).subscribe({
