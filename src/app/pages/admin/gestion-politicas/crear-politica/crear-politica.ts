@@ -219,6 +219,9 @@ export default class CrearPolitica {
           },
           error: (err) => {
             this.loading = false;
+            this.snackBar.open('Error al crear la política ', 'Aceptar', {
+              duration: 5000,
+            });
           }
         });
       }
@@ -244,6 +247,9 @@ export default class CrearPolitica {
       },
       error: (err) => {
         this.loading = false;
+        this.snackBar.open('Error al cargar la política ', 'Aceptar', {
+          duration: 5000,
+        });
       }
     });
   }
