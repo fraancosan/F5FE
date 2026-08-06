@@ -78,7 +78,9 @@ export default class VerPartidos {
     this.partidoForm = this.fb.group({
       idEquipo1: ['', Validators.required],
       idEquipo2: ['', Validators.required],
-      resultado: ['', [Validators.required, Validators.maxLength(80)]],
+      resultado: ['', [Validators.required, Validators.maxLength(7),
+        Validators.pattern(/^(0|[1-9][0-9]*)-(0|[1-9][0-9]*)$/)
+      ]],
       fecha: ['', Validators.required],
     });
   }
@@ -187,6 +189,9 @@ export default class VerPartidos {
         this.nuevoPartido();
       },
       error: () => {
+        this.snackBar.open('Error al guardar el partido', 'Aceptar', {
+          duration: 5000,
+        });
         this.loadingPartidos = false;
       },
     });
@@ -207,6 +212,9 @@ export default class VerPartidos {
       },
       error: () => {
         this.loadingPartidos = false;
+        this.snackBar.open('Error al eliminar el partido', 'Aceptar', {
+          duration: 5000,
+        });
       },
     });
   }

@@ -47,6 +47,13 @@
   padding: 0 30px;
   overflow-y: auto;
 }
+.actions-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;     
+  width: 100%;
+}
 
 .actions-wrapper button{
   transform: scale(0.9);

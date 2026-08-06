@@ -59,6 +59,9 @@
   overflow-y: auto; 
   overflow-x: hidden;
   flex: 1;
+  scrollbar-color: var(--green-500-primary) transparent;
+
+  
 }
 .toolbar {
   width: calc(100% - 60px);
@@ -128,8 +131,16 @@
   overflow-y: auto;
   overflow-x: auto;
   box-sizing: border-box;
-}
+  scrollbar-color: var(--green-500-primary) transparent;
 
+}
+.actions-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;     
+  width: 100%;
+}
 .actions-wrapper button {
   transform: scale(0.9);
   color: var(--green-500-primary);
@@ -186,9 +197,9 @@
   }
 
   .form {
-    margin: 0 16px;
-    padding: 16px;
-  }
+  width: calc(100% - 32px);
+  margin: 0 16px;
+}
 
   .form-grid {
     grid-template-columns: 1fr;
@@ -205,12 +216,11 @@
     flex: 1 1 100%;
   }
 
-  .table-container {
-    width: calc(100% - 32px);
-    padding: 10px 16px 0 16px;
-    box-sizing: border-box;
-    overflow-y: auto;
-  }
+ .table-container {
+  width: auto;
+  margin: 0 16px;
+  padding: 10px 0 0 0;
+}
 
   .mat-mdc-header-row {
     display: none;
