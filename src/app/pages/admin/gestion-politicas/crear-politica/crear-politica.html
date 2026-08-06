@@ -16,9 +16,80 @@
     formControlName="nombre"
   ></app-input-string>
 
-    <app-input-string
+  <!-- 2. DESCRIPCIÓN DINÁMICA -->
+
+  <!-- Hora -->
+  @if (inputType === 'time') {
+    <div class="custom-input-group">
+      <label class="input-label">
+        <fa-icon class="label-icon" [icon]="inputIcon" size="lg" [fixedWidth]="true"></fa-icon>
+        {{ inputLabel }}
+      </label>
+      <input
+        type="time"
+        formControlName="descripcion"
+        class="native-input"
+      />
+    </div>
+  }
+
+  <!-- Moneda -->
+  @else if (inputType === 'currency') {
+    <div class="custom-input-group">
+      <label class="input-label">
+        <fa-icon class="label-icon" [icon]="inputIcon" size="lg" [fixedWidth]="true"></fa-icon>
+        {{ inputLabel }}
+      </label>
+      <input
+        type="number"
+        step="any"
+        formControlName="descripcion"
+        [placeholder]="inputPlaceholder"
+        class="native-input"
+      />
+    </div>
+  }
+
+  <!-- Porcentaje -->
+  @else if (inputType === 'percentage') {
+    <div class="custom-input-group">
+      <label class="input-label">
+        <fa-icon class="label-icon" [icon]="inputIcon" size="lg" [fixedWidth]="true"></fa-icon>
+        {{ inputLabel }}
+      </label>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        step="1"
+        onkeydown="return event.key !== '-' && event.key !== 'e' && event.key !== '.'"
+        formControlName="descripcion"
+        [placeholder]="inputPlaceholder"
+        class="native-input"
+      />
+    </div>
+  }
+
+  <!-- Número entero -->
+  @else if (inputType === 'number') {
+    <div class="custom-input-group">
+      <label class="input-label">
+        <fa-icon class="label-icon" [icon]="inputIcon" size="lg" [fixedWidth]="true"></fa-icon>
+        {{ inputLabel }}
+      </label>
+      <input
+        type="number"
+        min="0"
+        formControlName="descripcion"
+        [placeholder]="inputPlaceholder"
+        class="native-input"
+      />
+    </div>
+  }
+  <!-- Texto (Utilizado por defecto para los creados)-->
+  @else { <app-input-string
     label="Descripcion de la politica"
-    [icon]="faCalendar"
+   [icon]="inputIcon"
     type="text"
     name="descripcion"
     placeholder="Ingrese la descripcion de la politica"
@@ -27,7 +98,17 @@
     [form]="form"
     formControlName="descripcion"
   ></app-input-string>
+   }
   
+  <!-- Validación de errores para inputs nativos -->
+  @if (form.get('descripcion')?.invalid && form.get('descripcion')?.touched && inputType !== 'text') {
+    <small class="error-text">
+      @if (inputType === 'time') { Formato inválido. Use HH:mm }
+      @else if (inputType === 'percentage') { Ingrese un porcentaje entre 0 y 100 (Entero) }
+      @else { Ingrese un valor numérico válido }
+    </small>
+  }
+
   <div class="buttons">
     <app-button2 (click)="cancelar()" text="Cancelar"></app-button2>
     <app-button1 (click)="guardarPolitica()" text="{{isEditMode ? 'Actualizar politica' : 'Crear politica'}}"></app-button1>

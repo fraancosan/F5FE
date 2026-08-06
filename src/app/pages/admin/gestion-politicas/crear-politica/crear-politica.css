@@ -50,6 +50,64 @@
   width: 100%;
 }
 
+/* =========================================================
+   ESTILOS PARA INPUTS NATIVOS (Hora, Moneda, Porcentaje)
+   Mismo diseño que app-input-string
+   ========================================================= */
+
+.custom-input-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  gap: 6px;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.input-label {
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 4px;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label-icon {
+  color: var(--green-600, #086930);
+}
+
+.native-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(3, 23, 11, 0.12);
+  background: #ffffff;
+  outline: none;
+  font-size: 0.9em;
+  box-shadow: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  box-sizing: border-box;
+  margin: 0;
+  color: #000000;
+  font-family: inherit;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.native-input:focus {
+  border-color: var(--green-600, #086930);
+  box-shadow: 0 6px 18px rgba(5, 223, 114, 0.06);
+}
+
+.error-text {
+  color: #e1034a;
+  font-size: 0.8em;
+}
 @media (max-width: 768px) {
  :host {
   width: calc(100% - 24px); 

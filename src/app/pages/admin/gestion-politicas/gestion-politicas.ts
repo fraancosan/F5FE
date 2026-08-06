@@ -8,6 +8,7 @@ import { CardPoliticas } from './card-politicas/card-politicas';
 import { XBtn } from '../../../shared/btns/x-btn/x-btn';
 import { MatIconModule } from '@angular/material/icon';
 import { Navigation } from '../../../services/common/navigation';
+import { MatSnackBar } from '@angular/material/snack-bar';
  
 @Component({
   selector: 'app-gestion-politicas',
@@ -27,6 +28,7 @@ politicas: politica[] = [];
 loading = false;
 
 constructor(private politicasService: Politicas,
+  private snackBar: MatSnackBar,
   private navService: Navigation) {}
 
 ngOnInit() {
@@ -44,6 +46,13 @@ ngOnInit() {
 }
 
 eliminarPolitica(nombre: string){
+    //No permitir eliminar las politicas necesarias para el funcionamiento del sistema
+    if (nombre === 'horaAbre' || nombre === 'horaCierra' || nombre === 'descuentoPremium' || nombre === 'reservasNecesariasPremium' || 
+        nombre === 'precioTurno' || nombre === 'porcentajeSeña' || nombre === 'precioParrilla') {
+        this.snackBar.open('No se puede eliminar esta política porque es una política fija.', 'Cerrar', { duration: 3000 });
+        return;
+        }
+    
     if (!confirm(`¿Estás seguro de que deseas eliminar esta política ${nombre}?`)) {
       return;
     }
