@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Button2 } from '../../shared/btns/button2/button2';
 import { Button1 } from '../../shared/btns/button1/button1';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { InputString } from '../../shared/inputs/input-string/input-string';
 import {
   FormBuilder,
@@ -29,7 +29,8 @@ import { Spinner } from '../../shared/spinner/spinner';
   styleUrl: './sign-in.css',
 })
 export default class SignIn {
-  faCalendar = faCalendar;
+  faEnvelope = faEnvelope;
+  faLock = faLock;
   form: FormGroup;
   loading = false;
 

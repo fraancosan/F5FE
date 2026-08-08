@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GoBack } from '../../../shared/go-back/go-back';
 import { Button2 } from '../../../shared/btns/button2/button2';
 import { Button1 } from '../../../shared/btns/button1/button1';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { InputString } from '../../../shared/inputs/input-string/input-string';
 import {
   FormBuilder,
@@ -29,7 +29,7 @@ import { Equipo } from '../../../services/db/equipo';
   styleUrl: './crear-equipo.css',
 })
 export default class CrearEquipo {
-  faCalendar = faCalendar;
+  faUsers = faUsers;
   form: FormGroup;
   loading = false;
 

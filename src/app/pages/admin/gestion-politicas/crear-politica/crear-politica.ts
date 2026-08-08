@@ -9,6 +9,7 @@ import {
   faDollarSign,
   faHashtag,
   faPercent,
+  faHeading
 } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -45,6 +46,7 @@ import { FIXED_POLICIES_CONFIG, PolicyInputType } from './config-politica';
 export default class CrearPolitica {
 
   faCalendar = faCalendar;
+  faHeading = faHeading;
   form: FormGroup;
   loading = false;
   isEditMode = false;

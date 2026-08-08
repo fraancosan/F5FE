@@ -12,7 +12,7 @@
 <div [formGroup]="form" class="form">
       <app-input-string
         label="Descripción"
-        [icon]="faCalendar"
+        [icon]="faAlignLeft"
         type="text"
         name="descripcion"
         placeholder="{{ torneo.descripcion }}"
@@ -34,7 +34,7 @@
 
       <app-input-string
         label="Horario"
-        [icon]="faCalendar"
+        [icon]="faClock"
         type="text"
         name="horario"
         placeholder="Desde las 17:00 a las 20:00"
@@ -46,7 +46,7 @@
 
       <app-input-string
         label="Precio"
-        [icon]="faCalendar"
+        [icon]="faDollarSign"
         type="text"
         name="precio"
         placeholder="{{ '$' +  torneo.precioInscripcion }}"

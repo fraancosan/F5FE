@@ -16,8 +16,12 @@
       <button mat-menu-item (click)="goToLogin()">Iniciar Sesión</button>
       <button mat-menu-item (click)="goToRegister()">Registrarse</button>
       }@else {
+        <!--Si el usuario no es administrador-->
+      @if(isUser) {
       <button mat-menu-item (click)="goToAccount()">Mi Cuenta</button>
       <button mat-menu-item (click)="goToMyTurnos()">Mis Turnos</button>
+      }
+      <!--Común para tanto usuario como admin-->
       <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
       }
     </mat-menu>

@@ -10,7 +10,8 @@ import {
 } from '@angular/forms';
 import { InputString } from '../../shared/inputs/input-string/input-string';
 import { GoBack } from '../../shared/go-back/go-back';
-import { faCalendar } from '@fortawesome/free-regular-svg-icons';
+import { faCalendar} from '@fortawesome/free-regular-svg-icons';
+import { faUser,faEnvelope,faLock, faPhone, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { Navigation } from '../../services/common/navigation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Users } from '../../services/db/users';
@@ -31,6 +32,12 @@ import { Spinner } from '../../shared/spinner/spinner';
 })
 export default class MiCuenta {
   faCalendar = faCalendar;
+  faHashtag = faHashtag;
+  faUser = faUser;
+  faEnvelope = faEnvelope
+  faLock = faLock;
+  faPhone = faPhone;
+
   form: FormGroup;
   loading = true;
 
