@@ -2,7 +2,11 @@ import { Component, ElementRef } from '@angular/core';
 import { GoBack } from '../../../../shared/go-back/go-back';
 import { Button2 } from '../../../../shared/btns/button2/button2';
 import { Button1 } from '../../../../shared/btns/button1/button1';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar,
+  faDollarSign,
+  faHashtag,
+  faAlignLeft,
+ } from '@fortawesome/free-solid-svg-icons';
 import { InputString } from '../../../../shared/inputs/input-string/input-string';
 import {
   FormBuilder,
@@ -35,6 +39,9 @@ import { InputDate } from '../../../../shared/inputs/input-date/input-date';
 export default class CrearTorneo {
 
   faCalendar = faCalendar;
+  faDollarSign = faDollarSign;
+  faHashtag = faHashtag;
+  faAlignLeft = faAlignLeft;
   form: FormGroup;
   loading = false;
   isEditMode = false;
