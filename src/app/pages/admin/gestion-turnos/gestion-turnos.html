@@ -33,7 +33,7 @@
       <th mat-header-cell *matHeaderCellDef>Usuario</th>
       <td mat-cell *matCellDef="let element">
         <div class="user-info">
-          {{ element.usuario?.nombre ? (element.usuario.nombre + ' ' + element.usuario.apellido) : 'ID: ' + element.idUsuario }}
+          {{ element.usuario?.nombre ? (element.usuario.nombre) : 'ID: ' + element.idUsuario }}
           <small style="display: block; color: gray;">{{ element.usuario?.mail }}</small>
         </div>
       </td>

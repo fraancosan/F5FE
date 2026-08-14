@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoBack } from '../../../shared/go-back/go-back'; 
 import { MatTableModule } from '@angular/material/table';
-import { turno } from '../../../Interfases/interfaces';
+import { turno, usuario } from '../../../Interfases/interfaces';
 import { CurrencyPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { Spinner } from '../../../shared/spinner/spinner';
 import { Turnos } from '../../../services/db/turnos';
@@ -12,6 +12,12 @@ import { InputDate } from '../../../shared/inputs/input-date/input-date';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Users } from '../../../services/db/users';
+import { forkJoin } from 'rxjs';
+
+type TurnoConUsuario = turno & {
+  usuario?: Pick<usuario, 'id' | 'nombre'>;
+};
 
 @Component({
   selector: 'app-gestion-turnos',
@@ -47,7 +53,8 @@ export default class GestionTurnos implements OnInit {
     'Acciones',
   ];
 
-  turnos: turno[] = [];
+  usuarios: Pick<usuario, 'id' | 'nombre'>[] = [];
+  turnos: TurnoConUsuario[] = [];
   loading: boolean = false;
   orderIcon = faSort;
   filterIcon = faFilter;
@@ -75,7 +82,11 @@ export default class GestionTurnos implements OnInit {
     { value: 'pendiente de pago', text: 'Pendiente de pago', disabled: false },
   ];
 
-  constructor(private turnosService: Turnos, private snackBar: MatSnackBar) {}
+  constructor(
+    private turnosService: Turnos,
+    private usersService: Users,
+    private snackBar: MatSnackBar,
+  ) {}
 
   ngOnInit() {
     this.loadTurnos();
@@ -83,9 +94,31 @@ export default class GestionTurnos implements OnInit {
 
   loadTurnos() {
     this.loading = true;
-    this.turnosService.getAll(this.params).subscribe((turnos) => {
-      this.turnos = turnos;
-      this.loading = false;
+
+    forkJoin({
+      turnos: this.turnosService.getAll(this.params),
+      usuarios: this.usersService.getAll(),
+    }).subscribe({
+      next: ({ turnos, usuarios }) => {
+        const usuariosPorId = new Map<number, Pick<usuario, 'id' | 'nombre'>>(
+          usuarios.map((usuario) => [usuario.id, { id: usuario.id, nombre: usuario.nombre }]),
+        );
+
+        this.usuarios = usuarios.map((usuario) => ({
+          id: usuario.id,
+          nombre: usuario.nombre,
+        }));
+
+        this.turnos = turnos.map((turno) => ({
+          ...turno,
+          usuario: usuariosPorId.get(Number(turno.idUsuario)),
+        }));
+
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      },
     });
   }
 
