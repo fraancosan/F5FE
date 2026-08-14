@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { GoBack } from '../../../../../shared/go-back/go-back';
 import { Button2 } from '../../../../../shared/btns/button2/button2';
 import { Button1 } from '../../../../../shared/btns/button1/button1';
-import { faCalendar,faFileLines } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar,faFileLines, faHeading } from '@fortawesome/free-solid-svg-icons';
 import { InputString } from '../../../../../shared/inputs/input-string/input-string';
 import {
   FormBuilder,
@@ -38,6 +38,7 @@ export default class CrearMensaje {
 
   faCalendar = faCalendar;
   faFileLines = faFileLines;
+  faHeading = faHeading;
   form: FormGroup;
   loading = false;
   isEditMode = false;

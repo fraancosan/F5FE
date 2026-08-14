@@ -5,7 +5,7 @@ import { Button2 } from '../../../../shared/btns/button2/button2';
 import { Button1 } from '../../../../shared/btns/button1/button1';
 import { Spinner } from '../../../../shared/spinner/spinner';
 import { GoBack } from '../../../../shared/go-back/go-back';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faAlignLeft, faDollarSign, faClock } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { Select } from '../../../../shared/inputs/select/select';
 import { Users } from '../../../../services/db/users';
@@ -39,6 +39,9 @@ interface SelectOption {
 export default class InscripcionTorneo {
   torneo: TorneoInterface | null = null;
   faCalendar = faCalendar;
+  faAlignLeft = faAlignLeft;
+  faDollarSign = faDollarSign;
+  faClock = faClock;
   equiposOptions: SelectOption[] = [];
   equipoSeleccionadoId: string = '';
   loading: boolean = false;

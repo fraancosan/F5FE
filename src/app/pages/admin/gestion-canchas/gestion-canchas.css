@@ -57,8 +57,16 @@ th {
   font-size: 16px ;
 }
 
+.actions-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
 .actions-wrapper button{
-  transform: scale(0.9);
+  transform: translateY(-3px) scale(0.85);
   color: var(--green-500-primary);
 }
 
