@@ -115,4 +115,22 @@ app-button3{
   padding: 15px 16px 0 16px;
   box-sizing: border-box;  
   }
+
+    .politica-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .politica-wrapper app-card-politicas {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .acciones-politica {
+    width: auto;
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
 }

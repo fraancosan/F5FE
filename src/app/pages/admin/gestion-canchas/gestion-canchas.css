@@ -51,6 +51,8 @@
   height: 100%;
   padding: 0 30px;
   overflow-y: auto;
+  scrollbar-color: var(--green-500-primary) transparent;
+
 }
 
 th {
@@ -78,6 +80,9 @@ th {
   }
 
   .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
     margin: 0;
     padding: 0 16px 12px 16px;
@@ -85,6 +90,9 @@ th {
   }
 
   .page-title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin: 0;
     text-align: center;
     font-size: 20px;
@@ -99,7 +107,14 @@ th {
     min-height: unset;
     height: auto;
   }
+
+  .scroll-container {
+  width: 100%;            
+  padding: 15px 16px 0 16px;
+  box-sizing: border-box;  
+  }
 }
+
 .contenido-centrado {
   text-align: center;
 }

@@ -67,15 +67,20 @@
   }
 
   .title {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin: 0;
   padding: 0 16px 12px 16px;
-  align-items: center;    
+  align-items: flex-start;    
   gap: 12px;               
   box-sizing: border-box;
   }
 
   .page-title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin: 0;               
   text-align: center;      
   font-size: 20px;         
