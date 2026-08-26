@@ -17,6 +17,7 @@
   box-sizing: border-box;
   box-shadow: 0 10px 30px rgba(3, 23, 11, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  overflow-y: auto;
 }
 
 .title {
@@ -41,18 +42,21 @@
 }
 
 .table-container {
-  width: calc(100% - 70px);
+  width: 100%;
   min-height: 350px;
   height: 100%;
   padding: 0 30px;
   overflow-y: auto;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 
 .filters-container {
-  width: calc(100% - 60px);
+  width: 100%;
   padding: 10px 30px;
   display: flex;
   justify-content: center; 
+  box-sizing: border-box;
 }
 
 .inputs-row {
@@ -79,7 +83,8 @@ app-input-date {
 .total-superior span {
   color: #fff;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
+  white-space: nowrap;
 }
 
 .amount-box {
@@ -92,23 +97,42 @@ app-input-date {
   font-size: 18px;
   min-width: 120px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 /* --- BOTÓN FINAL --- */
 app-button3 {
   margin-top: 10px;
   margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
 
   :host {
+    padding: 16px;
+    height: 90dvh;
     overflow-y: auto;
     scrollbar-color: var(--green-500-primary) transparent;
   }
   
+  .title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0 16px 12px 16px;
+    align-items: flex-start;    
+    gap: 12px;               
+    box-sizing: border-box;
+  }
   .page-title {
     font-size: 18px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;               
+    text-align: center;  
   }
   .inputs-row{
     flex-direction: column;
@@ -116,7 +140,9 @@ app-button3 {
   }
 
   .total-superior{
-    margin-bottom: 20px;
+    margin-top: 4px;
+    width: 100%;
+    justify-content: space-between;
   }
 
   app-input-date {

@@ -69,4 +69,11 @@
 
 app-button3{
   width: 10%;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  app-button3{
+    width: 20%;
+  }
 }

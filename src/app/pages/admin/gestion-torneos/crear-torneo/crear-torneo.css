@@ -89,6 +89,7 @@
 }
 
 @media (max-width: 768px) {
+
   :host {
   width: calc(100% - 24px); 
   padding: 16px 0;         
@@ -114,5 +115,10 @@
   width: 100%;            
   padding: 15px 16px 0 16px;
   box-sizing: border-box;  
+  }
+
+  .form {
+    overflow-y: auto;
+    scrollbar-color: var(--green-600) transparent;
   }
 }

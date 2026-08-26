@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Button2 } from '../../shared/btns/button2/button2';
 import { Button1 } from '../../shared/btns/button1/button1';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import {faLock, faUser, faPhone, faHashtag, faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import {
   FormBuilder,
@@ -30,7 +30,11 @@ import { Spinner } from '../../shared/spinner/spinner';
   styleUrl: './sign-up.css',
 })
 export default class SignUp {
-  faCalendar = faCalendar;
+  faLock = faLock;
+  faUser = faUser;
+  faPhone = faPhone;
+  faHashtag = faHashtag;
+  faEnvelope = faEnvelope;
   form: FormGroup;
   loading = false;
 

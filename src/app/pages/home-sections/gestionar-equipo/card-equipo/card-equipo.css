@@ -40,3 +40,9 @@
   margin-top: 0.5rem;
   align-self: flex-end;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 18px;
+  }
+}
