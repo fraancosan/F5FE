@@ -52,7 +52,10 @@ export default class UsuariosPremium {
     this.loading = true;
     this.usersService.getPremium().subscribe({
       next: (usuarios) => {
-        this.usuarios = usuarios;
+        this.usuarios = usuarios.map((usuario) => ({
+          ...usuario,
+          nivel: 'Premium',
+        }));
         this.loading = false;
       },
       error: (error) => {

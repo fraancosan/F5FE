@@ -6,13 +6,20 @@
 <div class="filters-container">
     <div class="inputs-row">
         <app-input-date label="Desde" name="Desde" (dateSelected)="changeDesde($event)"></app-input-date>
-        <app-input-date label="Hasta" name="Hasta" (dateSelected)="changeHasta($event)"></app-input-date>
+        <app-input-date label="Hasta" name="Hasta" (dateSelected)="changeHasta($event)"></app-input-date>    
+    </div>
+      <div class="totales">
         <div class="total-superior">
-            <span>Total Perdido:</span>
+          <span>Total Perdido:</span>
           <div class="amount-box">{{ totalPerdidasGeneral | currency : '$' : 'symbol' : '1.0-0' }}</div>
         </div>
-    </div>
+        <div class="total-superior">
+          <span>Total Cancelado:</span>
+          <div class="amount-box">{{ totalCancelado}}</div>
+        </div>  
+      </div> 
 </div>
+
 
 
 <div class="table-container mat-elevation-z8">

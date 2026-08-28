@@ -15,6 +15,7 @@ import { Torneo } from '../../../../services/db/torneo';
 import { torneo as TorneoInterface } from '../../../../Interfases/interfaces';
 import { InputString } from '../../../../shared/inputs/input-string/input-string';
 import { FormGroup,FormControl, ReactiveFormsModule } from '@angular/forms';
+import { equipoUsuario } from '../../../../Interfases/interfaces';
 
 interface SelectOption {
   value: string;
@@ -43,7 +44,11 @@ export default class InscripcionTorneo {
   faDollarSign = faDollarSign;
   faClock = faClock;
   equiposOptions: SelectOption[] = [];
+  equiposUsuario: equipoUsuario[] = [];
   equipoSeleccionadoId: string = '';
+  equipoSeleccionado?: equipoUsuario;
+  cantidadMiembrosEquipo: number = 0;
+  cargandoMiembros: boolean = false;
   loading: boolean = false;
   equiposInscritosCount: number = 0;
 
@@ -126,7 +131,8 @@ export default class InscripcionTorneo {
 
   obtenerEquiposUsuario(idLogueado: number) {
     this.EquipoUsuarioService.getAll({idUsuario : idLogueado}).subscribe({
-        next: (res: any[]) => {
+        next: (res: equipoUsuario[]) => {
+          this.equiposUsuario = res;
           this.equiposOptions = res.map(relacion => ({
             value: relacion.idEquipo.toString(), 
             text: relacion.Equipo?.nombre || `Equipo ${relacion.idEquipo}`,
@@ -139,6 +145,27 @@ export default class InscripcionTorneo {
       });
     }
 
+  seleccionarEquipo(id: string): void {
+    this.equipoSeleccionadoId = id;
+
+    this.equipoSeleccionado = this.equiposUsuario.find(
+      relacion => relacion.idEquipo === Number(id)
+    );
+
+    this.cantidadMiembrosEquipo = 0;
+    this.cargandoMiembros = true;
+
+    this.EquipoUsuarioService.getAllMiembros(Number(id)).subscribe({
+      next: miembros => {
+        this.cantidadMiembrosEquipo = miembros.length;
+        this.cargandoMiembros = false;
+      },
+      error: () => {
+        this.cargandoMiembros = false;
+      }
+    });
+  }
+
   InscripcionTorneo(torneo: TorneoInterface | null, idEquipo: number){
     if (!torneo || !idEquipo) {
     this.snackBar.open('Faltan datos por cargar...', 'Cerrar', { duration: 3000 });
@@ -146,7 +173,29 @@ export default class InscripcionTorneo {
     }
 
     this.loading = true;
-
+    const fechaInicio = String(torneo.fechaInicio).slice(0, 10);
+    const hoy = new Date();
+    const fechaHoy = [hoy.getFullYear(),String(hoy.getMonth() + 1).padStart(2, '0'),String(hoy.getDate()).padStart(2, '0')].join('-');
+    if (fechaInicio <= fechaHoy) {
+      this.loading = false;
+      this.snackBar.open('El torneo ya ha comenzado, no se puede inscribir.', 'Cerrar', { duration: 5000 });
+      return;
+    }
+    if (!this.equipoSeleccionado?.capitan) {
+      this.loading = false;
+      this.snackBar.open('Solo el capitan del equipo puede inscribirse en el torneo.', 'Cerrar', { duration: 5000 });
+      return;
+    }
+    if(this.cantidadMiembrosEquipo < 5) {
+      this.loading = false;
+      this.snackBar.open('El equipo debe tener al menos 5 miembros para inscribirse en el torneo.', 'Cerrar', { duration: 5000 });
+      return;
+    }
+    if(this.equiposInscritosCount >= torneo.cantidadEquipos) {
+      this.loading = false;
+      this.snackBar.open('El torneo ya ha alcanzado el número máximo de equipos inscritos.', 'Cerrar', { duration: 5000 });
+      return;
+    }
     this.equipoTorneoService.create({idEquipo: Number(idEquipo), idTorneo: torneo.id}).subscribe({
       next: (response) => {
         this.loading = false;

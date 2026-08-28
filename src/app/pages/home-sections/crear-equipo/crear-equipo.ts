@@ -54,6 +54,12 @@ export default class CrearEquipo {
         duration: 5000,
       });
     }else {
+        if (this.form.get('nombre')?.value.trim() === '') {
+          this.snackBar.open('El nombre no puede estar vacío', 'Aceptar', {
+            duration: 5000,
+          });
+          return;
+        }
         this.loading = true;
         this.EquipoService.create(this.form.value.nombre).subscribe({
           next: (res) => {
@@ -65,6 +71,9 @@ export default class CrearEquipo {
           },
           error: (err) => {
             this.loading = false;
+            this.snackBar.open('Error al crear el equipo', 'Aceptar', {
+              duration: 5000,
+            });
           }
         });
       }

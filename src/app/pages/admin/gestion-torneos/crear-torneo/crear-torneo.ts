@@ -21,6 +21,7 @@ import { Torneo } from '../../../../services/db/torneo';
 import { torneo } from '../../../../Interfases/interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { InputDate } from '../../../../shared/inputs/input-date/input-date';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-crear-torneo',
@@ -60,8 +61,7 @@ export default class CrearTorneo {
       fechaInicio: ['', Validators.required],
       fechaFin: ['', Validators.required],
       precioInscripcion: ['', Validators.required],
-      cantidadEquipos: ['', Validators.required],
-    
+      cantidadEquipos: ['', [Validators.required, Validators.pattern(/^[1-9]\d*$/)]],
     });
 
   }
@@ -84,8 +84,13 @@ export default class CrearTorneo {
       this.snackBar.open('Primero complete sus datos', 'Aceptar', {
       duration: 5000,
     });
-    }else {
+      this.loading = false;
+      return;
+    }
+
+    if (this.form.valid) {
       this.loading = true;
+
       const payload = {
         ...this.form.value,
         precioInscripcion: Number(this.form.value.precioInscripcion),
@@ -140,6 +145,43 @@ export default class CrearTorneo {
     return `${year}-${month}-${day}`;
   }
 
+  private formatearFecha(value: Date | string): string {
+  if (typeof value === 'string') {
+    return value.slice(0, 10);
+  }
+
+  const year = value.getFullYear();
+  const month = String(value.getMonth() + 1).padStart(2, '0');
+  const day = String(value.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+  }
+
+  private validarSuperposicion(
+  fechaInicio: string,
+  fechaFin: string,
+  idActual?: number
+  ): Observable<boolean> {
+  return this.torneoService.getAll().pipe(
+    map((torneos) =>
+      torneos.some((torneo) => {
+        // Al editar, no comparar el torneo consigo mismo
+        if (torneo.id === idActual) {
+          return false;
+        }
+
+        const inicioExistente = this.formatearFecha(torneo.fechaInicio);
+        const finExistente = this.formatearFecha(torneo.fechaFin);
+
+        return (
+          fechaInicio <= finExistente &&
+          fechaFin >= inicioExistente
+          );
+        })
+      )
+    );
+  }
+
   // app-input-date no implementa ControlValueAccessor, por eso seteamos el valor visualmente en modo edición.
   private syncDateInputsWithForm() {
     setTimeout(() => {
@@ -163,14 +205,40 @@ export default class CrearTorneo {
   }
 
   guardarTorneo() {
-if (this.form.invalid) {
-      this.snackBar.open('Primero complete sus datos', 'Aceptar', {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.snackBar.open('Complete todos los campos o corrija los errores', 'Aceptar', {
         duration: 5000,
       });
       return;
     }
     this.loading = true;
+    const fechaInicio = this.form.get('fechaInicio')?.value;
+    const fechaFin = this.form.get('fechaFin')?.value;
 
+    if (fechaInicio > fechaFin) {
+      this.snackBar.open('La fecha de inicio debe ser menor a la fecha de fin', 'Aceptar', {
+        duration: 5000,
+      });
+      this.loading = false;
+      return;
+    };
+
+    this.validarSuperposicion(
+     fechaInicio,
+     fechaFin,
+     this.torneoId || undefined
+    ).subscribe({
+    next: (haySuperposicion) => {
+    if (haySuperposicion) {
+      this.snackBar.open(
+        'Las fechas del torneo se superponen con otro torneo existente',
+        'Aceptar',
+        { duration: 5000 }
+      );
+      this.loading = false;
+      return;
+    }
     if (this.isEditMode) {
       const body = {
         descripcion: this.form.value.descripcion,
@@ -178,25 +246,40 @@ if (this.form.invalid) {
         fechaFin: this.form.value.fechaFin,
         precioInscripcion: Number(this.form.value.precioInscripcion),
         cantidadEquipos: Number(this.form.value.cantidadEquipos),
-      }
+      };
+
       this.torneoService.update(this.torneoId!, body).subscribe({
         next: () => {
           this.loading = false;
-          this.snackBar.open('Torneo actualizado con éxito', 'Aceptar', {
-            duration: 5000,
-          });
+          this.snackBar.open(
+            'Torneo actualizado con éxito',
+            'Aceptar',
+            { duration: 5000 }
+          );
           this.navService.toPageTop('/admin/torneos');
         },
-        error: (err) => {
+        error: () => {
           this.loading = false;
-          this.snackBar.open('Error al actualizar el torneo', 'Aceptar', {
-            duration: 5000,
-          });
-        }
+          this.snackBar.open(
+            'Error al actualizar el torneo',
+            'Aceptar',
+            { duration: 5000 }
+          );
+        },
       });
-      } else {
-         this.crearTorneo();
-      }
+    } else {
+      this.crearTorneo();
+    }
+  },
 
-  } 
+  error: () => {
+    this.loading = false;
+    this.snackBar.open(
+      'Error al validar las fechas del torneo',
+      'Aceptar',
+      { duration: 5000 }
+    );
+  },
+})
+}
 }

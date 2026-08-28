@@ -97,6 +97,26 @@ export default class CrearMensaje {
       return;
     }
 
+    if (this.form.get('fecha')?.value > this.form.get('fechaFin')?.value) {
+      this.snackBar.open('La fecha de inicio debe ser menor que la fecha de fin', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    if (this.form.get('fecha')?.value === this.form.get('fechaFin')?.value) {
+      this.snackBar.open('La fecha de inicio debe ser menor que la fecha de fin', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    if (!this.form.get('noticia')?.value?.trim()) {
+      this.snackBar.open('El campo de noticia no puede estar vacío', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    if (!this.form.get('titulo')?.value?.trim()) {
+      this.snackBar.open('El campo de título no puede estar vacío', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
     if (!this.isEditMode) {
       this.muroService.create(this.form.value).subscribe({
         next: () => {

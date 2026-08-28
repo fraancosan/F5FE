@@ -21,12 +21,16 @@
     label="Fecha de inicio"
     name="fechaInicio"
     (dateSelected)="form.get('fechaInicio')!.setValue($event)"
+    prefixMessage="La fecha de inicio del torneo"
+    [form]="form"
   ></app-input-date>
 
   <app-input-date
     label="Fecha de fin"
     name="fechaFin"
+    prefixMessage="La fecha de fin del torneo"
     (dateSelected)="form.get('fechaFin')!.setValue($event)"
+    [form]="form"
   ></app-input-date>
   
 

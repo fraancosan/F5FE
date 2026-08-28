@@ -31,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
 export default class ReservasParrilla {
   turnos: turno[] = [];
   totalParrilla: number = 0;
+  totalReservas: number = 0;
   displayedColumns: string[] = [
       //'ID-TURNO',
       'Fecha',
@@ -42,8 +43,8 @@ export default class ReservasParrilla {
   loading: boolean = false;
 
   params: any = {
-    fechaI:new Date().toISOString().split('T')[0],
-    fechaF:new Date().toISOString().split('T')[0],
+    fechaI:'',
+    fechaF:'',
   };
 
   constructor (
@@ -53,15 +54,28 @@ export default class ReservasParrilla {
 
   loadTurnosParrilla() {
     this.loading = true;
+    if (!this.params.fechaI || !this.params.fechaF) {
+      this.snackBar.open('Debe seleccionar un rango de fechas', 'Cerrar', { duration: 3000 });
+      this.loading = false;
+      return;
+    }
+    if (this.params.fechaI > this.params.fechaF) {
+      this.snackBar.open('La fecha desde no puede ser mayor a la fecha hasta', 'Cerrar', { duration: 3000 });
+      this.loading = false;
+      return;
+    }
     this.turnosService.reporteParrilla(this.params).subscribe({
       next: (data) => {
-        this.turnos = data.turnos || [];
+        this.turnos = data?.turnos || [];
         this.totalParrilla = data?.resumen?.ingresosTotales || 0;
+        this.totalReservas = this.turnos ? this.turnos.length : 0;
         this.loading = false;
       },
       error: (error) => {
         this.turnos = [];
         this.totalParrilla = 0;
+        this.totalReservas = 0;
+        this.loading = false;
         this.snackBar.open('Error al cargar los turnos de parrilla', 'Cerrar', { duration: 3000 });
       }
     });

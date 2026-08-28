@@ -7,11 +7,18 @@
     <div class="inputs-row">
         <app-input-date label="Desde" name="Desde" (dateSelected)="changeDesde($event)"></app-input-date>
         <app-input-date label="Hasta" name="Hasta" (dateSelected)="changeHasta($event)"></app-input-date>
+    </div>   
+    <div class="totales">
         <div class="total-superior">
             <span>Total Parrilla:</span>
-          <div class="amount-box">{{ totalParrilla | currency : '$' : 'symbol' : '1.0-0' }}</div>
+            <div class="amount-box">{{ totalParrilla | currency : '$' : 'symbol' : '1.0-0' }}</div>
+        </div>
+        <div class="total-superior">
+          <span>Total Reservas:</span>
+          <div class="amount-box">{{ totalReservas}}</div>
         </div>
     </div>
+        
 </div>
 
 

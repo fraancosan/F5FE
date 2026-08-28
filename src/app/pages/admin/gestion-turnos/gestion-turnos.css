@@ -60,6 +60,58 @@
   overflow-y: auto;
 }
 
+.inline-input{
+  height: 34px;
+  width: auto;
+  box-sizing: border-box;
+  border: 1px solid rgba(112, 245, 163, 0.7);
+  border-radius: 6px;
+  background: rgba(7, 35, 19, 0.85);
+  color: #ffffff;
+  color-scheme: dark;
+  padding: 0 9px;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.inline-input:hover {
+  border-color: var(--green-500-primary);
+  background: rgba(10, 48, 26, 0.95);
+}
+
+.inline-input:focus {
+  border-color: var(--green-500-primary);
+  box-shadow: 0 0 0 3px rgba(112, 245, 163, 0.18);
+  background: rgba(12, 55, 30, 0.98);
+}
+
+.cancha-column {
+  width: 60px;
+}
+
+.small-input {
+  width: 60px;
+  text-align: center;
+}
+.mat-mdc-cell {
+  white-space: nowrap;
+}
+
+.actions-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.mat-icon-button{
+  color: var(--green-500-primary);
+}
 @media (max-width: 768px) {
  :host {
   width: calc(100% - 24px); 

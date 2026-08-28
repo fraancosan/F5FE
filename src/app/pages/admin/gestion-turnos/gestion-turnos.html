@@ -76,8 +76,8 @@
     </ng-container>
 
     <ng-container matColumnDef="Cancha">
-      <th mat-header-cell *matHeaderCellDef>Cancha</th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="cancha-column">Cancha</th>
+      <td mat-cell *matCellDef="let element" class="cancha-column">
         @if (filaEditar?.id === element.id) {
           <input type="number" [(ngModel)]="filaEditar.idCancha" class="inline-input small-input">
         } @else {
@@ -102,14 +102,14 @@
         <div class="actions-wrapper">
           
           @if (filaEditar?.id === element.id) {
-            <button mat-icon-button color="var(--green-500-primary)" (click)="guardarCambios(element)" title="Confirmar">
+            <button mat-icon-button class= "mat-icon-button" (click)="guardarCambios(element)" title="Confirmar">
               <mat-icon>check_circle</mat-icon>
             </button>
-            <button mat-icon-button color="var(--green-500-primary)" (click)="cancelarEdicion()" title="Cancelar">
+            <button mat-icon-button class= "mat-icon-button" (click)="cancelarEdicion()" title="Cancelar">
               <mat-icon>cancel</mat-icon>
             </button>
           } @else if (element.estado === 'señado') {
-            <button mat-icon-button color="var(--green-500-primary)" (click)="habilitarEdicion(element)" title="Editar">
+            <button mat-icon-button class= "mat-icon-button"(click)="habilitarEdicion(element)" title="Editar">
               <mat-icon>edit</mat-icon>
             </button>
           } @else {
