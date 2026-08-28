@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Users } from '../../../services/db/users';
 import { forkJoin } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 type TurnoConUsuario = turno & {
   usuario?: Pick<usuario, 'id' | 'nombre'>;
@@ -151,8 +152,14 @@ export default class GestionTurnos implements OnInit {
         this.filaEditar = null;
         this.loadTurnos();
       },
-      error: () => {
-        this.snackBar.open('Error al actualizar el turno', 'Cerrar', { duration: 3000 });
+      error: (error: HttpErrorResponse) => {
+        const mensajeError = error.status === 500
+        ? 'Error al contactar con el servidor'
+        : error.error?.message || 'No se pudo actualizar el turno';
+
+        this.snackBar.open(mensajeError, 'Cerrar', {
+          duration: 5000,
+        });
       }
     });
   }

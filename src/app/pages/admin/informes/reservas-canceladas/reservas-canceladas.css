@@ -18,6 +18,7 @@
   box-shadow: 0 10px 30px rgba(3, 23, 11, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
   overflow-y: auto;
+  scrollbar-color: var(--green-500-primary) transparent;
 }
 
 .title {
@@ -55,6 +56,7 @@
   width: 100%;
   padding: 10px 30px;
   display: flex;
+  flex-direction: column;
   justify-content: center; 
   box-sizing: border-box;
 }
@@ -66,6 +68,15 @@
   justify-content: space-between; 
   width: 100%;
   gap: 20px;                
+}
+
+.totales {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  gap: 20px;
 }
 
 app-input-date {
@@ -142,20 +153,32 @@ app-button3 {
   .total-superior{
     margin-top: 4px;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
+  .total-superior span{
+    min-width: 130px;
+  }
   app-input-date {
     width: 100%;
     max-width: 300px;
   }
 
   .amount-box {
-    margin-left: 14px;
+    margin-left: 0;
+    min-width: 110px;
+    width: 110px;
   }
 
   .table-container {
     overflow-y: auto;
     scrollbar-color: var(--green-500-primary) transparent;
+  }
+  
+  .totales {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
   }
 }

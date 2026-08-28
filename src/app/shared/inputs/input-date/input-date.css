@@ -54,3 +54,8 @@
   user-select: none;
   z-index: 2;
 }
+
+.error {
+  color: #e1034a;
+  font-size: 0.8em;
+}

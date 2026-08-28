@@ -11,6 +11,7 @@
     [max]="toDate ? (toDate | date : 'yyyy-MM-dd') : null"
     placeholder="dd/mm/aaaa"
     (input)="onInput($event)"
+    (blur)="onBlur()"
   />
   <span class="placeholder">{{ placeholder }}</span>
   <fa-icon
@@ -20,3 +21,9 @@
     [fixedWidth]="true"
   ></fa-icon>
 </div>
+
+@if (form?.get(name)?.hasError('required') && form?.get(name)?.touched) {
+  <span class="error">
+    {{ prefixMessage || 'El campo' }} es obligatorio
+  </span>
+}

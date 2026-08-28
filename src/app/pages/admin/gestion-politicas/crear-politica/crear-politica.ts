@@ -66,7 +66,7 @@ export default class CrearPolitica {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      nombre: ['', [Validators.required, Validators.maxLength(60)]],
+      nombre: ['', [Validators.required, Validators.maxLength(50)]],
       descripcion: ['', [Validators.required, Validators.maxLength(50)]],
     });
   }

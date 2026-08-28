@@ -33,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 export default class ReservasCanceladas {
   turnos: turno[] = [];
   totalPerdidasGeneral: number = 0;
+  totalCancelado: number = 0;
   displayedColumns: string[] = [
       'Usuario',
       'Cantidad',
@@ -44,24 +45,36 @@ export default class ReservasCanceladas {
   loading: boolean = false;
 
   params: any = {
-    fechaI:new Date().toISOString().split('T')[0],
-    fechaF:new Date().toISOString().split('T')[0],
+    fechaI:'',
+    fechaF:'',
   };
   constructor(
     private turnosService: Turnos,
     private snackBar: MatSnackBar) {}
   obtenerReservasCanceladas() {
+     if (!this.params.fechaI || !this.params.fechaF) {
+      this.snackBar.open('Debe seleccionar un rango de fechas', 'Cerrar', { duration: 3000 });
+      this.loading = false;
+      return;
+    }
+    if (this.params.fechaI > this.params.fechaF) {
+      this.snackBar.open('La fecha desde no puede ser mayor a la fecha hasta', 'Cerrar', { duration: 3000 });
+      this.loading = false;
+      return;
+    }
     this.turnosService.reporteCancelados(this.params).subscribe({
       next: (data) => {
-        this.turnos = data.turnos;
-        this.totalPerdidasGeneral = data.totalPerdidas;
+        this.turnos = data?.turnos || [];
+        this.totalPerdidasGeneral = data?.totalPerdidas || 0;
         this.loading = false;
+        this.totalCancelado = data?.turnos ? data?.turnos.length: 0;
       },
       error: (error) => {
         this.turnos = [];
         this.totalPerdidasGeneral = 0;
         this.snackBar.open('Error al obtener las reservas canceladas', 'Cerrar', { duration: 3000 });
         this.loading = false;
+        this.totalCancelado = 0;
       }
     });
   }

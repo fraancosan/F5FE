@@ -43,8 +43,8 @@ export default class TurnosDia {
   ];
 
   params: any = {
-    fechaI:new Date().toISOString().split('T')[0],
-    fechaF:new Date().toISOString().split('T')[0],
+    fechaI: '',
+    fechaF: '',
   };
 
 
@@ -52,17 +52,33 @@ export default class TurnosDia {
 
   loadTurnos() {
     this.loading = true;
+    if (!this.params.fechaI || !this.params.fechaF) {
+      this.snackBar.open('Debe seleccionar un rango de fechas', 'Cerrar', { duration: 3000 });
+      this.loading = false;
+      return;
+    }
+    if (this.params.fechaI > this.params.fechaF) {
+      this.snackBar.open('La fecha desde no puede ser mayor a la fecha hasta', 'Cerrar', { duration: 3000 });
+      this.loading = false;
+      return;
+    }
     this.turnosService.reporteCantidadPorDia(this.params).subscribe({
       next: (res) => {
-        this.turnos = res.turnosPorDia;
-        this.totalTurnos = res.totales.totalTurnos;
-        this.totalBuscarRival = res.totales.totalBuscandoRival;
-        this.totalParrilla = res.totales.totalParrilla;
+        this.turnos = res?.turnosPorDia || [];
+        this.totalTurnos = res?.totales?.totalTurnos || 0;
+        this.totalBuscarRival = res?.totales?.totalBuscandoRival || 0;
+        this.totalParrilla = res?.totales?.totalParrilla || 0;
         this.loading = false;
       },
       error: (err) => {
         this.loading = false;
-        this.snackBar.open('Error al cargar los turnos', 'Cerrar', { duration: 3000 });
+        this.turnos = []; 
+        this.totalTurnos = 0;
+        this.totalBuscarRival = 0;
+        this.totalParrilla = 0;
+        if (err.status !== 404){
+          this.snackBar.open('Error al cargar los turnos', 'Cerrar', { duration: 3000 });
+        }
       }
     });
   }
