@@ -138,6 +138,7 @@ export default class InscripcionTorneo {
             text: relacion.Equipo?.nombre || `Equipo ${relacion.idEquipo}`,
             disabled: false 
           }));
+          this.equipoSeleccionadoId = this.equiposOptions.length > 0 ? this.equiposOptions[0].value : '';
         },
         error: (err) => {
           this.equiposOptions = [];
