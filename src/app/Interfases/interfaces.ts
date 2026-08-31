@@ -48,6 +48,7 @@ export interface equipoTorneo {
   fechaCreacion: Date;
   idMP: string;
   urlPreferenciaPago: string;
+  equipo?: equipo;
 }
 
 export interface partidoTorneo {

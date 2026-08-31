@@ -300,38 +300,24 @@ export default class VerPartidos {
     }
 
     this.loadingEquipos = true;
-    this.equipoTorneoService.getAllById({ idTorneo: this.torneoId }).subscribe({
+    this.equipoTorneoService.getEquiposTorneo(this.torneoId).subscribe({
       next: (inscripciones) => {
         if (!inscripciones.length) {
           this.equiposTorneo = [];
           this.loadingEquipos = false;
+          this.snackBar.open('No hay equipos inscriptos en este torneo', 'Aceptar', {
+            duration: 5000,
+          }); 
           return;
         }
-
-        forkJoin(
-          inscripciones.map((inscripcion) => this.resolverEquipoInscripto(inscripcion))
-        ).subscribe({
-          next: (equipos) => {
-            this.equiposTorneo = equipos;
-            this.loadingEquipos = false;
-          },
-          error: () => {
-            this.loadingEquipos = false;
-          },
-        });
+        this.equiposTorneo =  inscripciones.map(inscripcion => inscripcion.equipo).filter(
+          equipo => !!equipo);
+        this.loadingEquipos = false;
       },
       error: () => {
         this.loadingEquipos = false;
       },
     });
-  }
-
-  private resolverEquipoInscripto(inscripcion: equipoTorneo) {
-    if (typeof inscripcion.idEquipo === 'object') {
-      return of(inscripcion.idEquipo);
-    }
-
-    return this.equipoService.getById(inscripcion.idEquipo);
   }
 
   private getEquipoId(valor: number | equipo) {
