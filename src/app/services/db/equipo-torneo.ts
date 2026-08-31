@@ -35,4 +35,8 @@ export class EquipoTorneo {
         })
       );
   }
+
+  getEquiposTorneo(idTorneo: number): Observable<equipoTorneo[]> {
+    return this.http.get<equipoTorneo[]>(this.urlBack + 'equiposTorneos/' + idTorneo);
+  }
 }
