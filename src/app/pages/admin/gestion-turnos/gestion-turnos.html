@@ -108,6 +108,11 @@
             <button mat-icon-button class= "mat-icon-button" (click)="cancelarEdicion()" title="Cancelar">
               <mat-icon>cancel</mat-icon>
             </button>
+            @if (element.estadoDetallado !== 'pendiente de pago') {
+            <button mat-icon-button class="mat-icon-button" (click)="finalizarTurno(element)" title="Finalizar Turno">
+              <mat-icon>assignment_turned_in</mat-icon>
+            </button>
+            }
           } @else if (element.estado === 'señado') {
             <button mat-icon-button class= "mat-icon-button"(click)="habilitarEdicion(element)" title="Editar">
               <mat-icon>edit</mat-icon>
