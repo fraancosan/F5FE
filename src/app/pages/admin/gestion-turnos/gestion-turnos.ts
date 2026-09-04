@@ -114,7 +114,6 @@ export default class GestionTurnos implements OnInit {
           ...turno,
           usuario: usuariosPorId.get(Number(turno.idUsuario)),
         }));
-
         this.loading = false;
       },
       error: () => {
@@ -166,6 +165,13 @@ export default class GestionTurnos implements OnInit {
   
   cancelarEdicion() {
     this.filaEditar = null;
+  }
+
+  finalizarTurno(turno: turno) {
+    if (confirm('¿Está seguro de que desea finalizar este turno?')) {
+      this.filaEditar.estado = 'finalizado';
+      this.guardarCambios(turno);
+    }
   }
 
   // Métodos de filtros
